@@ -1,5 +1,9 @@
 # http://railsforzombies.org
 
+
+#
+# level 1 - CRUD
+#
 class Tweet {
 	id
 	status
@@ -91,3 +95,29 @@ Zombie.order(:name).limit(2)
 Zombie.find(3).update_attributes(:graveyard => "Benny Hills Memorial")
 
 Zombie.find(3).destroy
+
+#
+# level 2 - Models
+# 
+app/models/tweet.rb
+class Tweet < ActiveRecord::Base
+	validates_presence_of :status
+	belongs_to :zombie #!singular
+end
+
+class Zombie < AciveRecord::Base
+	has_many tweets
+end
+
+t.errors
+
+validates_... (many options)
+
+validates :status, :presence => true, :length => { :minimum => 3}
+
+tweets: id, status, zombie_id
+
+z = Zombie.find(2)
+t = Tweet.create(:status=>"asdf", :zombie_id=>2)
+t.zombie #returns zombie object
+t.zombie.name
