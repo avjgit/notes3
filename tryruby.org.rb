@@ -1,4 +1,7 @@
 # http://tryruby.org/levels/1/challenges/3
+
+require 'fileutils.rb'
+
 string = "Jimmy"
 p string.reverse
 p string.length
@@ -29,8 +32,43 @@ p poem.downcase
 
 books = {}
 books["Gravity's Rainbow"] = :splendid # "symbol"
-books["Life of Pi"] = :quite_good
+books["Pelevin's first"] = :quite_good
 books["Pelevin's last"] = :mediocre
+books["Mr.Feinman"] = :splendid # "symbol"
+books["Life of Pi"] = :quite_good
 books.length
 p books["Gravity's Rainbow"] #:splendid
 p books.keys
+p books.values
+ratings = Hash.new(0)
+
+
+books.values.each {|rate| ratings[rate] += 1}
+p ratings
+5.times {print "Odelay!"}
+
+p Dir.entries "/"
+p Dir["/*.txt"]
+p File.read("/asdf.txt")
+
+FileUtils.cp('/asdf.txt', '/ruby/asdf.txt')
+File.open("/ruby/asdf.txt", "a") do |f|
+	f << "\nsome other comic: http://google.com"
+end
+
+p File.read("/ruby/asdf.txt")
+p File.mtime("/ruby/asdf.txt")
+p File.mtime("/ruby/asdf.txt").hour
+
+def load_comics(path)
+	comics = {}
+	File.foreach(path) do |asdf|
+		name, url = asdf.split(": ")
+		# stripping extra spaces in strings
+		comics[name] = url.strip 
+	end
+	comics	
+end
+
+p load_comics("/ruby/asdf.txt")
+
