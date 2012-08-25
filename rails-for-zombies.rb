@@ -149,3 +149,105 @@ w.save
 # Assuming the models and relationships are properly defined, 
 # find all the weapons that belong to Zombie 'Ash'.
 Zombie.find(1).weapons
+
+#
+# level 3 - Views
+#
+
+zombie_twitter
+- public
+-- stylesheets
+-- javascipts
+- app
+-- views
+--- layouts
+---- application.html.erb
+--- zombies
+--- tweets
+---- index.html.erb #show all tweets
+---- show.html.erb #show one tweet
+
+<% %> just evaluate ruby
+<%= %> eval AND print
+
+# raw HTML
+<html>
+<head><title>Twitter for zombies</title></head>
+<body>
+	<img src = "imag.png"/>
+	<% tweet = Tweet.find(1) %>
+	<%= tweet.status %>
+	<p>Posted by <%= tweet.zombie.name %></p>
+</body></html>
+
+# better version: separate common code (header and footer)
+# .. and specific code
+
+# app/views/layouts/application.html.erb - for header
+# app/views/tweets/show.html.erb - for tweet
+
+# app/views/layouts/application.html.erb - for header
+<html>
+<head>
+	<title>Twitter for zombies</title>
+	<%= stylesheet_link_tag :all %>
+	<%= javascript_includde_tag :defaults %>
+	<%= csrf_meta_tag %>
+</head>
+<body>
+	<img src = "imag.png"/>
+
+	#
+	<%= yeald %> 
+
+</body></html>
+
+
+# app/views/tweets/show.html.erb - for tweet
+	<% tweet = Tweet.find(1) %>
+	<%= tweet.status %>
+	<p>Posted by <%= tweet.zombie.name %></p>
+
+
+<p>Posted by <%= link_to tweet.zombie.name, zombie_path(tweet.zombie) %></p>
+<p>Posted by <%= link_to tweet.zombie.name, tweet.zombie %></p>
+
+# renders <a href="/zombies/1">Ash</a>
+
+
+# /app/views/tweets/index.html.erb
+<h1>Listing tweets</h1>
+<table>
+	<tr>
+		<th>Status</th>
+		<th>Zombie</th>
+	</tr>
+	<% tweets = Tweet.all %>
+	<% tweets.all.each do |tweet| %>
+		<tr>
+			<td><%= link_to tweet.status, tweet %></td>
+			<td><%= link_to tweet.zombie.name, tweet.Zombie %> </td>
+			<td><%= link_to "Edit", edit_tweet_path(tweet) %> </td>
+			<td><%= link_to "Delete", tweet, :method => :delete %> </td>
+		</tr>
+	<% end %>
+
+	#! if no tweets yet
+	<% if tweets.size == 0 %>
+		<em>No tweets found</em>
+	<% end %>
+
+	<% if tweets.empty? %>
+		<em>No tweets found</em>
+	<% end %>
+
+</table>
+
+<%= link_to "text", code %>
+
+code =
+	tweets_path					= /tweets
+	new_tweet_path				= /tweets/new
+	tweet 						= /tweets/1
+	edit_tweet_path(tweet) 		= /tweets/1/edit
+	tweet, :method => :Delete 	= /tweets/1
