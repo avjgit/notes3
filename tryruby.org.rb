@@ -61,7 +61,7 @@ p File.mtime("/ruby/asdf.txt")
 p File.mtime("/ruby/asdf.txt").hour
 
 def load_comics(path)
-	comics = {}
+	comics = {} # shortcut for Hash.new
 	File.foreach(path) do |asdf|
 		name, url = asdf.split(": ")
 		# stripping extra spaces in strings
@@ -70,5 +70,51 @@ def load_comics(path)
 	comics	
 end
 
-p load_comics("/ruby/asdf.txt")
+comics = load_comics("/ruby/asdf.txt")
 
+p comics
+
+comics.each do |comic, url|
+	p "If you wanna read " + comic + ", go to " + url
+end
+
+class BlogEntry
+	#!accessors
+	attr_accessor :title, :time, :fulltext, :mood
+end
+
+entry = BlogEntry.new
+entry.title = "First blogpost!"
+entry.time = Time.now
+entry.mood = :sick
+entry.fulltext = "I can't believe Mt. Hood was stolen! I am speechless! 
+It was stolen by a giraffe who drove away in his Cadillac Seville very nonchalant!!"
+
+p entry
+
+class BlogEntry
+	def initialize(title, mood, fulltext)
+		@time = Time.now
+		@title, @mood, @fulltext = title, mood, fulltext
+	end
+end
+
+entry2 = BlogEntry.new("About Hoodie", :confused, "aasdas dasdfasfd")
+
+blog = [entry2, entry]
+
+p blog
+blog.sort_by! {|entry| entry.time}.reverse
+p blog
+
+p blog.find_all {|entry| entry.fulltext.match(/cadillac/i)}
+
+blog << BlogEntry.new("Another post", :neutral, "today is Saturday")
+blog << BlogEntry.new("Yet another post", :neutral, "today is Saturday, again")
+
+p blog.map {|entry| entry.mood}
+
+p Time.now
+
+# rails
+# p Time.now - 2.weeks
