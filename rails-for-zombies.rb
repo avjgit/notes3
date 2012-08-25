@@ -251,3 +251,42 @@ code =
 	tweet 						= /tweets/1
 	edit_tweet_path(tweet) 		= /tweets/1/edit
 	tweet, :method => :Delete 	= /tweets/1
+
+# Print out the zombie's name and graveyard.
+<h1><%= zombie.name %></h1>
+
+<p>
+  <%= zombie.graveyard %>
+</p>
+# Link to the zombie's show page. Use the zombie's name as the anchor text
+<p>
+<%= link_to zombie.name, zombie %>
+</p>
+
+# Use an each block to print the names of all the zombies.
+<ul>
+<% zombies.each do |zombie| %>
+<%= zombie.name %>
+<% end %>
+</ul>
+
+# In the each block, if a zombie has more than one tweet, print out SMART ZOMBIE.
+<ul>
+  <% zombies.each do |zombie| %>
+    <li>
+      <%= zombie.name %>
+      <% if zombie.tweets.count > 1 %>
+      <P>SMART ZOMBIE</P>
+      <% end %>
+    </li>
+  <% end %>
+</ul>	
+
+# In the each block, make the zombie's name link to its edit page.
+<ul>
+  <% zombies.each do |zombie| %>
+    <li>
+      <%= link_to zombie.name, edit_zombie_path(zombie) %>
+    </li>
+  <% end %>
+</ul>
