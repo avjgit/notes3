@@ -121,3 +121,31 @@ z = Zombie.find(2)
 t = Tweet.create(:status=>"asdf", :zombie_id=>2)
 t.zombie #returns zombie object
 t.zombie.name
+
+# Define a Zombie model.
+# Add a validation that checks for the presence of a Zombie's name
+# Add a validation that checks for the uniqueness of a Zombie's name.
+class Zombie < ActiveRecord::Base
+  attr_accessor :name, :graveyard
+  validates :name, :presence => true, :uniqueness => true
+end
+# Use your newly created model to count the number of zombies
+Zombie.count
+# Verify that the validation works by trying to create a Zombie with no name
+z = Zombie.new
+z.save
+z.errors
+z.name = "Jim"
+z.errors
+
+# A Weapon belongs to a Zombie. Create that relationship.
+class Weapon < ActiveRecord::Base
+  belongs_to :zombie
+end
+# Create a weapon for an existing Zombie
+w = Weapon.new(:zombie_id => 2)
+w.save
+
+# Assuming the models and relationships are properly defined, 
+# find all the weapons that belong to Zombie 'Ash'.
+Zombie.find(1).weapons
