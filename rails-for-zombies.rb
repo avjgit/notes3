@@ -62,7 +62,7 @@ t.save
 
 # or even:
 t3 = Tweet.find(2)
-t.update_attributes(
+t3.update_attributes(
 	:status => "somehg going on!",
 	:zombie => "Zed2"
 )
@@ -73,3 +73,21 @@ t.destroy
 
 Tweet.find(3).destroy
 Tweet.destroy_all
+
+# Try to find a Zombie where the ID is 1.
+Zombie.find(1)
+# Using one command, find the Zombie records with IDs 1, 2 and 3.
+Zombie.find(1, 2, 3)
+# Create a new Zombie.
+zombie1 = Zombie.new(:name => "Zed", :graveyard => "South")
+zombie1 = Zombie.create(:name => "Zed", :graveyard => "South")
+# Find the last Zombie in the database, but don't use IDs
+z = Zombie.last
+# Find all Zombies ordered by their names.
+# Zombie.all.order(:name) #?
+Zombie.order(:name)
+Zombie.order(:name).limit(2)
+# Update Zombie 3's graveyard to 'Benny Hills Memorial'
+Zombie.find(3).update_attributes(:graveyard => "Benny Hills Memorial")
+
+Zombie.find(3).destroy
