@@ -386,3 +386,50 @@ def check_auth
 end
 
 before_filter :check_auth, :only => [:edit, :update, :destroy]
+
+# Create the show action for the ZombiesController which finds a Zombie based on params[:id].
+class ZombiesController < ApplicationController
+  def show
+    @zombie = Zombie.find(params[:id])
+  end
+end
+# Finish the respond_to block so the action returns the XML of the @zombie record
+class ZombiesController < ApplicationController
+  def show
+    @zombie = Zombie.find(params[:id])
+
+    respond_to do |format|
+      format.xml {render :xml => @zombie}
+    end
+  end
+end
+# Write a create action that will create a new Zombie 
+# from the params and then redirect to the created Zombie's show page
+class ZombiesController < ApplicationController
+  def create
+    @zombie = Zombie.create(params[:zombie])
+    redirect_to(zombie_path(@zombie))
+  end
+end
+# Add a before filter that calls a method to check 
+# if a Zombie has no tweets. Redirect to zombies_path if
+# they don't have tweets, only on show
+
+class ZombiesController < ApplicationController
+  before_filter :find_zombie
+  before_filter :check_tweets, :only => :show
+  
+  def check_tweets
+    if @zombie.tweets.size == 0
+      redirect_to zombies_path
+    end
+  end
+
+  def show
+    render :action => :show
+  end
+
+  def find_zombie
+    @zombie = Zombie.find params[:id]
+  end
+end
