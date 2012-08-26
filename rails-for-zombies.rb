@@ -295,7 +295,7 @@ code =
 # level 4 - Controllers
 #
 
-----------------
+Routing --------
 ---------- Views
 Controllers ----
 ---- Models ----
@@ -432,4 +432,82 @@ class ZombiesController < ApplicationController
   def find_zombie
     @zombie = Zombie.find params[:id]
   end
+end
+
+#
+# level 5 - Routing
+#
+
+<% =  link_to "text", <code> %>
+
+>
+
+code can be:
+ACTION 				CODE 						generated URL
+list all tweets 	tweets_path					/tweets
+new tweet form 		new_tweet_path				/tweets/new
+show a tweet 		tweet 						/tweets/1
+edit a tweet 		edit_tweet_path(tweet) 		/tweets/1/edit
+delete a tweet 		tweet, :method => :delete 	/tweets/1
+
+zombie_twitter/config/routes.rb
+
+ZombieTwitter::Application.routes.draw do |map|
+	resources :tweets #creates RESTful resource
+end
+
+custom routes:
+like,
+http://localhost:3000/new_tweet renders to
+http://localhost:3000/tweets/new
+
+class TweetsController
+	def new
+		...
+	end
+end
+
+ZombieTwitter::Application.routes.draw do |map|
+	resources :tweets #creates RESTful resource
+	#! to make new_tweet to render to same thing as /tweets/new
+	match 'new_tweet' => 'Tweets#new' # here new_tweet is path, Tweets is controller and New is action
+	
+	# if you want to render same content as
+	match 'all' => "Tweets#index", :as => "all_tweets" #":as => "all_tweets" allows to use it in link_to
+	# if you want to redirect
+	match 'all' => redirect('/tweets')
+
+end
+
+link_to "All tweets", all_tweets_path
+
+
+root :to => "Tweets#index"
+
+/local_tweets/32828
+/local_tweets/32801
+/app/controllers/tweets_controller.rb
+
+def index
+	if params[:zipcode]
+		@tweets = Tweet.where(:zipcode => params[:zipcode])
+	else
+		@tweets = Tweet.all
+	end
+	respond_to do |format|
+		format.html #index.html.erb
+
+match 'local_tweets/:zipcode' => 'Tweets#index'
+
+match ':name' => 'Tweet#index', :as => 'zombie_tweets'
+<%= link_to 'Gregg', zombie_tweets_path('greggpollack')%>
+>
+
+def index
+	if params[:name]
+		@zombie = Zombie.where(:name => params[:name]).first
+		@tweets = @zombie.tweets
+	else
+		@tweets = Tweet.all 
+	end
 end
