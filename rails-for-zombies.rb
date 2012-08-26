@@ -511,3 +511,24 @@ def index
 		@tweets = Tweet.all 
 	end
 end
+
+# Create a resources route for zombies.
+TwitterForZombies::Application.routes.draw do
+	resources :zombies
+	# Create a custom route so that '/undead' will go 
+	# to the undead action on the ZombiesController.
+	match 'undead' => 'zombies#undead' #! lowercase
+end
+
+# Create a redirect for '/undead' to '/zombies'.
+match '/undead' => redirect('/zombies')
+
+
+# Create a root route to the ZombiesController index action.
+root :to => 'zombies#index'
+
+# Create a named route. 
+# It should generate a path like '/zombies/:name' 
+# where :name is a parameter, and points to the index action in ZombiesController.
+# Name the route 'graveyard'
+match '/zombies/:name' => 'zombies#index', :as => 'graveyard'
