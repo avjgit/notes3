@@ -198,7 +198,7 @@ zombie_twitter
 	<img src = "imag.png"/>
 
 	#
-	<%= yeald %> 
+	<%= yield %> 
 
 </body></html>
 
@@ -290,3 +290,99 @@ code =
     </li>
   <% end %>
 </ul>
+
+#
+# level 4 - Controllers
+#
+
+----------------
+---------- Views
+Controllers ----
+---- Models ----
+
+zombie_twitter/app/controllers/tweets_controller.rb
+
+class TweetsController < ApplicationController
+	def show
+		@tweet = Tweet.find(params[:id]) #moved from show.html.erb
+							   # @ - instance variable! in order View could get an access
+		
+		render :action => 'status'	#! where should be this line?
+
+		# xml & json presented
+		respond_to do |format|
+			format.html # show.html.erb
+			format.xml  {render :xml => @tweet}
+			format.json {render :json => @tweet}
+		end								 
+	end
+end
+# app/views/tweets/show.html.erb - for tweet
+	
+	<%= @tweet.status %>
+	<p>Posted by <%= @tweet.zombie.name %></p>
+
+params = {:status => "dead"}
+@tweet = Tweet.create(:status => params[:status])
+
+params = {:tweet => {:status => 'dead'}}
+@tweet = Tweet.create(:status => params[:tweet][:status])
+@tweet = Tweet.create(params[:tweet])
+
+class TweetsController < ApplicationController
+	def index	#show all
+	def show	#show one
+	def new 	#show a new tweet form
+	def edit    #show an edit tweet form
+	def create #? create a new tweet
+	def update #? update a tweet
+	def destroy
+end
+
+class TweetsController < ApplicationController
+	def edit
+		@tweet = Tweet.find(params[:id])
+
+		#! note "session"
+		if session[:zombie_id] != @tweet.zombie_id
+			#! flash
+			flash[:notice] = "sorry, you can't edit someone else's tweet."
+			redirect_to tweets_path
+
+			#or
+			redirect_to(tweets_path, :notice=> "sorry, (..)")
+
+		end
+	end
+end
+
+# if flash added in controller - then we'll need to add it in header
+/app/views/layouts/application.html.erb
+<body>
+	#! why we need to check presence?
+	<% if flash[:notice]%>
+		<div id="notice"><%= flash[:notice] %></div>
+	<% end %>
+	<%= yield %>
+</body>
+
+# edit, update, destroy - needs authorization rights
+
+# all edit, update, destroy - use @tweet = Tweet.find(params[:id])
+
+# so, this line was moved out
+
+def get_tweet
+	@tweet = Tweet.find(params[:id])
+end
+
+before_filter :get_tweet, :only => [:edit, :update, :destroy]
+
+# similarly:
+def check_auth 
+	if session[:zombie_id] != @tweet.zombie_id
+		redirect_to(tweets_path, :notice=> "sorry, (..)")
+	end
+end
+
+before_filter :check_auth, :only => [:edit, :update, :destroy]
