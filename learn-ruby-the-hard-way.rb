@@ -60,6 +60,16 @@ puts split
 puts backslashed
 puts lines
 
-print 'hey, what''s up?'
-mood = gets
-puts 'ok, I got it - ' + mood
+# print 'hey, what''s up?'
+# mood = gets
+# puts 'ok, I got it - ' + mood
+puts '----------------'
+require 'open-uri'
+open("http://www.ruby-lang.org/en") do |f|
+	# f.each_line {|line| p line}
+	puts f.base_uri
+	puts f.content_type
+	puts f.charset
+	puts f.content_encoding
+	puts f.last_modified
+end
