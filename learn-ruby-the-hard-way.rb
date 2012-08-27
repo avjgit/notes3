@@ -65,11 +65,21 @@ puts lines
 # puts 'ok, I got it - ' + mood
 puts '----------------'
 require 'open-uri'
-open("http://www.ruby-lang.org/en") do |f|
-	# f.each_line {|line| p line}
-	puts f.base_uri
-	puts f.content_type
-	puts f.charset
-	puts f.content_encoding
-	puts f.last_modified
-end
+
+# open("http://www.ruby-lang.org/en") do |f|
+# 	# f.each_line {|line| p line}
+# 	puts f.base_uri
+# 	puts f.content_type
+# 	puts f.charset
+# 	puts f.content_encoding
+# 	puts f.last_modified
+# end
+
+
+first, second, third = ARGV
+#very cool; you need to run the script from irb
+puts "the script is called #{$0}" #! cool
+puts "first is #{first}"
+puts "second is #{second}"
+puts "third is #{third}"
+
