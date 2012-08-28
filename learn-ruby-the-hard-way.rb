@@ -76,35 +76,35 @@ require 'open-uri'
 # end
 
 
-first, second, third = ARGV
+# first, second, third = ARGV
 #very cool; you need to run the script from irb to see it
-puts "the script is called #{$0}" #! cool
-puts "first is #{first}"
-puts "second is #{second}"
-puts "third is #{third}"
+# puts "the script is called #{$0}" #! cool
+# puts "first is #{first}"
+# puts "second is #{second}"
+# puts "third is #{third}"
 
-puts '-------- ex14'
-user = ARGV.first
-promt = '>'
+# puts '-------- ex14'
+# user = ARGV.first
+# promt = '>'
 
-puts "hi #{user}, I'm the #{0} script"
-puts "do you like me #{user}?"
-print promt
+# puts "hi #{user}, I'm the #{0} script"
+# puts "do you like me #{user}?"
+# print promt
 # Also notice that we're using STDIN.gets instead of plain 'ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user's input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.
 
 # likes = STDIN.gets.chomp()
-likes = 'yep'
+# likes = 'yep'
 
-puts <<MESSAGE
-Alright, you said #{likes}. Nice.
-MESSAGE
+# puts <<MESSAGE
+# Alright, you said #{likes}. Nice.
+# MESSAGE
 
-filename = ARGV.first
-promt = ">"
-txt = File.open(filename)
-puts "Here is your file: #{filename}"
-puts txt.read()
-txt.close()
+# filename = ARGV.first
+# promt = ">"
+# txt = File.open(filename)
+# puts "Here is your file: #{filename}"
+# puts txt.read()
+# txt.close()
 
 # puts "i am going to delete #{filename}"
 # puts "if you don't want it, press Ctrl+C"
@@ -151,6 +151,17 @@ txt.close()
 # input.close()
 
 # See how short you can make the script. I could make this 1 line long.
-File.open(ARGV[1], 'w').write(File.open(ARGV[0]).read())
-File.open(ARGV[0]).close()
-File.open(ARGV[1]).close()
+# File.open(ARGV[1], 'w').write(File.open(ARGV[0]).read())
+# File.open(ARGV[0]).close()
+# File.open(ARGV[1]).close()
+
+def ok_usual_function(arg1, arg2)
+	puts "first is #{arg1}, second is #{arg2}"
+end
+def unusual_argument(*args)
+	arg1, arg2 = *args
+	puts "first recognized as #{arg1}, second - as #{arg2}" 
+end
+puts ok_usual_function("A", "B")
+puts unusual_argument("A", "B")
+
