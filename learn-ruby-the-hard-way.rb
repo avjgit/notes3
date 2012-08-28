@@ -134,19 +134,23 @@ txt.close()
 # puts "And finally we close it"
 # target.close()
 
-from_file, to_file = ARGV
-puts "Copying from #{from_file} to #{to_file}"
+# from_file, to_file = ARGV
+# puts "Copying from #{from_file} to #{to_file}"
 
-input = File.open(from_file)
-indata = input.read()
-puts "the input file is #{indata.length} bytes long"
+# input = File.open(from_file)
+# indata = input.read()
+# puts "the input file is #{indata.length} bytes long"
 
-puts "does output file exists? #{File.exists? to_file}"
+# puts "does output file exists? #{File.exists? to_file}"
 
-output = File.open(to_file, 'w')
-output.write(indata)
+# output = File.open(to_file, 'w')
+# output.write(indata)
 
-puts 'alright, all done'
-output.close()
-input.close()
+# puts 'alright, all done'
+# output.close()
+# input.close()
 
+# See how short you can make the script. I could make this 1 line long.
+File.open(ARGV[1], 'w').write(File.open(ARGV[0]).read())
+File.open(ARGV[0]).close()
+File.open(ARGV[1]).close()
