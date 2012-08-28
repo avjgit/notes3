@@ -77,9 +77,22 @@ require 'open-uri'
 
 
 first, second, third = ARGV
-#very cool; you need to run the script from irb
+#very cool; you need to run the script from irb to see it
 puts "the script is called #{$0}" #! cool
 puts "first is #{first}"
 puts "second is #{second}"
 puts "third is #{third}"
+
+puts '-------- ex14'
+user = ARGV.first
+promt = '>'
+
+puts "hi #{user}, I'm the #{0} script"
+puts "do you like me #{user}?"
+print promt
+# Also notice that we're using STDIN.gets instead of plain 'ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user's input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.
+likes = STDIN.gets.chomp()
+puts <<MESSAGE
+Alright, you said #{likes}. Nice.
+MESSAGE
 
