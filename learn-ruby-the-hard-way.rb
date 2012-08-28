@@ -91,8 +91,17 @@ puts "hi #{user}, I'm the #{0} script"
 puts "do you like me #{user}?"
 print promt
 # Also notice that we're using STDIN.gets instead of plain 'ol gets. That is because if there is stuff in ARGV, the default gets method tries to treat the first one as a file and read from that. To read from the user's input (i.e., stdin) in such a situation, you have to use it STDIN.gets explicitly.
-likes = STDIN.gets.chomp()
+
+# likes = STDIN.gets.chomp()
+likes = 'yep'
+
 puts <<MESSAGE
 Alright, you said #{likes}. Nice.
 MESSAGE
 
+filename = ARGV.first
+promt = ">"
+txt = File.open(filename)
+puts "Here is your file: #{filename}"
+puts txt.read()
+txt.close()
