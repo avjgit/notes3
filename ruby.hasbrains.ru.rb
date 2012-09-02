@@ -85,14 +85,7 @@ p names
 p names.shift
 p names
 
-class Cart
-	
-	attr_reader :items
-
-	def initialize
-		@items = []
-	end
-	
+module ItemContainer
 	def add_item(item)
 		@items.push item
 	end
@@ -110,6 +103,18 @@ class Cart
 		#delete_if!
 		@items.delete_if {|i| i.base_price.nil?}
 	end
+end
+
+class Cart
+	
+	include ItemContainer
+
+	attr_reader :items
+
+	def initialize
+		@items = []
+	end
+
 end
 
 cart = Cart.new
@@ -216,3 +221,40 @@ p item.base_price
 
 # does not work, as this method is private
 # puts item.tax
+
+
+# could use inheritance from Cart, 
+# but those two classes are actually not related.
+# So here comes modules
+
+class Order
+
+	attr_reader :items
+
+	include ItemContainer
+
+	def initialize
+		@items = Array.new
+	end
+
+	def place
+		# actually place an order
+	end
+end
+
+
+item1 = VirtualItem.new({:price => 10})
+item2 = RealItem.new({:price => 1000, :weight => 0.5})
+item3 = RealItem.new({:price => 1, :name => 'asdf'})
+
+cart3 = Cart.new
+cart3.add_item item1
+cart3.add_item item2
+cart3.add_item item3
+p cart3.items.size
+
+order1 = Order.new
+order1.add_item item1
+order1.add_item item2
+order1.remove_item
+p order1.items.size
