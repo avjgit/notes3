@@ -41,6 +41,42 @@ class Item
 		yield name
 	end
 
+		@@discount = 0.1
+
+	def self.discount
+		# in december - discounts ar 30%!
+		if Time.now.month == 12
+			return @@discount + 0.2
+		else
+			return @@discount
+		end
+	end
+
+	def price
+		# not flexible
+		# @base_price * (1 - Item.discount)
+		@base_price - (@base_price * self.class.discount) + tax if @real_price
+	end
+
+private
+	def tax
+
+		type_tax = if self.class == VirtualItem
+			0.10
+		else
+			0.20
+		end
+
+		cost_tax = if @base_price > 5
+			@base_price * 0.2
+		else
+			@base_price * 0.1
+		end
+
+		cost_tax + type_tax
+	end
+
+
 end
 
 item1 = Item.new
@@ -86,11 +122,20 @@ p names.shift
 p names
 
 module ItemContainer
+	
+	module ClassMethods
+		def min_price
+			100
+		end
+	end
 
 	# all methods, modifying the object
-	module Manager
+	module InstanceMethodsx
+
 		def add_item(item)
-			@items.push item
+			unless item.base_price < self.class.min_price
+				@items.push item
+			end
 		end
 		
 		def remove_item
@@ -114,6 +159,14 @@ module ItemContainer
 		end
 	end
 
+
+	def self.included(base)
+		base.extend ClassMethods
+		base.class_eval do
+			include InstanceMethodsx
+		end
+	end
+
 end
 
 class Cart
@@ -122,26 +175,26 @@ class Cart
 	# like, in Rails:
 	# class User < ActiveRecord::Base
 	# class User inherits from class's ActiveRecord subclass Base
-	include ItemContainer::Manager
-	include ItemContainer::Info
+	# include ItemContainer::Manager
+	# include ItemContainer::Info
+	include ItemContainer
 
 	attr_reader :items
 
 	def initialize
 		@items = []
 	end
-
 end
 
 cart = Cart.new
-cart.add_item(Item.new)
-cart.add_item(Item.new)
+cart.add_item(Item.new({:price => 2}))
+cart.add_item(Item.new({:price => 300}))
 p cart
 cart.remove_item
 p cart
 
 names.each {|name| p name}
-cart.add_item(Item.new)
+cart.add_item(Item.new({:price => 99}))
 cart.validate
 
 item4 = Item.new({:price => 11, :weight => 1000, :name => 'car'})
@@ -158,7 +211,7 @@ File.open("/blocks.txt", "w") {|f| f.puts 'blocks with files'}
 File.open("/blocks2.txt", "w").puts( 'blocks with files 2')
 
 item10 = Item.new({:price=>1})
-item11 = Item.new
+item11 = Item.new({:price=>1000})
 
 cart2 = Cart.new
 cart2.add_item item10
@@ -189,45 +242,6 @@ p game1.respond_to? :weight
 # p game1.weight
 p laptop1.weight
 
-class Item
-
-	@@discount = 0.1
-
-	def self.discount
-		# in december - discounts ar 30%!
-		if Time.now.month == 12
-			return @@discount + 0.2
-		else
-			return @@discount
-		end
-	end
-
-	def price
-		# not flexible
-		# @base_price * (1 - Item.discount)
-		@base_price - (@base_price * self.class.discount) + tax if @real_price
-	end
-
-private
-	def tax
-
-		type_tax = if self.class == VirtualItem
-			0.10
-		else
-			0.20
-		end
-
-		cost_tax = if @base_price > 5
-			@base_price * 0.2
-		else
-			@base_price * 0.1
-		end
-
-		cost_tax + type_tax
-	end
-
-end
-
 puts Item.discount
 # puts game1.discount
 item = Item.new
@@ -247,8 +261,9 @@ class Order
 
 	attr_reader :items
 
-	include ItemContainer::Manager
-	include ItemContainer::Info
+	# include ItemContainer::Manager
+	# include ItemContainer::Info
+	include ItemContainer
 
 	def initialize
 		@items = Array.new
@@ -257,6 +272,8 @@ class Order
 	def place
 		# actually place an order
 	end
+
+
 end
 
 
@@ -273,6 +290,7 @@ p cart3.items.size
 order1 = Order.new
 order1.add_item item1
 order1.add_item item2
-order1.remove_item
 p order1.items.size
-p order1.count_valid_items
+# order1.remove_item
+# p order1.items.size
+# p order1.count_valid_items
