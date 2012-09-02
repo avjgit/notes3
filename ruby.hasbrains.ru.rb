@@ -9,25 +9,27 @@
 class Item
 
 	def initialize(options={})
-			@price = options[:price]
+			@base_price = options[:price]
 			@name = options[:name]
 	end
+
+	
 
 	# # getter
 	# def price
 	# 	# 100
 	# 	# rand(100)
-	# @price
+	# @base_price
 	# end
 
 	# #setter
 	# def price=(price_value)
-	# 	@price = price_value
+	# 	@base_price = price_value
 	# end
 	
 	#shoter!
-	attr_reader :price, :name
-	attr_writer :price
+	attr_reader :base_price, :name
+	attr_writer :base_price
 
 	#even shorter!
 	# attr_accessor :price, :weight
@@ -35,7 +37,7 @@ class Item
 	def info
 		# [price, weight, name]
 		# 'price is ' + price.to_s + ', weight is ' + weight.to_s 
-		yield price
+		yield base_price
 		yield name
 	end
 
@@ -43,21 +45,21 @@ end
 
 item1 = Item.new
 # item1.price=(10) @what is really going on
-item1.price = 10
+item1.base_price = 10
 p '--------'
 p item1.info {|attr| p attr}
 
 item2 = Item.new
-item2.price = 20
+item2.base_price = 20
 item3 = Item.new({:price => 12.34, :weight => 2.5})
 
 p item1 #<Item:0x1327e30>
 p item2
 p item3
 
-p item1.price
-p item2.price
-p item3.price
+p item1.base_price
+p item2.base_price
+p item3.base_price
 
 
 #string vs symbols:
@@ -101,12 +103,12 @@ class Cart
 
 	def validate
 		# block - is an anonymous method
-		@items.each {|item| puts(item.object_id.to_s + ' has no price') if item.price.nil?}
+		@items.each {|item| puts(item.object_id.to_s + ' has no price') if item.base_price.nil?}
 	end
 
 	def delete_invalid_items
 		#delete_if!
-		@items.delete_if {|i| i.price.nil?}
+		@items.delete_if {|i| i.base_price.nil?}
 	end
 end
 
@@ -181,8 +183,26 @@ class Item
 
 	def price
 		# not flexible
-		# @price * (1 - Item.discount)
-		@price * (1 - self.class.discount)
+		# @base_price * (1 - Item.discount)
+		@base_price - (@base_price * self.class.discount) + tax
+	end
+
+private
+	def tax
+
+		type_tax = if self.class == VirtualItem
+			0.10
+		else
+			0.20
+		end
+
+		cost_tax = if @base_price > 5
+			@base_price * 0.2
+		else
+			@base_price * 0.1
+		end
+
+		cost_tax + type_tax
 	end
 
 end
@@ -190,5 +210,9 @@ end
 puts Item.discount
 # puts game1.discount
 item = Item.new
-item.price = 99
+item.base_price = 100
 p item.price
+p item.base_price
+
+# does not work, as this method is private
+# puts item.tax
