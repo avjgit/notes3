@@ -165,3 +165,30 @@ laptop1 = RealItem.new({:weight => 0.5})
 p game1.respond_to? :weight
 # p game1.weight
 p laptop1.weight
+
+class Item
+
+	@@discount = 0.1
+
+	def self.discount
+		# in december - discounts ar 30%!
+		if Time.now.month == 12
+			return @@discount + 0.2
+		else
+			return @@discount
+		end
+	end
+
+	def price
+		# not flexible
+		# @price * (1 - Item.discount)
+		@price * (1 - self.class.discount)
+	end
+
+end
+
+puts Item.discount
+# puts game1.discount
+item = Item.new
+item.price = 99
+p item.price
