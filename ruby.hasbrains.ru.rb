@@ -12,17 +12,25 @@ class Item
 		@price = 30
 	end
 
-	# getter
-	def price
-		# 100
-		# rand(100)
-	@price
-	end
+	# # getter
+	# def price
+	# 	# 100
+	# 	# rand(100)
+	# @price
+	# end
 
-	#setter
-	def price=(price_value)
-		@price = price_value
-	end
+	# #setter
+	# def price=(price_value)
+	# 	@price = price_value
+	# end
+	
+	#shoter!
+	# attr_reader :price, :weight
+	# attr_writer :price, :weight
+
+	#even shorter!
+	attr_accessor :price, :weight
+
 end
 
 item1 = Item.new
