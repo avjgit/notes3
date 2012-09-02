@@ -9,11 +9,8 @@
 class Item
 
 	def initialize(options={})
-		if options
 			@price = options[:price]
-			@weight = options[:weight]
 			@name = options[:name]
-		end
 	end
 
 	# # getter
@@ -29,7 +26,7 @@ class Item
 	# end
 	
 	#shoter!
-	attr_reader :price, :weight, :name
+	attr_reader :price, :name
 	attr_writer :price
 
 	#even shorter!
@@ -39,7 +36,6 @@ class Item
 		# [price, weight, name]
 		# 'price is ' + price.to_s + ', weight is ' + weight.to_s 
 		yield price
-		yield weight
 		yield name
 	end
 
@@ -148,3 +144,24 @@ cart2.add_item item11
 p cart2.items
 p cart2.delete_invalid_items
 p cart2.items
+
+class VirtualItem < Item
+
+end
+
+class RealItem < Item
+	attr_reader :weight
+
+	def initialize(options)
+		@weight = options[:weight]
+		super #calling parent initialize
+	end
+
+end
+
+game1 = VirtualItem.new
+laptop1 = RealItem.new({:weight => 0.5})
+
+p game1.respond_to? :weight
+# p game1.weight
+p laptop1.weight
