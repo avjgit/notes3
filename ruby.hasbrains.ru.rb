@@ -12,6 +12,7 @@ class Item
 		if options
 			@price = options[:price]
 			@weight = options[:weight]
+			@name = options[:name]
 		end
 	end
 
@@ -28,17 +29,27 @@ class Item
 	# end
 	
 	#shoter!
-	# attr_reader :price, :weight
-	# attr_writer :price, :weight
+	attr_reader :price, :weight, :name
+	attr_writer :price
 
 	#even shorter!
-	attr_accessor :price, :weight
+	# attr_accessor :price, :weight
+
+	def info
+		# [price, weight, name]
+		# 'price is ' + price.to_s + ', weight is ' + weight.to_s 
+		yield price
+		yield weight
+		yield name
+	end
 
 end
 
 item1 = Item.new
 # item1.price=(10) @what is really going on
 item1.price = 10
+p '--------'
+p item1.info {|attr| p attr}
 
 item2 = Item.new
 item2.price = 20
@@ -93,6 +104,7 @@ class Cart
 	end
 
 	def validate
+		# block - is an anonymous method
 		@items.each {|item| puts(item.object_id.to_s + ' has no price') if item.price.nil?}
 	end
 end
@@ -107,3 +119,6 @@ p cart
 names.each {|name| p name}
 cart.add_item(Item.new)
 cart.validate
+
+item4 = Item.new({:price => 11, :weight => 1000, :name => 'car'})
+item4.info {|attr| p attr}
