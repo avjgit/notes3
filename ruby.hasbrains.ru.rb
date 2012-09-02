@@ -294,3 +294,16 @@ p order1.items.size
 # order1.remove_item
 # p order1.items.size
 # p order1.count_valid_items
+
+@items = []
+@items << VirtualItem.new({:price => 101, :name => 'car'})
+@items << RealItem.new({:price => 1000, :weight => 0.5, :name => 'laptop'})
+@items << RealItem.new({:price => 1, :name => 'asdf'})
+p @items
+
+cart4 = Cart.new
+ARGV.each do |a|
+	@items.each { |i| cart4.add_item(i) if a == i.name }
+end
+p '---------'
+p cart4
