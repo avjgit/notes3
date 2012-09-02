@@ -86,28 +86,44 @@ p names.shift
 p names
 
 module ItemContainer
-	def add_item(item)
-		@items.push item
-	end
-	
-	def remove_item
-		@items.pop
+
+	# all methods, modifying the object
+	module Manager
+		def add_item(item)
+			@items.push item
+		end
+		
+		def remove_item
+			@items.pop
+		end
+
+		def validate
+			# block - is an anonymous method
+			@items.each {|item| puts(item.object_id.to_s + ' has no price') if item.base_price.nil?}
+		end
+
+		def delete_invalid_items
+			#delete_if!
+			@items.delete_if {|i| i.base_price.nil?}
+		end
 	end
 
-	def validate
-		# block - is an anonymous method
-		@items.each {|item| puts(item.object_id.to_s + ' has no price') if item.base_price.nil?}
+	module Info
+		def count_valid_items
+			@items.count {|i| i.price}
+		end
 	end
 
-	def delete_invalid_items
-		#delete_if!
-		@items.delete_if {|i| i.base_price.nil?}
-	end
 end
 
 class Cart
-	
-	include ItemContainer
+
+	# how to correctly include sub-modules
+	# like, in Rails:
+	# class User < ActiveRecord::Base
+	# class User inherits from class's ActiveRecord subclass Base
+	include ItemContainer::Manager
+	include ItemContainer::Info
 
 	attr_reader :items
 
@@ -189,7 +205,7 @@ class Item
 	def price
 		# not flexible
 		# @base_price * (1 - Item.discount)
-		@base_price - (@base_price * self.class.discount) + tax
+		@base_price - (@base_price * self.class.discount) + tax if @real_price
 	end
 
 private
@@ -231,7 +247,8 @@ class Order
 
 	attr_reader :items
 
-	include ItemContainer
+	include ItemContainer::Manager
+	include ItemContainer::Info
 
 	def initialize
 		@items = Array.new
@@ -258,3 +275,4 @@ order1.add_item item1
 order1.add_item item2
 order1.remove_item
 p order1.items.size
+p order1.count_valid_items
