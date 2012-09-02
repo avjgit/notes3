@@ -296,14 +296,37 @@ p order1.items.size
 # p order1.count_valid_items
 
 @items = []
-@items << VirtualItem.new({:price => 101, :name => 'car'})
+@items << RealItem.new({:price => 101, :name => 'car', :weight => 2100})
 @items << RealItem.new({:price => 1000, :weight => 0.5, :name => 'laptop'})
 @items << RealItem.new({:price => 1, :name => 'asdf'})
 p @items
 
-cart4 = Cart.new
+class Cart
+	def initialize(owner= 'unknown')
+		@items = Array.new
+		@owner = owner
+	end
+	def save_to_file
+		File.open("#{@owner}_cart.txt", "w") do |f|
+			@items.each {|i| f.puts "#{i.name}:#{i.price}:#{i.weight}"} #laptop:1000:0.5
+		end
+	end
+	def read_from_file
+		return unless File.exists? "#{@owner}_cart.txt"
+		item_fields = File.readlines("#{@owner}_cart.txt") # "laptop: 1000, 0.5 kg\n"
+		# map rewrites each element
+		item_fields.map! {|i| i.chomp } 		# "car:100:50"
+		item_fields.map! {|i| i.split(":")}	# ["car", "100", "50"]
+		item_fields.each {|i| @items << RealItem.new(name: i[0], price: i[1].to_i, weight: i[2].to_i)}
+		@items.uniq! #removes duplicates
+	end
+end
+
+cart4 = Cart.new(ARGV.delete_at(0)) #delete_at returns and removes
 ARGV.each do |a|
 	@items.each { |i| cart4.add_item(i) if a == i.name }
 end
 p '---------'
-p cart4
+p cart4.items
+cart4.read_from_file
+cart4.save_to_file
