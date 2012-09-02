@@ -63,3 +63,39 @@ p item3.price
 my_hash = {:name => 'James', :family_name => 'Bond'}
 
 p my_hash[:name]
+p my_hash.length
+
+names = ['Ash', 'Bob', 'Ceazar']
+p names.class
+names.push 'Daedal'
+p names
+names.pop
+p names
+names << 'David'
+p names
+p names.shift
+p names
+
+class Cart
+	
+	attr_reader :items
+
+	def initialize
+		@items = []
+	end
+	
+	def add_item(item)
+		@items.push item
+	end
+	
+	def remove_item
+		@items.pop
+	end
+end
+
+cart = Cart.new
+cart.add_item(Item.new)
+cart.add_item(Item.new)
+p cart
+cart.remove_item
+p cart
