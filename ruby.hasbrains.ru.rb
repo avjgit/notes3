@@ -8,7 +8,7 @@
 # camelcase for classes
 class Item
 
-	def initialize(options={:price => 10, :weight => 0.1})
+	def initialize(options={})
 		if options
 			@price = options[:price]
 			@weight = options[:weight]
@@ -91,6 +91,10 @@ class Cart
 	def remove_item
 		@items.pop
 	end
+
+	def validate
+		@items.each {|item| puts(item.object_id.to_s + ' has no price') if item.price.nil?}
+	end
 end
 
 cart = Cart.new
@@ -99,3 +103,7 @@ cart.add_item(Item.new)
 p cart
 cart.remove_item
 p cart
+
+names.each {|name| p name}
+cart.add_item(Item.new)
+cart.validate
