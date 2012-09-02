@@ -107,6 +107,11 @@ class Cart
 		# block - is an anonymous method
 		@items.each {|item| puts(item.object_id.to_s + ' has no price') if item.price.nil?}
 	end
+
+	def delete_invalid_items
+		#delete_if!
+		@items.delete_if {|i| i.price.nil?}
+	end
 end
 
 cart = Cart.new
@@ -122,3 +127,24 @@ cart.validate
 
 item4 = Item.new({:price => 11, :weight => 1000, :name => 'car'})
 item4.info {|attr| p attr}
+
+2.times {p 'times method'}
+
+person = {:first_name => 'James', :middle_name => 'X', :last_name => 'Bond'}
+person.each_key {|key| p key}
+person.each_key {|key| p person[key]}
+
+# will be automatically closed
+File.open("/blocks.txt", "w") {|f| f.puts 'blocks with files'}
+File.open("/blocks2.txt", "w").puts( 'blocks with files 2')
+
+item10 = Item.new({:price=>1})
+item11 = Item.new
+
+cart2 = Cart.new
+cart2.add_item item10
+cart2.add_item item11
+
+p cart2.items
+p cart2.delete_invalid_items
+p cart2.items
