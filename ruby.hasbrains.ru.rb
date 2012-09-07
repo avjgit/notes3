@@ -317,7 +317,7 @@ class Cart
 		# map rewrites each element
 		item_fields.map! {|i| i.chomp } 		# "car:100:50"
 		item_fields.map! {|i| i.split(":")}	# ["car", "100", "50"]
-		item_fields.each {|i| @items << RealItem.new(name: i[0], price: i[1].to_i, weight: i[2].to_i)}
+		item_fields.each {|i| @items << Item.new(name: i[0], price: i[1].to_i, weight: i[2].to_i)}
 		@items.uniq! #removes duplicates
 	end
 end
