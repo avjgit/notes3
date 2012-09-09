@@ -31,6 +31,9 @@ void char_repeats_in_a_row(char phrase[])
          curr_char = phrase[i];
          next_char = phrase[i+1];
          
+         cout << "curr_char is " << curr_char << endl;
+         cout << "next_char is " << next_char << endl;         
+         
          if (curr_char == next_char)
          {
              cout << "Ja, simbols " << curr_char << " atkartojas pec kartas.";
@@ -45,7 +48,23 @@ void char_repeats_in_a_row(char phrase[])
 //Piemçram, simbolu virknç „Hallo, World!” atkârtojas simboli ‘l’ un ‘o’. (Atbildei jâbût – jâ vai nç)
 void char_repeats(char phrase[])
 {
-     
+     cout << "asdf";
+     for (int i = 0; phrase[i] != '\0'; i++)
+     {
+//         cout << "checking " << phrase[i];
+         
+         for (int j = i+1; phrase[j] != '\0';  j++)
+         {
+//             cout << "; comparing with " << phrase[j];
+             if (phrase[i] == phrase[j])
+             {          
+                 cout << "Ja, simbols " << phrase[i] << " atkartojas.";
+                 return;
+             }
+         }
+     }
+
+     cout << "Ne, simbolu, kas atkartojas, saja fraze nav";     
 }
 
 //Vingrinâjums 3. (lab6.3c.cpp)
@@ -59,9 +78,10 @@ bool int_repeats(int phrase[])
 
 int main()
 {
-    char s[1008];        
-    cout << "Ievadiet frazi: ";
-    cin >> s;
+//    char s[100];
+//    cout << "Ievadiet frazi: ";
+//    cin >> s;
+    char s[] = "Halxo worldd";
  
     char_repeats_in_a_row(s);
     char_repeats(s);
