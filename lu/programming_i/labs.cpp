@@ -654,15 +654,6 @@ int lab_05_02_loop_for()
     };
     return sum;
 }
-int lab_05_02_loop_for()
-{
-    int sum = 0, i, n = 10;
-    for (i=1; i<=10; i++)
-    {
-        sum += i;
-    };
-    return sum;
-}
 void lab_05_02_loop_for_test()
 {
      test("lab_05_02_loop_for", 55, lab_05_02_loop_for());     
@@ -731,11 +722,11 @@ void lab21(){}
 ///////////////////////////////////////////////////////////////////
 int main()
 {
-//    lab01();
+    lab01();
 //    lab02();
 //    lab03();
 //    lab04();
-    lab05();
+//    lab05();
     lab06();
     lab07();
     lab08();
