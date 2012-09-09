@@ -71,9 +71,20 @@ void char_repeats(char phrase[])
 //Dots int masîvs arr[n].
 //Noskaidrot, vai kâds skaitlis ðajâ masîvâ atkârtojas.
 //Piemçram, masîvâ, {1,2,1,5,3} atkârtojas skaitlis 1. (Atbildei jâbût – jâ vai nç)
-bool int_repeats(int phrase[])
+void int_repeats(int phrase[])
 {
-     return true;
+     for (int i = 0; phrase[i] != '\0'; i++)
+     {
+         for (int j = i+1; phrase[j] != '\0';  j++)
+         {
+             if (phrase[i] == phrase[j])
+             {          
+                 cout << "Ja, simbols " << phrase[i] << " atkartojas.";
+                 return;
+             }
+         }
+     }
+     cout << "Ne, simbolu, kas atkartojas, saja fraze nav";    
 }
 
 int main()
@@ -85,6 +96,9 @@ int main()
  
     char_repeats_in_a_row(s);
     char_repeats(s);
+    
+    int i[] = {1, 2, 1, 5, 3};
+    int_repeats(i);
 
     cout << endl;
     system("pause");
