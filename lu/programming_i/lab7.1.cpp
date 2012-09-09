@@ -18,6 +18,25 @@ int main ()
             mda[i][j] = element;
         }
     }
+    
+    int sum;
+    
+    sum = 0;
+    for(int i = 0; i < arr_size; i++)
+    {
+            sum += mda[i][i];
+    }
+    
+    cout << "1.diagonales summa ir " << sum << endl;
+
+
+    sum = 0;
+    for(int i = 0; i < arr_size; i++)
+    {
+            sum += mda[i][arr_size-1-i];
+    }
+    cout << "2.diagonales summa ir " << sum << endl;
+    
 
     cout << endl;
     system("pause");
