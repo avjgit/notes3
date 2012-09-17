@@ -1,0 +1,20 @@
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+#include "labs.cpp"
+using namespace std;
+
+
+///////////////////////////////////////////////////////////////////
+// main - programmas "galvena ieeja"; izsauc laboratorijas darbus (labs.cpp)
+///////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+int main()
+{
+    lab01();
+
+    -- 
+    cout << endl;
+    system("pause");
+    return 0;
+}
