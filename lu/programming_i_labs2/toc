@@ -1,0 +1,62 @@
+1. Darbs ar vidi Dev-C++. Projekta veidošana.
+lab1.htm; lab1.1.cpp; lab1.2.cpp
+
+2. Kompilatora kļūdas paziņojumi, datu tipi, formatētais ievads un izvads.
+lab2.htm; lab2.3.cpp; lab2.4.cpp; lab2.5.cpp
+
+3. Datu tipi.Skaitliskas izteiksmes.
+lab3.htm; lab3.1.cpp; lab3.2.cpp
+
+4. Zarošanās priekšraksts if. Cikls for.
+lab4.htm; lab4.1.cpp; lab4.2.cpp; lab4.3.cpp; lab4.4.cpp
+
+5. Loģiskas izteiksmes un cikli.
+lab5.htm; lab5.1.cpp; lab5.2.cpp; lab5.3.cpp
+
+6. Masīvi un simbolu virknes.
+lab6.htm; lab6.1.cpp lab6.2.cpp
+
+7. Divdimensiju masīvi.
+lab7.htm; lab7.1.cpp
+
+8. Masīvi.
+lab8.htm; lab8.1.cpp lab8.2.cpp lab8.3.cpp
+
+9. Funkcijas.
+lab9.htm; lab9.1.cpp lab9.2.cpp ab9.3.cpp
+
+10. Masīvu apstrāde funkcijās.
+lab10.htm lab10.1.cpp lab10.2.cpp lab10.3.cpp lab10.4.cpp lab10.5.cpp
+
+11. Simbolu virkņu apstrāde funkcijās.
+lab11.htm lab11.1.cpp lab11.2.cpp lab11.3.cpp
+
+12. Objektorientētā programmēšana. Klases pārveidošana.
+lab12.htm lab12.1.cpp lab12.2.cpp
+
+13. Objektorientētā programmēšana. Konstruktors un destruktors. Dinamiska masīva realizācija.
+lab13.htm lab13.1.cpp lab13.2.cpp lab13.3.cpp
+
+14. Objektorientētā programmēšana. Vienkāršas klases izveide.
+lab14.htm lab14.1.cpp lab14.2.cpp
+
+15. Objektorientētā programmēšana. Mantošana.
+lab15.htm lab15.cpp
+
+16. Operatoru pārslogošana.
+lab16.htm lab16.cpp
+
+17. Klases šablons.
+lab17.htm lab17.cpp
+
+18. STL vector pielietošana.
+lab18.htm lab18.cpp
+
+19. Teksta failu apstrāde.
+lab19.htm lab19.1.cpp lab19in.txt lab19.2.cpp
+
+20. Bināru failu apstrāde.
+lab20.htm lab20.1.cpp lab20.2.cpp
+
+21. Saistītais saraksts.
+lab21.htm lab21.cpp
