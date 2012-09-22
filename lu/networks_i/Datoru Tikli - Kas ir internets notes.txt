@@ -1,0 +1,60 @@
+internets
+    datori
+        klientu darbstacijas
+        serveri
+        marsurizatori/ routers
+
+    sakaru kanali
+        divpusu = izdalita linija
+        daudzpusu = LAN/ Ethernet
+
+
+ip adrese  = 4 bite = 32 bit number
+dotted decimal
+159.148.160.7
+    tīkla adrese
+    host adress
+
+maršrutizcijas tabulaa ir tīkla adreses
+
+datoraa:
+    marsrutizacijas tabula
+    interfeiss: ip adrese
+    OS
+        windows
+        linux
+        IOS
+    aplikacijas ---- www, e-mail, ..
+        klienta
+        servera
+
+IP pakete -
+    20 bites <= 1500 bites
+    [....][...............]
+    first - source, destination addresses
+
+ISO OSI references modeli: map to: Interneta modelis
+    1 aplikaciju .............. aplikaciju
+    2 prezentacijas             |
+    3 sesijas                   |
+    4 transporta .............. transporta (TCP - safe; UDP - fast, unsafe)
+    5 tikla ................... IP
+    6 kanalu ("datalink") ..... kanalu un fiziskais
+    7 fiziskais                 |
+
+1 etaps:    LAN (Ethernet): viens koaksialais kabelis, pie vina pievienoti datori
+2 etaps:    hub, pie vina pievienojas ar vīto pari
+3 etaps:    hab'a vietaa - switch (gudraks par hub; atskiriba no ta, pastiprina nevis visas, bet tikai to signalu, kas iet uz destination)
+
+tam visam kopigs ir Ehthernet kadrs,
+kas ir drusku lielaks par IP paketi,
+bet prieksa ir header: atkal ar source & destination,
+katra ir 6 byte
+(bet tas nav tas pats, ka IP source & destination)
+beigas  - trailer ar cyclic redundancy checksum
+
+katra Ethernet kartee ir ierakstita globali unikala adrese
+
+nosutito Ethernet frame sanem visi (???)
+
+ARP - address resolution protocol
