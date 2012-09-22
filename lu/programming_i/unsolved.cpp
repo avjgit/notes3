@@ -1,3 +1,5 @@
+7.2
+
 Laboratorijas darbs 8.3. Divu dimensiju masîva apstrâde
 
 

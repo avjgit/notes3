@@ -50,7 +50,7 @@ void test
 // funkcijas nosaukumu formats: "lab_", laboratorijas darba nr, uzdevuma nr, apraksts
 string lab_01_1_hello ()
 {
-//    return "Hello, world!";    
+    return "Hello, world!";    
     return "Cau!";    
 }
 // katram uzdevumam ir tests
@@ -65,8 +65,8 @@ int lab_01_2_add (int x, int y)
 {
     int z;
     z = x + y;
-//    return z;
-      return 42;
+    return z;
+//    return 42;
 }
 void lab_01_2_add_test ()
 {
@@ -658,6 +658,30 @@ void lab_05_02_loop_for_test()
 {
      test("lab_05_02_loop_for", 55, lab_05_02_loop_for());     
 }
+
+  class skaitlis
+  {
+    string x;
+    int y;
+    public:    
+    skaitlis (const string &a, int b) { x=a; y=b; };
+    void print ()
+    {
+        cout << x << endl;
+        cout << y << endl;
+    };
+    void change (const string &a, int b) { x=a; y=b; };
+  };
+
+void lab16_1()
+{
+    skaitlis s1 ("pieci", 5);
+    s1.print ();
+    s1.change ("desmit", 10);
+    s1.print ();
+};
+
+
 ///////////////////////////////////////////////////////////////////
 // laboratorijas darbi
 ///////////////////////////////////////////////////////////////////
@@ -709,7 +733,10 @@ void lab12(){}
 void lab13(){}
 void lab14(){}
 void lab15(){}
-void lab16(){}
+void lab16()
+{
+     lab16_1();
+}
 void lab17(){}
 void lab18(){}
 void lab19(){}
@@ -722,7 +749,7 @@ void lab21(){}
 ///////////////////////////////////////////////////////////////////
 int main()
 {
-    lab01();
+//    lab01();
 //    lab02();
 //    lab03();
 //    lab04();
