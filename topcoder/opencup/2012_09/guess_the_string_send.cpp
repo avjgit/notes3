@@ -2,40 +2,31 @@
 #include <fstream>
 using namespace std;
 
-string yes = "Yes";
-string no = "No";
-string correct = "Exit";
-string response = "";
-
-bool response_received(){
+bool response(){
     fflush(stdout);
+    string response = "";
     cin >> response;
-    return response == yes ||
-           response == correct;
+    return response == "Yes"
+        || response == "Exit";
 }
 bool is_in_word(char c){
     cout << "*" << c << "*" << endl;
-    return response_received();
+    return response();
 }
-bool is_subword(string substring){
-    cout << substring << "*" << endl;
-    return response_received();
+bool is_subword(string subword){
+    cout << subword << "*" << endl;
+    return response();
 }
 bool is_word(string word){
     cout << word;
-    return response_received();
+    return response();
 }
 
 int main()
 {
-    const int queries_limit = 150;
-    int queries = 0;
-
     char alphabet [] =
-    {'a', 'b', 'c', 'd', 'e', 'f',
-     'g', 'h', 'i', 'j', 'k', 'l',
-     'm', 'n', 'o', 'p', 'q', 'r',
-     's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
     // let's go through alphabet and ask about each char
     const int alphabet_size = 26;
@@ -49,7 +40,6 @@ int main()
             subalphabet[subalphabet_size]  = alphabet[i];
             subalphabet_size++;
         }
-        queries++;
     }
 
     string previous_word = "";
