@@ -1,16 +1,8 @@
 #include <iostream>
 using namespace std;
 
-// nemainot main funkciju,
-// atkomentejiet tas kodu (iznemot komentarus) pa rindinai,
-// un, rakstot savu kodu seit (pirms main),
-// panaciet, lai programma kompilejas
-
 // beigas uz displeja jabut izprintetam:
-// charchar ir AB
-// charchar ir XY
-// charint ir G99
-// charint ir K100
+// 12
 
 class twointegers
 {

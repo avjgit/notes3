@@ -1,7 +1,10 @@
 #include <iostream>
 using namespace std;
-// Tā izdrukā skaitļu 1.1, 2.2 un 3.3 summu, kā arī skaitļu 0.2, 0.3 un 0.4 summu. Pārveidot (papildināt) programmu (klasi threedoubles) ar šādiem nosacījumiem:
-// ·        lauki x, y, z jāpārveido par private,
+
+// beigas uz displeja jabut izprintetam:
+// 6.6
+// 0.9
+
 class threedoubles
 {
     double x;
@@ -30,12 +33,13 @@ public:
 
 int main()
 {
-    threedoubles t; //! need constructor with empty params
-    t.set (1.1, 2.2, 3.3);
+    threedoubles t;         // jaizveido klase, ar konstuktoru bez laukiem
+    t.set (1.1, 2.2, 3.3);  // metode set, kas pieskir laukiem vertibas
     t.printsum ();
-
+                            // tas pats, tikai dinamiski
     threedoubles *tp = new threedoubles (0.2, 0.3, 0.4);
     tp->printsum();
+
     delete tp;
     system("pause");
     return 0;

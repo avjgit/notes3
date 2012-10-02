@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// nemainot main un test funkcijas,
-// atkomentejiet test funkcijas kodu (iznemot komentarus) pa rindinai,
-// un, rakstot savu kodu seit (pirms main un test),
-// panaciet, lai programma kompilejas
-
 // uzrakstiet destruktoru un init metodi arpus klases
 // atkalizmantojiet init metodi konstruktoraa
 
@@ -46,15 +41,18 @@ person::~person()
     delete[] name;
 }
 
+/////////////////////// rakstiet savu kodu virs sis linijas
 void test()
 {
     // objekti tiek izveidoti 2 veidos:
-    // · tiešā veidā (mainīgais ir ar tipu klase; laukiem un metodēm pieeja notiek ar punkta (.) notāciju);
-    // · dinamiskā veidā (mainīgais ir ar tipu klase*, t.i., norāde uz klase; laukiem un metodēm pieeja notiek ar bultiņas (->) notāciju)
-    person p;
-    p.init ("Liz", 19);
-    p.print ();
-    person *pp = new person ("Peter", 20);
+    // · tiešā veidā (mainīgais ir ar tipu klase;
+    //      laukiem un metodēm pieeja notiek ar punkta (.) notāciju);
+    // · dinamiskā veidā (mainīgais ir ar tipu klase*, t.i., norāde uz klasi;
+    //      laukiem un metodēm pieeja notiek ar bultiņas (->) notāciju)
+    person p;                               // jaizveido klase PERSON
+    p.init ("Liz", 19);                     // konstuktoram jaakcepte vards un vecums
+    p.print ();                             // jabut metode, kas sos datus izvada uz ekrana
+    person *pp = new person ("Peter", 20);  // dinamiska izveidosana
     pp->print ();
 
     // Destruktors ir tāda metode, kas tiek automātiski izsaukta tieši pirms objekta likvidēšanas.

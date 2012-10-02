@@ -1,21 +1,22 @@
-        1. Darbs ar vidi Dev-C++. Projekta veidošana.
-        2. Kompilatora kļūdas paziņojumi, datu tipi, formatētais ievads un izvads.
-        3. Datu tipi.Skaitliskas izteiksmes.
-        4. Zarošanās priekšraksts if. Cikls for.
-        5. Loģiskas izteiksmes un cikli.
-        6. Masīvi un simbolu virknes.
-        7. Divdimensiju masīvi.
-        8. Masīvi.
-        9. Funkcijas.
-        10. Masīvu apstrāde funkcijās.
-        11. Simbolu virkņu apstrāde funkcijās.
-created 12. Objektorientētā programmēšana. Klases pārveidošana.
-created 13. Objektorientētā programmēšana. Konstruktors un destruktors. Dinamiska masīva realizācija.
-created 14. Objektorientētā programmēšana. Vienkāršas klases izveide.
-created 15. Objektorientētā programmēšana. Mantošana.
-created 16. Operatoru pārslogošana.
-later   17. Klases šablons.
-later   18. STL vector pielietošana.
-later   19. Teksta failu apstrāde.
-later   20. Bināru failu apstrāde.
-later   21. Saistītais saraksts.
+task created? task done?
+                        1. Darbs ar vidi Dev-C++. Projekta veidošana.
+                        2. Kompilatora kļūdas paziņojumi, datu tipi, formatētais ievads un izvads.
+                        3. Datu tipi.Skaitliskas izteiksmes.
+                        4. Zarošanās priekšraksts if. Cikls for.
+                        5. Loģiskas izteiksmes un cikli.
+                        6. Masīvi un simbolu virknes.
+                        7. Divdimensiju masīvi.
+                        8. Masīvi.
+                        9. Funkcijas.
+                        10. Masīvu apstrāde funkcijās.
+                        11. Simbolu virkņu apstrāde funkcijās.
+created                 12. Objektorientētā programmēšana. Klases pārveidošana.
+created                 13. Objektorientētā programmēšana. Konstruktors un destruktors. Dinamiska masīva realizācija.
+created                 14. Objektorientētā programmēšana. Vienkāršas klases izveide.
+created                 15. Objektorientētā programmēšana. Mantošana.
+created                 16. Operatoru pārslogošana.
+later                   17. Klases šablons.
+later                   18. STL vector pielietošana.
+later                   19. Teksta failu apstrāde.
+later                   20. Bināru failu apstrāde.
+later                   21. Saistītais saraksts.

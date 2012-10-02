@@ -1,0 +1,4 @@
+// nemainot main funkciju,
+// atkomentejiet tas kodu pa rindinai,
+// un, rakstot savu kodu seit (pirms main),
+// panaciet, lai programma kompilejas

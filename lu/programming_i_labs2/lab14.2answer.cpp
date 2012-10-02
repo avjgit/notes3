@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// nemainot main funkciju,
-// atkomentejiet tas kodu (iznemot komentarus) pa rindinai,
-// un, rakstot savu kodu seit (pirms main),
-// panaciet, lai programma kompilejas
-
 // beigas uz displeja jabut izprintetam:
 // 3 4 6
 // 13
@@ -64,18 +59,20 @@ public:
 
 int main ()
 {
-    triangle a (3,4,5);
-    a.change (0,0,1); // katras malas izmaiòa
-    triangle b (2); // visas trîs malas aizpildâs ar 2
-    triangle *c = new triangle (a); // aizpilda kâ a
-    a.print (); // izdrukâ 3,4,6
-    a.perimeter (); // izdrukâ 13
-    c->change (2); // visu malu izmaiòa vienâdi
-    c->perimeter (); // izdrukâ 19
-    a.longest (); // garâkâ mala: izdrukâ 6
-    b.print();    // izdruka 2 2 2
-    b.longest (); // garâkâ mala: izdrukâ 2
-    // delete c;
+    // tatad,  jauztaisa klase TRIANGLE, kura jabut:
+
+    triangle a (3,4,5);             // konstruktoram pec tris malasm
+    a.change (0,0,1);               // metodei, kas izmaina malas
+    triangle b (2);                 // konstruktoram vienadmalu trijsturim
+    triangle *c = new triangle (a); // konstruktoram pec trisstura kopijas
+    a.print ();                     // metodei, kas izdrukâ malas (3,4,6)
+    a.perimeter ();                 // izdruka perimetru 13
+    c->change (2);                  // visu malu izmaina vienadi
+    c->perimeter ();                // izdruka perimetru velreiz
+    a.longest ();                   // izdruka A trisstura garako malu (6)
+    b.print();                      // izdruka B malas (2 2 2)
+    b.longest ();                   // izdruka B trisstura garako malu (2)
+    delete c;
     system ("pause");
     return 0;
  }

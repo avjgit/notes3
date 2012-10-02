@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// nemainot main funkciju, 
-// atkomentejiet tas kodu (iznemot komentarus) pa rindinai, 
-// un, rakstot savu kodu seit (pirms main),
-// panaciet, lai programma kompilejas
-
 // beigas uz displeja jabut izprintetam:
 // skaitlis sobrid ir pieci/ 5
 // skaitlis sobrid ir desmit/ 10
@@ -50,17 +45,17 @@ ostream &operator<< (ostream &out, skaitlis &s)
 }
 
 int main()
-{    
-    // sai rindinai ir jaizveido klase skaitlis
-    // un klases konstruktors, kas akcepte teksta un cipara tipa parametrus 
-    // (tatad, siem laukiem jabut klases ieksa; uztaisiet tos privatus)
+{
+    // Sai rindinai ir jaizveido klase skaitlis
+    // ar konstruktoru, kas akcepte divus parametrus - tekstu un skaitli
+    // (tatad, siem laukiem jabut klases ieksa; uztaisiet tos privatus).
     skaitlis s1 ("pieci", 5);
 
     // jauzraksta klases "skaitlis" metode print
     // piemeram, lai izvada abus privatus laukus
     s1.print ();
 
-    // uzrakstiet metodi "change", tadu, 
+    // uzrakstiet metodi "change", tadu,
     // kas ieraksta klases laukos jaunas vertibas
     s1.change ("desmit", 10);
     s1.print ();
@@ -69,7 +64,7 @@ int main()
     // uztaisiet to ka klases funkciju
     s1 += "divdesmit";
     s1 += 20;
-    
+
     // un, lai darbinatu pedejo rindinu, jums japarslogo operators "<<"
     // uztaisiet to areji
     cout << s1;

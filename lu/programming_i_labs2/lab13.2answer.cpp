@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// nemainot main funkciju,
-// atkomentejiet tas kodu (iznemot komentarus) pa rindinai,
-// un, rakstot savu kodu seit (pirms main),
-// panaciet, lai programma kompilejas
-
 // beigas uz displeja jabut izprintetam:
 // piezime: "C1 (..)" japrinte konstruktoram
 //
@@ -39,7 +34,7 @@ public:
     timesimple (int h)
     {
         hours = h;
-        minutes = 0;
+        minutes = 00;
         cout << "C3 ";
         print();
     };
@@ -61,14 +56,19 @@ int main ()
     //   veicot objekta inicializāciju pie deklarēšanas ar piešķiršanas operatoru =.
     // Veicot parastu piešķiršanu pēc deklarēšanas tas nestrādā!.
     // Pievērst uzmanību konstruktoru izsaukšanai dotajā programmā – īpaši konstruktoriem ar vienu parametru (C2, C3).
-    timesimple t (8, 20);
-    t.print ();
-    timesimple u = t; // u tagad bus 9:21
+
+    timesimple t (8, 20); // uztaisiet klasi ar laukiem HOURS un MINUTES
+                          // konstruktors lai printe "C1"
+    t.print ();           // si metode vienkarsi printe stundas un minutes
+    timesimple u = t;     // uztaisiet ta, ka, konstruejot objektu no cita objekta (konstuktors "C2"),
+                          // jauna objekta stundas un minutes bus par 1 lielaki (u tagad bus 9:21)
     u.print ();
-    timesimple v;
-    v = t;
-    v.print ();
-    timesimple w = 23;
+
+    timesimple v;         // konstruktors "C4"; HOURS un MINUTES gan bus tuksi
+    v = t;                // tagad V objekts norada uz to pasu T
+    v.print ();           // izprintejot V, to var redzet!
+
+    timesimple w = 23;    // konstuktors "C3"; 23 bus stundas
     w.print ();
 
     system("pause");

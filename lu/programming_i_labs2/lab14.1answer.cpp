@@ -1,11 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// nemainot main funkciju,
-// atkomentejiet tas kodu (iznemot komentarus) pa rindinai,
-// un, rakstot savu kodu seit (pirms main),
-// panaciet, lai programma kompilejas
-
 // beigas uz displeja jabut izprintetam:
 // Error: -5.5
 // Error: 6
@@ -43,23 +38,26 @@ public:
     }
     double length()
     {
-        return y-x;
+        cout << "Length: " << y-x << endl;
     }
     double center()
     {
-        return (x+y)/2;
+        cout << "Center: " << (x+y)/2 << endl;
     }
 };
 
 int main()
 {
-    interval i; // sâkumâ dots intervâls 0..100
-    i.setX (1);
-    i.setY (-5.5); // pârbaude X<=Y!!!
-    i.setY (5.5);
-    i.setX (6); // pârbaude X<=Y!!!
-    cout << "Length: " << i.length() << endl;
-    cout << "Center: " << i.center() << endl;
+    interval i;     // jauztaisa klase INTERVAL
+                    // izveidojiet privatos laukus X un Y
+                    // ar sakuma vertibam 0 un 100
+    i.setX (1);     // lauka X ierakstam 1
+    i.setY (-5.5);  // seit noblausies parbaude, kurai nepatik, ka Y mazak par X
+    i.setY (5.5);   // lauka Y tiek ierakstita korekta vertiba
+    i.setX (6);     // seit bus kludas pazinojums par to,
+                    // ka X megina ierakstit lielaku par Y
+    i.length();     // izprinte intervala garumu
+    i.center();     // izvada uz ekrana intervala centru
     system("pause");
     return 0;
 }

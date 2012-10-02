@@ -1,0 +1,20 @@
+Andrew Tanenbaum - Computer Networks (3rd ed 1996?)
+"easy to read?"
+
+http://www.ltn.lv/~guntis/myweb/tikli1.html
+guntis@latnet.lv
+Guntis Baarzdins
+
+Tanenbaums klasifice tiklus pec attaluma starp procesoriem
+
+0.1 m    -   circuit board (multicore computer)
+  1 m    -   system (multicomputer; servers in separate cases)
+ 10 m    -   room
+100 m    -   building - LAN
+  1km    -   campus   - LAN - bild by user (būvē tas, kas viņu lieto)
+ 10km    -   city     - WAN (wide area network)/
+                        MAN (Metropolitan area network)
+100km    -   country
+ 1Kkm    -   continent
+10Kkm    -   global/planet
+100Kkm   -   space
