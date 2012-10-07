@@ -8,8 +8,7 @@ using namespace std;
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 // si ir paligfunkcija testa rezultatu izvadei uz ekrana
-void print_test_result
-(
+void print_test_result(
     string description,
     string expected,
     string actual,
@@ -36,8 +35,7 @@ void print_test_result
     cout << "received: ";
     cout << actual << endl;
 }
-void test
-(
+void test(
      string description, // testa apraksts
      string expected,    // testa velamais rezultats
      string actual       // testa realais rezultats
@@ -52,8 +50,7 @@ void test
 // tas pats tests, tikai skaitlu tipa rezultatiem
 // abas TEST funkcijas var saukties vienadi; kompilators pats sapratis, kuru izsaukt
 // (ir gana gudrs, lai tos atskirtu pec ieejas parametru tipiem - signaturas)
-void test
-(
+void test(
      string description,
      double expected,
      double actual
@@ -136,14 +133,12 @@ void lab02_2_test()
 {
     test("lab02_2", 12.0/7, lab02_2());
 }
-double lab02_3
-(
+double lab02_3(
       string message,
       bool clean = false,
       int symbols = 256
 )
 {
-
     if (clean && !cin.good())
     {
         cin.clear();
@@ -209,6 +204,13 @@ void lab02_3_test()
 }
 double lab02_4()
 {
+    cout << endl;
+    cout << "///////////////" << endl;
+    cout << "/////////////// Laboratorijas darbs 2.4" << endl;
+    cout << "///////////////" << endl;
+    cout << "saja lab.darba nebus testu; vienkarsi paverojiet output";
+    cout << endl << endl << endl;
+
     double d;
     cout << endl << "Ievadiet skaitli 123.456789: ";
     cin >> d;
@@ -312,33 +314,65 @@ void lab02_5_2_remainder_test()
      test("lab02_5_2e", 1, lab02_5_2_remainder(4, 3));
      test("lab02_5_2f", 0, lab02_5_2_remainder(3, 3));
 }
-void lab_03_01_datatypes()
+void lab03_1()
 {
+    cout << endl;
+    cout << "///////////////" << endl;
+    cout << "/////////////// Laboratorijas darbs 3.1" << endl;
+    cout << "///////////////" << endl;
+    cout << "saja lab.darba nebus testu; vienkarsi paverojiet output";
+    cout << endl << endl << endl;
+
     cout.fill (' ');
     cout.setf (ios::right);
     char c1 = 'F', c2;
     int i1 = 50, i2;
-    double d1 = 123e-3, d2;
+    double d1 = 123e-3; //128 * 10^-3 (pakape -3)
+    double d2;
     bool b1 = true, b2 = false;
     char *s1 = "Hallo, World!";
 
+    cout << "///// Izprintesim char, int un double: " << endl;
     cout << setw(10) << c1 << endl;
     cout << setw(10) << i1 << endl;
     cout << setw(10) << d1 << endl;
+    cout << endl << endl;
+    cout << "///// Ta tiek izprinteti boolean TRUE un FALSE: " << endl;
     cout << setw(10) << b1 << setw(10) << b2 << endl;
+    cout << endl << endl;
+    cout << "///// Un teksta rindina (rinda ar char'iem): " << endl;
     cout << setw(10) << s1 << endl;
+    cout << endl << endl;
 
+    cout << "///// Tagad uztaisisim eksperimentu  - ierakstisim char tipa mainigaja int tipa vertibu" << endl;
+    cout << "Ievadiet kadu skaitli: ";
+    cin >> i1;
+    cout << "Ok, saglabajam to ka char un izprintejam:";
     c2 = i1;
-    i2 = c1;
-
     cout << setw(10) << c2 << endl;
+    cout << endl << endl;
+
+
+    cout << "/////Un otradi - inta ierakstam characteru." << endl;
+    cout << "Ievadiet kadu burtu: ";
+    cin >> c1;
+    i2 = c1;
+    cout << "Re, kas sanak, ka ja mes pieskiram to int mainigajam un izprintejam: " << endl;
     cout << setw(10) << i2 << endl;
 
+    cout << endl << endl << "///// ";
+    cout << "Izprintesim char un int mainigo izmerus: " << endl;
     cout << c1 << " " << sizeof(c1) << endl;
     cout << i2 << " " << sizeof(i2) << endl;
 
+
+    cout << endl << endl << "///// ";
+    cout << "Un vel dazi piemeri: " << endl;
     d2 = d1 * 100;
     cout << d1 << " " << d2 << endl;
+
+    cout << endl << endl << "///// ";
+    cout << "Izprintesim abus skaitlus un bool tipa mainigos ('aizkulises' skatities kodaa): " << endl;
     b1 = (d1 < d2);
     b2 = !b1;
     cout << d1 << " less than " << d2 << ": " << b1 << endl;
@@ -350,17 +384,24 @@ void lab_03_01_datatypes()
     d2 = i1;
     cout << d2 << endl;
 
-    // will generate warning, but proceed
-//    i2 = d1;
+    cout << endl << endl << "///// ";
+    cout << "Saglabasim double ka int, un pameginasim izprintet: " << endl;
+    i2 = d1;
+    cout << i2 << endl;
+    cout << "Kods kompilejas, bet ta nav pratiga doma - saglabat double int'aa,";
+    cout << "jo int'am ir sauraks vertibu apgabals";
+
+    cout << endl << endl << "///// ";
+    cout << "Pameginasim izprintet double veselo dalu (funkcija ceil): " << endl;
+    i2 = ceil (d1);
     cout << i2 << endl;
 
-//    i2 = ceil (d1);
-    cout << i2 << endl;
-
+    cout << "Konvertesim ceil uz int?: " << endl;
     i2 = (int)ceil (d1);
     cout << i2 << endl;
 }
-double lab_03_02_calculating(double a, double b, double c)
+
+double lab03_2(double a, double b, double c)
 {
 //    return a + b * c;
 //    return (a + b) * c;
@@ -371,83 +412,83 @@ double lab_03_02_calculating(double a, double b, double c)
     result = round(result * 1000); // lai dabut 729913 no 729912.53(..)
     return result/1000;
 }
-void lab_03_02_calculating_test()
+void lab03_2_test()
 {
-     test("lab_03_02_calculating", 729.913, lab_03_02_calculating(2, 3, 4));
+     test("lab03_2", 729.913, lab03_2(2, 3, 4));
 }
-bool lab_04_01_if (int a)
+bool lab04_1 (int a)
 {
     if (a <= 0) cout << "mazais" << endl;
     else cout << "LIELAIS" << endl;
     return a <= 0;
 }
-void lab_04_01_if_test()
+void lab04_1_test()
 {
-     test("lab_04_01_if", false, lab_04_01_if(5));
-     test("lab_04_01_if", true, lab_04_01_if(-5));
+     test("lab04_1", false, lab04_1(5));
+     test("lab04_1", true, lab04_1(-5));
 }
-string lab_04_02 (int a)
+string lab04_2 (int a)
 {
     if (a > 0)          return "LIELAIS";
     else if (a == 0)    return "n-u-l-l-e";
     else                return "mazais";
 }
-string lab_04_02a (int a)
+string lab04_2a (int a)
 {
-    // Pârveidot programmu lab_04_02 par funkcionâli identisku programmu tâ,
+    // Pârveidot programmu lab04_2 par funkcionâli identisku programmu tâ,
     // ka tiek izmantotas salîdzinâðanas operâcijas < un != (mazâks un nav vienâds) ..
     // .. – iepriekð izmantoto operâciju > un == vietâ.
     if (a < 0)          return "mazais";
     else if (a != 0)    return "LIELAIS";
     else                return "n-u-l-l-e";
 }
-string lab_04_02b (int a)
+string lab04_2b (int a)
 {
-    // Pârveidot programmu lab_04_02 par funkcionâli identisku programmu tâ,
+    // Pârveidot programmu lab04_2 par funkcionâli identisku programmu tâ,
     //  ka tiek izmantotas salîdzinâðanas operâcijas < un >.
     if (a < 0)          return "mazais";
     else if (a > 0)     return "LIELAIS";
     else                return "n-u-l-l-e";
 }
-string lab_04_02c (int a)
+string lab04_2c (int a)
 {
-    // Pârveidot programmu lab_04_02 par funkcionâli identisku programmu tâ,
+    // Pârveidot programmu lab04_2 par funkcionâli identisku programmu tâ,
     //  ka tiek izmantota tikai viena veida salîdzinâðanas operâcija <
     if (a < 0)          return "mazais";
     else if (a < 1)     return "n-u-l-l-e";
     else                return "LIELAIS";
 }
-string lab_04_02d (int a)
+string lab04_2d (int a)
 {
-    // Pârveidot programmu lab_04_02 par funkcionâli identisku programmu tâ,
+    // Pârveidot programmu lab04_2 par funkcionâli identisku programmu tâ,
     //  ka tiek izmantota tikai viena veida salîdzinâðanas operâcija >
     if (a > 0)          return "LIELAIS";
     else if (a > -1)     return "n-u-l-l-e";
     else                return "mazais";
 }
-void lab_04_02_test()
+void lab04_2_test()
 {
-     test("lab_04_02", "LIELAIS",    lab_04_02(5));
-     test("lab_04_02", "mazais",     lab_04_02(-5));
-     test("lab_04_02", "n-u-l-l-e",  lab_04_02(0));
+     test("lab04_2", "LIELAIS",    lab04_2(5));
+     test("lab04_2", "mazais",     lab04_2(-5));
+     test("lab04_2", "n-u-l-l-e",  lab04_2(0));
 
-     test("lab_04_02a", "LIELAIS",   lab_04_02a(5));
-     test("lab_04_02a", "mazais",    lab_04_02a(-5));
-     test("lab_04_02a", "n-u-l-l-e", lab_04_02a(0));
+     test("lab04_2a", "LIELAIS",   lab04_2a(5));
+     test("lab04_2a", "mazais",    lab04_2a(-5));
+     test("lab04_2a", "n-u-l-l-e", lab04_2a(0));
 
-     test("lab_04_02b", "LIELAIS",   lab_04_02b(5));
-     test("lab_04_02b", "mazais",    lab_04_02b(-5));
-     test("lab_04_02b", "n-u-l-l-e", lab_04_02b(0));
+     test("lab04_2b", "LIELAIS",   lab04_2b(5));
+     test("lab04_2b", "mazais",    lab04_2b(-5));
+     test("lab04_2b", "n-u-l-l-e", lab04_2b(0));
 
-     test("lab_04_02c", "LIELAIS",   lab_04_02c(5));
-     test("lab_04_02c", "mazais",    lab_04_02c(-5));
-     test("lab_04_02c", "n-u-l-l-e", lab_04_02c(0));
+     test("lab04_2c", "LIELAIS",   lab04_2c(5));
+     test("lab04_2c", "mazais",    lab04_2c(-5));
+     test("lab04_2c", "n-u-l-l-e", lab04_2c(0));
 
-     test("lab_04_02d", "LIELAIS",   lab_04_02d(5));
-     test("lab_04_02d", "mazais",    lab_04_02d(-5));
-     test("lab_04_02d", "n-u-l-l-e", lab_04_02d(0));
+     test("lab04_2d", "LIELAIS",   lab04_2d(5));
+     test("lab04_2d", "mazais",    lab04_2d(-5));
+     test("lab04_2d", "n-u-l-l-e", lab04_2d(0));
 }
-string lab_04_03 (int a)
+string lab04_3 (int a)
 {
     if (a > 0)
     {
@@ -461,7 +502,7 @@ string lab_04_03 (int a)
         else return "n-u-l-l-e";
     };
 }
-string lab_04_03a (int a)
+string lab04_3a (int a)
 {
     if (a > 9) return "LIELAIS PLUS";
     else if (a > 0) return "mazais plus";
@@ -469,21 +510,21 @@ string lab_04_03a (int a)
     else if (a < 0) return "mazais -";
     else return "n-u-l-l-e";
 }
-void lab_04_03_test()
+void lab04_3_test()
 {
-     test("lab_04_03_test", "mazais plus",  lab_04_03(5));
-     test("lab_04_03_test", "LIELAIS PLUS", lab_04_03(15));
-     test("lab_04_03_test", "n-u-l-l-e",    lab_04_03(0));
-     test("lab_04_03_test", "mazais -",     lab_04_03(-5));
-     test("lab_04_03_test", "LIELAIS -",    lab_04_03(-15));
+     test("lab04_3a", "mazais plus",  lab04_3(5));
+     test("lab04_3b", "LIELAIS PLUS", lab04_3(15));
+     test("lab04_3c", "n-u-l-l-e",    lab04_3(0));
+     test("lab04_3d", "mazais -",     lab04_3(-5));
+     test("lab04_3e", "LIELAIS -",    lab04_3(-15));
 
-     test("lab_04_03a_test", "mazais plus",  lab_04_03a(5));
-     test("lab_04_03a_test", "LIELAIS PLUS", lab_04_03a(15));
-     test("lab_04_03a_test", "n-u-l-l-e",    lab_04_03a(0));
-     test("lab_04_03a_test", "mazais -",     lab_04_03a(-5));
-     test("lab_04_03a_test", "LIELAIS -",    lab_04_03a(-15));
+     test("lab04_3f", "mazais plus",  lab04_3a(5));
+     test("lab04_3g", "LIELAIS PLUS", lab04_3a(15));
+     test("lab04_3h", "n-u-l-l-e",    lab04_3a(0));
+     test("lab04_3i", "mazais -",     lab04_3a(-5));
+     test("lab04_3j", "LIELAIS -",    lab04_3a(-15));
 }
-int lab_04_04_for ()
+int lab04_4 ()
 {
     int a = 0;
     for (int i=0; i<5; i++)
@@ -493,7 +534,7 @@ int lab_04_04_for ()
     return a;
 }
 
-int lab_04_04_for_break ()
+int lab04_4_break ()
 {
     int a = 0;
     for (int i=0; i<5; i++)
@@ -504,7 +545,7 @@ int lab_04_04_for_break ()
     return a;
 }
 
-int lab_04_04_for_continue ()
+int lab04_4_continue ()
 {
     int a = 0;
     for (int i=0; i<5; i++)
@@ -514,13 +555,13 @@ int lab_04_04_for_continue ()
     };
     return a;
 }
-void lab_04_04_for_test()
+void lab04_4_test()
 {
-     test("lab_04_04_for", 10,  lab_04_04_for());
-     test("lab_04_04_for_break", 1,  lab_04_04_for_break());
-     test("lab_04_04_for_continue", 7,  lab_04_04_for_continue());
+     test("lab04_4a", 10,  lab04_4());
+     test("lab04_4b", 1,  lab04_4_break());
+     test("lab04_4c", 7,  lab04_4_continue());
 }
-int lab_04_05_1(int a, int b)
+int lab04_5a(int a, int b)
 {
 //     Doti 2 veseli skaitïi a, b.
 //     Ja abi ir mazâki par 0, tad izdrukât to reizinâjumu,
@@ -531,14 +572,14 @@ int lab_04_05_1(int a, int b)
        ;
        return a + b;
 }
-void lab_04_05_1_test()
+void lab04_5a_test()
 {
-     test("lab_04_05_1", 3,  lab_04_05_1(1, 2));
-     test("lab_04_05_1", 2,  lab_04_05_1(-1, -2));
-     test("lab_04_05_1", -1,  lab_04_05_1(1, -2));
+     test("lab04_5a", 3,  lab04_5a(1, 2));
+     test("lab04_5a", 2,  lab04_5a(-1, -2));
+     test("lab04_5a", -1,  lab04_5a(1, -2));
 }
 
-string lab_04_05_2_help(int low, int middle, int high)
+string lab04_5b_help(int low, int middle, int high)
 {
        // si funkcija maces noskaidrot,
        // kuram skaitlim  - lielakajam vai mazakajam -
@@ -550,7 +591,7 @@ string lab_04_05_2_help(int low, int middle, int high)
        else if (to_low < to_high) return "tuvak mazakajam";
        else return "vienada attaluma";
 }
-string lab_04_05_2(int a, int b, int c)
+string lab04_5b(int a, int b, int c)
 {
     int middle;
     //Doti 3 veseli atðíirîgi skaitïi a, b, c.
@@ -563,30 +604,31 @@ string lab_04_05_2(int a, int b, int c)
        if (a <= c)
           // padodam paligfunkcijai jau sakartotu
           // int. sarakstu
-          return lab_04_05_2_help(b, a, c);
+          return lab04_5b_help(b, a, c);
 
     if (a >= c)
        if (a <= b)
-          return lab_04_05_2_help(c, a, b);
+          return lab04_5b_help(c, a, b);
     // analogiski, ar b un c
     if (b >= a)
        if (b <= c)
-          return lab_04_05_2_help(a, b, c);
+          return lab04_5b_help(a, b, c);
     if (b >= c)
        if (b <= a)
-          return lab_04_05_2_help(c, b, a);
+          return lab04_5b_help(c, b, a);
 
     if (c >= a)
        if (c <= b)
-          return lab_04_05_2_help(a, c, b);
+          return lab04_5b_help(a, c, b);
     if (c >= b)
        if (c <= a)
-          return lab_04_05_2_help(b, c, a);
+          return lab04_5b_help(b, c, a);
 
     return "";
 }
-string lab_04_05_2_bubble (int a, int b, int c)
+string lab04_5bbl (int a, int b, int c)
 {
+    // sort by bubble
     int tmp;
      // sort numbers a,b,c a=least, c=greatest:
     if (a > b) { tmp = a; a = b; b = tmp; };
@@ -597,17 +639,17 @@ string lab_04_05_2_bubble (int a, int b, int c)
     else if (b - a < c - b) return "tuvak mazakajam";
     else return "tuvak lielakajam";
 }
-void lab_04_05_2_test()
+void lab04_5b_test()
 {
-     test("lab_04_05_2", "vienada attaluma", lab_04_05_2(1, 2, 3));
-     test("lab_04_05_2", "tuvak mazakajam",  lab_04_05_2(-7, 2, -5));
-     test("lab_04_05_2", "tuvak lielakajam", lab_04_05_2(-7, 2, 5));
+     test("lab04_5b", "vienada attaluma", lab04_5b(1, 2, 3));
+     test("lab04_5b", "tuvak mazakajam",  lab04_5b(-7, 2, -5));
+     test("lab04_5b", "tuvak lielakajam", lab04_5b(-7, 2, 5));
 
-     test("lab_04_05_2_bubble", "vienada attaluma", lab_04_05_2_bubble(1, 2, 3));
-     test("lab_04_05_2_bubble", "tuvak mazakajam",  lab_04_05_2_bubble(-7, 2, -5));
-     test("lab_04_05_2_bubble", "tuvak lielakajam", lab_04_05_2_bubble(-7, 2, 5));
+     test("lab04_5bbl", "vienada attaluma", lab04_5bbl(1, 2, 3));
+     test("lab04_5bbl", "tuvak mazakajam",  lab04_5bbl(-7, 2, -5));
+     test("lab04_5bbl", "tuvak lielakajam", lab04_5bbl(-7, 2, 5));
 }
-int lab_04_05_03_findnegative(int a, int b, int c)
+int lab04_5c(int a, int b, int c)
 {
     //Doti 3 veseli skaitli a, b, c.
     //Noskaidrot, vai starp tiem ir negativi skaitli,
@@ -630,12 +672,12 @@ int lab_04_05_03_findnegative(int a, int b, int c)
     if (b < 0) return b;
     if (a < 0) return a;
 }
-void lab_04_05_03_findnegative_test()
+void lab04_5c_test()
 {
-    test("lab_04_05_03_findnegative",  0, lab_04_05_03_findnegative(1, 2, 3));
-    test("lab_04_05_03_findnegative", -2, lab_04_05_03_findnegative(7, -2, -5));
+    test("lab04_5c",  0, lab04_5c(1, 2, 3));
+    test("lab04_5c", -2, lab04_5c(7, -2, -5));
 }
-int lab_04_06_1_stars(int rows)
+int lab04_6a(int rows)
 {
 //    Doti naturâls skaitlis n.
 //    Izdrukât figûru no zvaigznîtçm ‘*’, kas sastâv no n rindiòâm tâdçjâdi,
@@ -654,11 +696,11 @@ int lab_04_06_1_stars(int rows)
       }
       return stars_in_row;
 }
-void lab_04_06_1_stars_test()
+void lab04_6a_test()
 {
-     test("lab_04_06_1_stars",  1, lab_04_06_1_stars(10));
+     test("lab04_6a",  1, lab04_6a(10));
 }
-int lab_04_06_2_addodds(int n)
+int lab04_6b(int n)
 {
     //Doti naturâls skaitlis n.
     //Izmantojot for ciklu un elementu saskaitîðanu, aprçíinât un izdrukât pirmo n nepâra skaitïu summu.
@@ -682,7 +724,7 @@ int lab_04_06_2_addodds(int n)
     }
     return sum;
 }
-int lab_04_06_2_addodds_cool(int n)
+int lab04_6b_cool(int n)
 {
     // risina to pasu uzdevumu, bet tikai ar interesantakiem FOR nosacijumiem
     int sum = 0;
@@ -693,17 +735,17 @@ int lab_04_06_2_addodds_cool(int n)
     }
     return sum;
 }
-void lab_04_06_2_addodds_test()
+void lab04_6b_test()
 {
-     test("lab_04_06_2_addodds",       100, lab_04_06_2_addodds(10));
-     test("lab_04_06_2_addodds_cool",  100, lab_04_06_2_addodds_cool(10));
+     test("lab04_6b a",  100, lab04_6b(10));
+     test("lab04_6b b",  100, lab04_6b_cool(10));
 }
-string lab_05_01_initial(int a)
+string lab05_1_initial(int a)
 {
     if (a >= 0 && a <= 9) return "LABAIS";
     else return "sliktais";
 }
-string lab_05_01_modified(int a)
+string lab05_1_modified(int a)
 {
     // Parveidot programmu ta, lai, nemainot tas darbibu, izpilditos sadas prasibas:
     // (a) izveles nosacijuma netiktu izmantots &&,
@@ -711,17 +753,17 @@ string lab_05_01_modified(int a)
     if ((a < 0) || (a > 9)) return "sliktais";
     else return "LABAIS";
 }
-void lab_05_01_test()
+void lab05_1_test()
 {
-     test("lab_05_01_initial", "sliktais", lab_05_01_initial(-5));
-     test("lab_05_01_initial", "LABAIS",   lab_05_01_initial(5));
-     test("lab_05_01_initial", "sliktais", lab_05_01_initial(15));
+     test("lab05_1a", "sliktais", lab05_1_initial(-5));
+     test("lab05_1b", "LABAIS",   lab05_1_initial(5));
+     test("lab05_1c", "sliktais", lab05_1_initial(15));
 
-     test("lab_05_01_modified", "sliktais", lab_05_01_modified(-5));
-     test("lab_05_01_modified", "LABAIS",   lab_05_01_modified(5));
-     test("lab_05_01_modified", "sliktais", lab_05_01_modified(15));
+     test("lab05_1d", "sliktais", lab05_1_modified(-5));
+     test("lab05_1e", "LABAIS",   lab05_1_modified(5));
+     test("lab05_1f", "sliktais", lab05_1_modified(15));
 }
-int lab_05_02_loop_for()
+int lab05_2()
 {
     int sum = 0, i, n = 10;
     for (i=1; i<=10; i++)
@@ -730,34 +772,109 @@ int lab_05_02_loop_for()
     };
     return sum;
 }
-void lab_05_02_loop_for_test()
+void lab05_2_test()
 {
-     test("lab_05_02_loop_for", 55, lab_05_02_loop_for());
+     test("lab05_2", 55, lab05_2());
 }
 
-  class skaitlis
-  {
-    string x;
-    int y;
-    public:
-    skaitlis (const string &a, int b) { x=a; y=b; };
-    void print ()
-    {
-        cout << x << endl;
-        cout << y << endl;
-    };
-    void change (const string &a, int b) { x=a; y=b; };
-  };
-
-void lab16_1()
+void lab05_3()
 {
-    skaitlis s1 ("pieci", 5);
-    s1.print ();
-    s1.change ("desmit", 10);
-    s1.print ();
-};
+    // Programma izprinte rezinajuma tabulu 4X4
+    // beigas uz displeja jabut izprintetam:
+    // 1 2  3  4
+    // 2 4  6  8
+    // 3 5  9 12
+    // 4 8 12 16
 
+    //outer cycle
+    for (int i=1; i<=4; i++)
+    {
+    // Sets the number of characters to be used as the field width for the next insertion operation.
+        for (int k=1; k<=4; k++)
+        {
+                cout << setw(4) << i*k;
+        }
+        cout << endl;
+    };
+}
+void lab05_3a()
+{
+    // Mēģināt pārveidot programmu tā, lai tā izmantotu tikai viena līmeņa ciklu, bet veiktu precīzi tādu pašu darbu – izdrukātu reizrēķina tabulu 4X4 (lab05.3a.cpp).
+    // Ieteikums: visticamāk, lai kompensētu iekšējo ciklu, nāksies izmantot papildus if operatoru, kā arī veselo skaitļu dalīšanas / un atlikuma % operācijas.
+    //inner cycle
+    for (int i = 0; i < 16; i++)
+    {
+        cout << setw(4) << (i/4+1) * (i%4+1);
+        if (i%4 == 3) cout << endl;
+    }
+}
+void lab05_4a()
+{
+    // Doti naturāls skaitlis n.
+    // Izdrukāt „eglīti” no zvaigznītēm ‘*’, kas sastāv no n rindiņām tādējādi, ka pirmajā rindā ir 1 zvaigznīte, bet katrā nākamajā par vienu vairāk.
+    // Piemērs. n=6; rezultāts:
+    // *
+    // **
+    // ***
+    // ****
+    // *****
+    // ******
+    int rows;
+    cout << "Cik rindu?";
+    cin >> rows;
+    for (int i = 1; i <= rows; i++)
+    {
+        for (int k = 1; k <= i; k++)
+        {
+            cout << '*';
+        }
+        cout << endl;
+    }
+}
+void lab05_4b()
+{
+    int rows;
+    int star_one;
+    int star_two;
 
+    cout << "Ievadiet naturalu nepara skaitli: ";
+    cin >> rows;
+
+    for (int i = 1; i <= rows; i++)
+    {
+        star_one = i;
+        star_two = rows-i+1;
+
+        for (int k = 1; k <= rows; k++)
+        {
+            if (k == star_one)      cout << '*';
+            else if (k == star_two) cout << '*';
+            else                    cout << '-';
+        }
+        cout << endl;
+    }
+
+}
+void lab05_4c()
+{
+        int rows;
+    int star_one;
+    int star_two;
+
+    cout << "Ievadiet naturalu nepara skaitli: ";
+    cin >> rows;
+
+    for (int i = 1; i <= rows; i++)
+    {
+        for (int k = 1; k <= rows; k++)
+        {
+            if (k%3 == i%3) cout << '*';
+            else          cout << '-';
+        }
+        cout << endl;
+    }
+
+}
 ///////////////////////////////////////////////////////////////////
 // laboratorijas darbi
 ///////////////////////////////////////////////////////////////////
@@ -772,6 +889,7 @@ void lab02 ()
 {
      lab02_1_test();
      lab02_2_test();
+     // todo: somehow skip 2.3 and 2.4
      // lab02_3_test();
      // lab02_4();
      lab02_5_1_test();
@@ -780,25 +898,29 @@ void lab02 ()
 }
 void lab03()
 {
-     lab_03_01_datatypes();
-     lab_03_02_calculating_test();
+     // lab03_1();
+     lab03_2_test();
 }
 void lab04()
 {
-     lab_04_01_if_test();
-     lab_04_02_test();
-     lab_04_03_test();
-     lab_04_04_for_test();
-     lab_04_05_1_test();
-     lab_04_05_2_test();
-     lab_04_05_03_findnegative_test();
-     lab_04_06_1_stars_test();
-     lab_04_06_2_addodds_test();
+     lab04_1_test();
+     lab04_2_test();
+     lab04_3_test();
+     lab04_4_test();
+     lab04_5a_test();
+     lab04_5b_test();
+     lab04_5c_test();
+     lab04_6a_test();
+     lab04_6b_test();
 }
 void lab05()
 {
-     lab_05_01_test();
-     lab_05_02_loop_for_test();
+     lab05_1_test();
+     lab05_2_test();
+     lab05_3();
+     lab05_3a();
+     lab05_4a();
+
 }
 void lab06(){}
 void lab07(){}
@@ -810,10 +932,7 @@ void lab12(){}
 void lab13(){}
 void lab14(){}
 void lab15(){}
-void lab16()
-{
-     lab16_1();
-}
+void lab16(){}
 void lab17(){}
 void lab18(){}
 void lab19(){}
@@ -828,9 +947,9 @@ int main()
 {
     lab01();
     lab02();
-//    lab03();
-//    lab04();
-//    lab05();
+    lab03();
+    lab04();
+    lab05();
 //    lab06();
 //    lab07();
     lab08();
