@@ -14,25 +14,27 @@ using namespace std;
 // (Piemēram, ja n=12025 un k=2, jāiegūst 105).
 // Skaitļa dalīšana ciparos jāveic skaitliski.
 
-int number_order(const int number)
+int number_order(const int base, const int number)
 {
-    const int base = 10;
     int order = 0;
     while (pow(base, order) <= number) order++;
     return --order;
 }
+
 int main()
 {
     int number;
+    const int base = 10;
     cout << "Enter positive integer: ";
     cin >> number;
-    const int order = number_order(number);
-    int *number_split = new int[number_order];
+    int order = number_order(base, number);
+    int *digits = new int[order];
 
-    // while(order >= 0)
-    // {
-    //     number_split[order] = number/
-    // }
+    while(order >= 0)
+    {
+        digits[order] = number/ pow(base, order);
+        order --;
+    }
 
     system("pause");
     return 0;
