@@ -20,6 +20,11 @@ int number_order(const int base, const int number)
     while (pow(base, order) <= number) order++;
     return --order;
 }
+int digit(const int number, int nth)
+{
+    const int base = 10;
+    return number/ (int)pow(base, nth);
+}
 
 int main()
 {
@@ -35,7 +40,8 @@ int main()
     cout << current_order;
     while(current_order >= 0)
     {
-        digits[current_order] = number/ (int)pow(base, current_order--);
+        digits[current_order] = digit(number, current_order);
+        current_order--;
     }
 
     for (int i = 0; i <= order; i++) cout << endl << "digit " << i << " is " << digits[i];
