@@ -26,13 +26,15 @@ int main()
     int number;
     const int base = 10;
     cout << "Enter positive integer: ";
-    cin >> number;
+    // cin >> number;
+    number = 12025;
     int order = number_order(base, number);
     int *digits = new int[order];
 
     // while(order >= 0)
     // {
-        digits[order] = number/ (int)pow(base, order);
+        // digits[order] = number/ (int)pow(base, order);
+    digits[order-1] = number/ (int)pow(base, order);
         // order--;
     // }
 
