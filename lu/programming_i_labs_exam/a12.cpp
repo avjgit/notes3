@@ -29,14 +29,13 @@ int main()
     // cin >> number;
     number = 12025;
     int order = number_order(base, number);
-    int *digits = new int[order];
+    int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
-    // while(order >= 0)
-    // {
-        // digits[order] = number/ (int)pow(base, order);
-    digits[order-1] = number/ (int)pow(base, order);
-        // order--;
-    // }
+    while(order >= 0)
+    {
+        digits[order] = number/ (int)pow(base, order);
+        order--;
+    }
 
     system("pause");
     return 0;
