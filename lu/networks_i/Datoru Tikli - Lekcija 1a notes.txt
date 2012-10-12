@@ -18,3 +18,37 @@ Tanenbaums klasifice tiklus pec attaluma starp procesoriem
  1Kkm    -   continent
 10Kkm    -   global/planet
 100Kkm   -   space
+
+datori
+maršrutizatori
+
+2 veidu sakaru kanli:
+- point to point (most of WAN)
+- broadcast      (most of LAN)
+
+
+maršrutizators ir dators, kuram ir IN un OUT interfeisi
+
+
+datortiklu topologijas:
+- riņķa     (safe - if 1 lost, other still receive)
+- zvaigznes (cheap //why? jo vajag mazak marsrutizatoru)
+
+
+ISO - International Standards Organization
+they created OSI - Open System Interconnection standard
+
+80ies: DEC, IBM, Apple, Intel, Honeywell
+
+Application
+Presentation
+Session
+Transport
+Network
+DataLink
+Physical
+
+- simplifies
+- standards for communication (savietojamiba; dazadi razoataji)
+
+everything, except PHysical, is software
