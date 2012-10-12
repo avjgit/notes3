@@ -30,11 +30,15 @@ int main()
     int order = number_order(base, number);
     int *digits = new int[order];
 
-    while(order >= 0)
-    {
-        digits[order] = number/ pow(base, order);
-        order --;
-    }
+    cout << endl << number/ pow(base, order);
+    cout << endl << number/ (int)pow(base, order);
+
+
+    // while(order >= 0)
+    // {
+    //     digits[order] = number/ pow(base, order);
+    //     order --;
+    // }
 
     system("pause");
     return 0;
