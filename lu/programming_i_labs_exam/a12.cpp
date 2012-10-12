@@ -36,6 +36,7 @@ int main()
         digits[order] = number/ (int)pow(base, order);
         order--;
     }
+    for (int i = 0; i < order; i++) cout << endl << "digit " << i << " is " << digits[i];
 
     system("pause");
     return 0;
