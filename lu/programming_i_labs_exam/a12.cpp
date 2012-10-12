@@ -30,16 +30,11 @@ int main()
     int order = number_order(base, number);
     int *digits = new int[order];
 
-
-
-
-    while(order >= 0)
-    {
-        int curr_digit = number/ (int)pow(base, order);
-
-        digits[order] = curr_digit;
-        order --;
-    }
+    // while(order >= 0)
+    // {
+        digits[order] = number/ (int)pow(base, order);
+        // order--;
+    // }
 
     system("pause");
     return 0;
