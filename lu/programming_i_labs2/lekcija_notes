@@ -1,0 +1,13 @@
+#include <iostream>                         // direktiva
+using namespace std;                        // direktiva
+
+int main () {                               // funkcija
+    cout << "Hello, world!" << endl;        // prieksraksti
+    system("Pause");
+    return 0;
+}
+
+
+Masīvu apstrāde funkcijās
+Dinamiskas datu struktūras. Norādes, adreses, references.
+Objektorientētās programmēšanas pamati.
