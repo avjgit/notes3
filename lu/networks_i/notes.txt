@@ -1,0 +1,13 @@
+Cisco “CCNA1: Tīklošanas pamati”
+
+http://cisco.netacad.net.
+ajurcenoks01
+
+
+Kur var redzēt atzīmes?
+
+A: cisco.netacad.net lapā, savā klasē, sadaļā "Gradebook". Vidējais laboratorijas darbu vērtējums ir zem "Custom scores", sekojot tā saitei ir redzami atsevišķi laboratorijas darbu rezultāti.
+
+J: Kā var zināt savas grupas numuru?
+
+A: Tas ir skaitlis aiz punkta Jūsu Cisco akadēmijas klases nosaukumā.
