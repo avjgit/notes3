@@ -31,10 +31,11 @@ int main()
     int order = number_order(base, number);
     int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
-    while(order >= 0)
+    int current_order = order;
+    while(current_order >= 0)
     {
-        digits[order] = number/ (int)pow(base, order);
-        order--;
+        digits[current_order] = number/ (int)pow(base, current_order);
+        current_order--;
     }
     for (int i = 0; i < order; i++) cout << endl << "digit " << i << " is " << digits[i];
 
