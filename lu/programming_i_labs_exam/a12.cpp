@@ -32,12 +32,13 @@ int main()
     int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
     int current_order = order;
+    cout << current_order;
     while(current_order >= 0)
     {
-        digits[current_order] = number/ (int)pow(base, current_order);
-        current_order--;
+        digits[current_order] = number/ (int)pow(base, current_order--);
     }
-    for (int i = 0; i < order; i++) cout << endl << "digit " << i << " is " << digits[i];
+
+    for (int i = 0; i <= order; i++) cout << endl << "digit " << i << " is " << digits[i];
 
     system("pause");
     return 0;
