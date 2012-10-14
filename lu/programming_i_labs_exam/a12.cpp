@@ -70,9 +70,13 @@ int main()
 
     while (j>0)
     {
-        j--;
-        cout << endl << output[j];
+        cout << endl << j-- << ": " << output[j];
+        cout << "to multiply with " << pow(10, j);
+        cout << "element is " << output[j] * pow(10, j);
+        number_cleaned += output[j] * (int)pow(10, j);
     }
+
+    cout << endl << number_cleaned;
 
 
     system("pause");
