@@ -37,9 +37,9 @@ int get_nth_order_digit(const int number, int n )
 int main()
 {
     int number, removable;
-    cout << "Enter positive integer to process: ";
+    cout << endl << "Enter positive integer to process: ";
     // cin >> number;
-    cout << "Enter digit you need to remove: ";
+    cout << endl << "Enter digit you want to remove: ";
     cin >> removable;
 
     number = 654321;
@@ -49,10 +49,10 @@ int main()
     // fill in array with digits
     for (int i = order; i >= 0; i--)
     {
-        digits[order-i] = get_nth_order_digit(number, i);
+        digits[i] = get_nth_order_digit(number, i);
     }
 
-    for (int i = 0; i <= order; i++) cout << endl << "digit " << i+1 << " is " << digits[i];
+    for (int i = order; i >= 0; i--) cout << endl << "digit " << order-i+1 << " is " << digits[i];
 
     int *output = new int [order];
     int j = 0;
@@ -65,12 +65,13 @@ int main()
         }
     }
     output[j] = '\0';
-    j = 0;
 
-    while (output[j] != '\0')
+    int number_cleaned = 0;
+
+    while (j>0)
     {
+        j--;
         cout << endl << output[j];
-        j++;
     }
 
 
