@@ -30,17 +30,18 @@ int main()
 {
     int number;
     const int base = 10;
-    cout << "Enter positive integer: ";
+    cout << "Enter positive integer to process: ";
     // cin >> number;
-    number = 12025;
+    // number = 12025;
+    number = 4321;
     int order = number_order(base, number);
     int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
     int current_order = order;
     cout << current_order;
-    while(current_order >= 0)
+    for(int i = 0; i <= order; i++)
     {
-        digits[current_order] = digit(number, current_order);
+        digits[i] = digit(number, current_order);
         current_order--;
     }
 
