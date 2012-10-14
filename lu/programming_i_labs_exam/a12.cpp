@@ -36,19 +36,43 @@ int get_nth_order_digit(const int number, int n )
 }
 int main()
 {
-    int number;
+    int number, removable;
     cout << "Enter positive integer to process: ";
     // cin >> number;
+    cout << "Enter digit you need to remove: ";
+    cin >> removable;
+
     number = 654321;
     int order = number_order(number);
     int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
+    // fill in array with digits
     for (int i = order; i >= 0; i--)
     {
         digits[order-i] = get_nth_order_digit(number, i);
     }
 
     for (int i = 0; i <= order; i++) cout << endl << "digit " << i+1 << " is " << digits[i];
+
+    int *output = new int [order];
+    int j = 0;
+    for (int i = 0; i <= order; i++)
+    {
+        if (digits[i] != removable)
+        {
+            output[j] = digits[i];
+            j++;
+        }
+    }
+    output[j] = '\0';
+    j = 0;
+
+    while (output[j] != '\0')
+    {
+        cout << endl << output[j];
+        j++;
+    }
+
 
     system("pause");
     return 0;
