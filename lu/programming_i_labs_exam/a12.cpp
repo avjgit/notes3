@@ -21,31 +21,55 @@ int number_order(const int number)
     while (pow(base, order) <= number) order++;
     return --order;
 }
-int digit(const int number, int nth)
-{
-    const int base = 10;
-    return number/ (int)pow(base, nth);
-}
 
 int main()
 {
     int number;
     cout << "Enter positive integer to process: ";
     // cin >> number;
-    // number = 12025;
     number = 4321;
     int order = number_order(number);
     int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
     int current_order = order;
-    cout << current_order;
-    for(int i = 0; i <= order; i++)
-    {
-        digits[i] = digit(number, current_order);
-        current_order--;
-    }
+    int number_to_process = number;
+    int foundation;
+    int digit;
+    // for(int i = 0; i <= order; i++)
+    // {
+    //     // number_to_process = number - number_to_process;
+    //     // foundation = (int)pow(10, current_order);
+    //     // digits[i] = number_to_process/ foundation;
+    //     number_to_process = number - digits[i]*foundation;
 
-    for (int i = 0; i <= order; i++) cout << endl << "digit " << i << " is " << digits[i];
+    //     foundation = (int)pow(10, current_order);
+    //     // digit = number_to_process/foundation;
+    //     // number_to_process -= digit * foundation;
+    //     cout << number_to_process;
+
+    //     current_order--;
+    // }
+
+    foundation = (int)pow(10, current_order);
+
+    digit = number_to_process/foundation;
+    cout << endl << digit;
+
+    number_to_process -= digit * foundation;
+    cout << endl << number_to_process;
+
+    current_order--;
+
+
+    foundation = (int)pow(10, current_order);
+
+    digit = number_to_process/foundation;
+    cout << endl << digit;
+
+    number_to_process -= digit * foundation;
+    cout << endl << number_to_process;
+
+    // for (int i = 0; i <= order; i++) cout << endl << "digit " << i+1 << " is " << digits[i];
 
     system("pause");
     return 0;
