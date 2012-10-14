@@ -22,6 +22,11 @@ int number_order(const int number)
     return --order;
 }
 
+
+int get_nth_order_digit(const int number, int nth )
+{
+    return nth;
+}
 int main()
 {
     int number;
@@ -37,18 +42,40 @@ int main()
     int digit;
 
     // algorithm A
-    for (int i = 0; i <= order; i++)
-    {
-        foundation = pow(10, current_order);
-        cout << endl << "foundation is " << foundation;
+    // for (int i = 0; i <= order; i++)
+    // {
+    //     foundation = pow(10, current_order);
+    //     cout << endl << "foundation is " << foundation;
 
-        digit = number_to_process/foundation;
-        cout << endl << "digit is " << digit;
+    //     digit = number_to_process/foundation;
+    //     cout << endl << "digit is " << digit;
 
-        number_to_process -= digit*foundation;
+    //     number_to_process -= digit*foundation;
 
-        current_order--;
-    }
+    //     current_order--;
+    // }
+
+    // digit = get_nth_order_digit(number, 3)
+    int n = 3;
+    int upper_bound = number/ pow(10,n);
+    cout << endl << upper_bound;
+    int lower_bound = (int)(number/ pow(10,n+1)) * 10;
+    cout << endl << lower_bound;
+
+
+
+    // for (int i = 0; i <= order; i++)
+    // {
+    //     foundation = pow(10, current_order);
+    //     cout << endl << "foundation is " << foundation;
+
+    //     digit = number_to_process/foundation;
+    //     cout << endl << "digit is " << digit;
+
+    //     number_to_process -= digit*foundation;
+
+    //     current_order--;
+    // }
 
     // for (int i = 0; i <= order; i++) cout << endl << "digit " << i+1 << " is " << digits[i];
 
