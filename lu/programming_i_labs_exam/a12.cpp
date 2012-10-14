@@ -43,14 +43,6 @@ int main()
     int order = number_order(number);
     int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
-    int current_order = order;
-    int number_to_process = number;
-    double foundation;
-    int digit;
-
-    cout << get_nth_order_digit(number, 3);
-
-
     for (int i = order; i >= 0; i--)
     {
         digits[order-i] = get_nth_order_digit(number, i);
