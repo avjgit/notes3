@@ -22,10 +22,17 @@ int number_order(const int number)
     return --order;
 }
 
-
-int get_nth_order_digit(const int number, int nth )
+// gets Nth digit from number, starting with 0, counting from right
+// example get_nth_order_digit(98765, 2) = 7
+// algorithm: to get "7" out of 98765,
+// we can from 98700 substract 98000 and divide with 100;
+// or from 987 substract 980
+int get_nth_order_digit(const int number, int n )
 {
-    return nth;
+    const int base = 10;                                   // counting base (decimal)
+    int upper_bound = number/ pow(base,n);                 // with 98765 and n=2, gets 987
+    int lower_bound = (int)(number/ pow(base,++n)) * base; // with 98765 and n=2, gets 980
+    return upper_bound - lower_bound;                      // with 98765 and n=2, returns 987-980
 }
 int main()
 {
@@ -41,43 +48,15 @@ int main()
     double foundation;
     int digit;
 
-    // algorithm A
-    // for (int i = 0; i <= order; i++)
-    // {
-    //     foundation = pow(10, current_order);
-    //     cout << endl << "foundation is " << foundation;
-
-    //     digit = number_to_process/foundation;
-    //     cout << endl << "digit is " << digit;
-
-    //     number_to_process -= digit*foundation;
-
-    //     current_order--;
-    // }
-
-    // digit = get_nth_order_digit(number, 3)
-    int n = 3;
-    int upper_bound = number/ pow(10,n);
-    cout << endl << upper_bound;
-    int lower_bound = (int)(number/ pow(10,n+1)) * 10;
-    cout << endl << lower_bound;
+    cout << get_nth_order_digit(number, 3);
 
 
+    for (int i = order; i >= 0; i--)
+    {
+        digits[order-i] = get_nth_order_digit(number, i);
+    }
 
-    // for (int i = 0; i <= order; i++)
-    // {
-    //     foundation = pow(10, current_order);
-    //     cout << endl << "foundation is " << foundation;
-
-    //     digit = number_to_process/foundation;
-    //     cout << endl << "digit is " << digit;
-
-    //     number_to_process -= digit*foundation;
-
-    //     current_order--;
-    // }
-
-    // for (int i = 0; i <= order; i++) cout << endl << "digit " << i+1 << " is " << digits[i];
+    for (int i = 0; i <= order; i++) cout << endl << "digit " << i+1 << " is " << digits[i];
 
     system("pause");
     return 0;
