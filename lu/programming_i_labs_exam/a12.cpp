@@ -27,7 +27,7 @@ int main()
     int number;
     cout << "Enter positive integer to process: ";
     // cin >> number;
-    number = 7531;
+    number = 654321;
     int order = number_order(number);
     int *digits = new int[order+1]; // array to store number's digits; +1 cell for '\0'
 
@@ -35,21 +35,8 @@ int main()
     int number_to_process = number;
     double foundation;
     int digit;
-    // for(int i = 0; i <= order; i++)
-    // {
-    //     // number_to_process = number - number_to_process;
-    //     // foundation = (int)pow(10, current_order);
-    //     // digits[i] = number_to_process/ foundation;
-    //     number_to_process = number - digits[i]*foundation;
 
-    //     foundation = (int)pow(10, current_order);
-    //     // digit = number_to_process/foundation;
-    //     // number_to_process -= digit * foundation;
-    //     cout << number_to_process;
-
-    //     current_order--;
-    // }
-
+    // algorithm A
     for (int i = 0; i <= order; i++)
     {
         foundation = pow(10, current_order);
@@ -62,25 +49,6 @@ int main()
 
         current_order--;
     }
-
-    // foundation = (int)pow(10, current_order);
-
-    // digit = number_to_process/foundation;
-    // cout << endl << digit;
-
-    // number_to_process -= digit * foundation;
-    // cout << endl << number_to_process;
-
-    // current_order--;
-
-
-    // foundation = (int)pow(10, current_order);
-
-    // digit = number_to_process/foundation;
-    // cout << endl << digit;
-
-    // number_to_process -= digit * foundation;
-    // cout << endl << number_to_process;
 
     // for (int i = 0; i <= order; i++) cout << endl << "digit " << i+1 << " is " << digits[i];
 
