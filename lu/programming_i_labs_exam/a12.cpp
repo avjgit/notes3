@@ -56,20 +56,19 @@ int get_nth_order_digit(const int number, int n )
 int* int_to_array(int number)
 {
     int order = number_order(number);   // order of a number (how long it is)
-    int *digits = new int[order+2];     // array to store number's digits; +1 cell for '\0'
-    digits[order+1] = '\0';             // setting last element of the array
+    int *digits = new int[order+1];     // array to store number's digits; +1 cell for '\0'
                                         // fill in array with digits
     while(order >= 0) digits[order--] = get_nth_order_digit(number, order);
     return digits;
 }
 
 // concatenates array to number
-int array_to_int(int* array)
+int array_to_int(int* array, int size)
 {
     int number;
     int base = 10;
     double order;
-    for(int i = 0; array[i] != '\0'; i++)
+    for(int i = 0; i <= size; i++)
     {
         // casted in advance because of issues with casting "on the flight"
         order = pow(base, i);
@@ -78,29 +77,26 @@ int array_to_int(int* array)
     return number;
 }
 
-// calculates length of an array
-int length(int* array)
-{
-    int i = 0;
-    while (array[i] != '\0') i++;
-    return i--;
-}
-
 // removes a number from an array
-int* clean_array(int* array, int removable)
-{
-    int* array_cleaned = new int[length(array)];
-    int j = 0;
+// int* clean_array(int* array, int removable)
+// {
+//     int* array_cleaned = new int[length(array)];
+//     int j = 0;
 
-    for(int i = 0; array[i] != '\0'; i++)
-    {
-        if (array[i] != removable)
-        {
-            array_cleaned[j] = array[i];
-            j++;
-        }
-    }
-    return array_cleaned;
+//     for(int i = 0; array[i] != '\0'; i++)
+//     {
+//         if (array[i] != removable)
+//         {
+//             array_cleaned[j] = array[i];
+//             j++;
+//         }
+//     }
+//     return array_cleaned;
+// }
+
+void print(int* array, int size)
+{
+    for (int i = 0; i <= size; i++) cout << endl << "element " << i << " is " << array[i];
 }
 
 
@@ -110,60 +106,26 @@ int main()
     // number = request("Enter positive integer to process: ");
     int removable;
     // removable = request("Enter digit you want to remove: ");
-    number = 10765;
-    removable = 2;
+    number = 987654;
+    removable =2;
+
+    int order = number_order(number);
 
     int* digits = int_to_array(number);
 
     int i;
     // output for debugging purposes
-    i = -1;
-    while (digits[++i] != '\0') cout << endl << "digit " << i << " is " << digits[i];
+    print(digits, order);
 
     // int *digits_cleaned = clean_array(digits, removable);
     // // output for debugging purposes
-    // i = -1;
-    // while (digits_cleaned[++i] != '\0') cout << endl << "digit " << i << " is " << digits_cleaned[i];
+    i = -1;
+    // while (digits_cleaned[++i] != '\0') cout << endl << "digit cleaned " << i << " is " << digits_cleaned[i];
 
     // int number_cleaned = array_to_int(digits_cleaned);
+    // int number_cleaned = array_to_int(digits);
 
     // cout << endl << "result: " << number_cleaned;
-
-
-
-
-    // int *output = new int [order];
-    // int j = 0;
-    // for (int i = 0; i <= order; i++)
-    // {
-    //     if (digits[i] != removable)
-    //     {
-    //         output[j] = digits[i];
-    //         j++;
-    //     }
-    // }
-    // output[j] = '\0';
-
-    // int number_cleaned = 0;
-
-    // while (j>0)
-    // {
-    //     j--;
-    //     int m1 = output[j];
-    //     int m2 = (int)pow(10, j);
-    //     int mm = m1 * m2;
-    //     number_cleaned += mm;
-    //     cout << endl << "m1 is " << m1 << ", multiply with " << m2 << ", result: " << mm;
-    //     cout << endl << "subsum so far - " << number_cleaned;
-    //     // cout << endl << j-- << ": " << output[j];
-    //     // cout << "to multiply with " << pow(10, j);
-    //     // cout << "element is " << output[j] * pow(10, j);
-    //     // number_cleaned += output[j] * (int)pow(10, j);
-    //     // cout << endl << "subsum is " << number_cleaned;
-    // }
-
-    // cout << endl << number_cleaned;
-
 
     system("pause");
     return 0;
