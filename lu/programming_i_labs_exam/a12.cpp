@@ -14,12 +14,28 @@ using namespace std;
 // (Piemēram, ja n=12025 un k=2, jāiegūst 105).
 // Skaitļa dalīšana ciparos jāveic skaitliski.
 
+// print an array
+void print(int* array, int size)
+{
+    cout << endl << "--------------";
+    for (int i = 0; i <= size; i++) cout << endl << "element " << i << " is " << array[i];
+}
+void print(string text)
+{
+    cout << endl << text;
+}
+
 // print out a question and get an input
 int request(string question)
 {
-    int answer;
-    cout << endl << question;
-    cin >> answer;
+    int answer = -1;
+    while (answer < 0)
+    {
+        cout << endl << question;
+        cin >> answer;
+        if (answer <0)
+            cout << "Your input was incorrect.";
+    }
     return answer;
 }
 
@@ -78,35 +94,39 @@ int array_to_int(int* array, int size)
     return number;
 }
 
-void print(int* array, int size)
-{
-    cout << endl << "--------------";
-    for (int i = 0; i <= size; i++) cout << endl << "element " << i << " is " << array[i];
-}
+
 
 int a12()
 {
-    int number    = request("Enter positive integer to process: ");
-    int removable = request("Enter digit you want to remove: ");
-    int order     = number_order(number);
-    int* digits   = int_to_array(number);
-
-    // clean a digit from a number
-    int* digits_cleaned = new int[order+1];
-    int new_order = 0;
-
-    for(int i = 0; i <= order; i++)
+    char repeat = 'y';
+    while (repeat == 'y')
     {
-        if (digits[i] != removable)
+        int number    = request("Enter positive integer to process: ");
+        int removable = request("Enter digit you want to remove: ");
+        int order     = number_order(number);
+        int* digits   = int_to_array(number);
+
+        // clean a digit from a number
+        int* digits_cleaned = new int[order+1];
+        int new_order = 0;
+
+        for(int i = 0; i <= order; i++)
         {
-            digits_cleaned[new_order++] = digits[i];
+            if (digits[i] != removable)
+            {
+                digits_cleaned[new_order++] = digits[i];
+            }
         }
+        new_order--;
+
+        int number_cleaned = array_to_int(digits_cleaned, new_order);
+
+        cout << endl << "Result: " << number_cleaned << endl << endl;
+
+        cout << endl << "Would you like to repeat? y/n ";
+        cin >> repeat;
     }
-    new_order--;
-
-    int number_cleaned = array_to_int(digits_cleaned, new_order);
-
-    cout << endl << "Result: " << number_cleaned << endl << endl;
+    cout << endl << "Program is over." << endl;
 }
 
 int main()
