@@ -65,7 +65,7 @@ int* int_to_array(int number)
 // concatenates array to number
 int array_to_int(int* array, int size)
 {
-    int number;
+    int number = 0;
     int base = 10;
     double order;
     for(int i = 0; i <= size; i++)
@@ -73,29 +73,14 @@ int array_to_int(int* array, int size)
         // casted in advance because of issues with casting "on the flight"
         order = pow(base, i);
         number += array[i] * (int)order;
+        // cout << endl << "multiplied " << array[i] << " with " << order << ", got " << number;
     }
     return number;
 }
 
-// removes a number from an array
-// int* clean_array(int* array, int removable)
-// {
-//     int* array_cleaned = new int[length(array)];
-//     int j = 0;
-
-//     for(int i = 0; array[i] != '\0'; i++)
-//     {
-//         if (array[i] != removable)
-//         {
-//             array_cleaned[j] = array[i];
-//             j++;
-//         }
-//     }
-//     return array_cleaned;
-// }
-
 void print(int* array, int size)
 {
+    cout << endl << "--------------";
     for (int i = 0; i <= size; i++) cout << endl << "element " << i << " is " << array[i];
 }
 
@@ -107,25 +92,39 @@ int main()
     int removable;
     // removable = request("Enter digit you want to remove: ");
     number = 987654;
-    removable =2;
+    removable = 7;
 
     int order = number_order(number);
 
     int* digits = int_to_array(number);
 
-    int i;
-    // output for debugging purposes
-    print(digits, order);
+    print(digits, order); // output for debugging purposes
+
+    int* digits_cleaned = new int[order];
+    int new_order = 0;
+
+    for(int i = 0; i <= order; i++)
+    {
+        if (digits[i] != removable)
+        {
+            digits_cleaned[new_order] = digits[i];
+            new_order++;
+        }
+    }
+
+    print(digits_cleaned, --new_order); // output for debugging purposes
+
 
     // int *digits_cleaned = clean_array(digits, removable);
     // // output for debugging purposes
-    i = -1;
+
     // while (digits_cleaned[++i] != '\0') cout << endl << "digit cleaned " << i << " is " << digits_cleaned[i];
 
     // int number_cleaned = array_to_int(digits_cleaned);
-    // int number_cleaned = array_to_int(digits);
 
-    // cout << endl << "result: " << number_cleaned;
+    int number_cleaned = array_to_int(digits_cleaned, new_order);
+
+    cout << endl << "result: " << number_cleaned;
 
     system("pause");
     return 0;
