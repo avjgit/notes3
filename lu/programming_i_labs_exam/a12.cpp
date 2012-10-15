@@ -72,7 +72,7 @@ int get_nth_order_digit(const int number, int n )
 int* int_to_array(int number)
 {
     int order = number_order(number);   // order of a number (how long it is)
-    int *digits = new int[++order];     // array to store number's digits; +1 cell for '\0'
+    int *digits = new int[order+1];     // array to store number's digits
                                         // fill in array with digits
     while(order >= 0) digits[order--] = get_nth_order_digit(number, order);
     return digits;
@@ -100,7 +100,7 @@ int a12(int number, int removable)
     int  order  = number_order(number);     // order of a number
     cout << "order is " << order;
     int* digits = int_to_array(number);     // splits a number to an array
-    print(digits, order);
+    // print(digits, order);
 
     // int* digits_cleaned = new int[order+1]; // starts removing a digit from a number
     // int  new_order = 0;
@@ -139,6 +139,7 @@ void a12_manual()
 int main()
 {
     a12_manual();
+    // a12(9876, 5);
 
     system("pause");
     return 0;
