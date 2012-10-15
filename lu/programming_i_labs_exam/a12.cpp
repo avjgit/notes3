@@ -63,6 +63,29 @@ int* int_to_array(int number)
     return digits;
 }
 
+int length(int* array)
+{
+    int i = 0;
+    while (array[i] != '\0') i++;
+    return i--;
+}
+
+int* clean_array(int* array, int removable)
+{
+    int* array_cleaned = new int[length(array)];
+    int j = 0;
+
+    for(int i = 0; array[i] != '\0'; i++)
+    {
+        if (array[i] != removable)
+        {
+            array_cleaned[j] = array[i];
+            j++;
+        }
+    }
+    return array_cleaned;
+}
+
 
 int main()
 {
@@ -71,27 +94,19 @@ int main()
     int removable;
     // removable = request("Enter digit you want to remove: ");
     number = 987654;
+    removable = 7;
 
-    // int order = number_order(number);   // order of a number (how long it is)
-    // int *digits = new int[order+1];     // array to store number's digits; +1 cell for '\0'
+    int* digits = int_to_array(number);
 
-    // // fill in array with digits
-    // for (int i = order; i >= 0; i--)
-    // {
-    //     digits[i] = get_nth_order_digit(number, i);
-    // }
-
-    int *digits = int_to_array(number);
-    // int digit = int_to_array(number);
-
+    int i;
     // output for debugging purposes
-    // for (int i = 0; i <= 6; i++) cout << endl << "digit " << i << " is " << digits[i];
-    int i = 0;
-    while (digits[i] != '\0')
-    {
-        cout << endl << "digit " << i << " is " << digits[i];
-        i++;
-    }
+    i = -1;
+    while (digits[++i] != '\0') cout << endl << "digit " << i << " is " << digits[i];
+
+    int *digits_cleaned = clean_array(digits, removable);
+    // output for debugging purposes
+    i = -1;
+    while (digits_cleaned[++i] != '\0') cout << endl << "digit " << i << " is " << digits_cleaned[i];
 
 
 
