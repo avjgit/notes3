@@ -56,7 +56,7 @@ int get_nth_order_digit(const int number, int n )
 int* int_to_array(int number)
 {
     int order = number_order(number);   // order of a number (how long it is)
-    int *digits = new int[order+1];     // array to store number's digits; +1 cell for '\0'
+    int *digits = new int[++order];     // array to store number's digits; +1 cell for '\0'
                                         // fill in array with digits
     while(order >= 0) digits[order--] = get_nth_order_digit(number, order);
     return digits;
@@ -91,8 +91,8 @@ int main()
     // number = request("Enter positive integer to process: ");
     int removable;
     // removable = request("Enter digit you want to remove: ");
-    number = 987654;
-    removable = 7;
+    number = 12025;
+    removable = 2;
 
     int order = number_order(number);
 
@@ -100,27 +100,22 @@ int main()
 
     print(digits, order); // output for debugging purposes
 
-    int* digits_cleaned = new int[order];
+    int* digits_cleaned = new int[order+1];
     int new_order = 0;
 
     for(int i = 0; i <= order; i++)
     {
+        cout << endl << i << ", " << digits[i];
         if (digits[i] != removable)
         {
+            cout << endl << "new_order is " << new_order;
             digits_cleaned[new_order] = digits[i];
-            new_order++;
+            new_order = new_order + 1;
         }
     }
+    new_order--;
 
-    print(digits_cleaned, --new_order); // output for debugging purposes
-
-
-    // int *digits_cleaned = clean_array(digits, removable);
-    // // output for debugging purposes
-
-    // while (digits_cleaned[++i] != '\0') cout << endl << "digit cleaned " << i << " is " << digits_cleaned[i];
-
-    // int number_cleaned = array_to_int(digits_cleaned);
+    print(digits_cleaned, new_order); // output for debugging purposes
 
     int number_cleaned = array_to_int(digits_cleaned, new_order);
 
