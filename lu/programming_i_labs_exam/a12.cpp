@@ -84,42 +84,34 @@ void print(int* array, int size)
     for (int i = 0; i <= size; i++) cout << endl << "element " << i << " is " << array[i];
 }
 
-
-int main()
+int a12()
 {
-    int number;
-    // number = request("Enter positive integer to process: ");
-    int removable;
-    // removable = request("Enter digit you want to remove: ");
-    number = 12025;
-    removable = 2;
+    int number    = request("Enter positive integer to process: ");
+    int removable = request("Enter digit you want to remove: ");
+    int order     = number_order(number);
+    int* digits   = int_to_array(number);
 
-    int order = number_order(number);
-
-    int* digits = int_to_array(number);
-
-    print(digits, order); // output for debugging purposes
-
+    // clean a digit from a number
     int* digits_cleaned = new int[order+1];
     int new_order = 0;
 
     for(int i = 0; i <= order; i++)
     {
-        cout << endl << i << ", " << digits[i];
         if (digits[i] != removable)
         {
-            cout << endl << "new_order is " << new_order;
-            digits_cleaned[new_order] = digits[i];
-            new_order = new_order + 1;
+            digits_cleaned[new_order++] = digits[i];
         }
     }
     new_order--;
 
-    print(digits_cleaned, new_order); // output for debugging purposes
-
     int number_cleaned = array_to_int(digits_cleaned, new_order);
 
-    cout << endl << "result: " << number_cleaned;
+    cout << endl << "Result: " << number_cleaned << endl << endl;
+}
+
+int main()
+{
+    a12();
 
     system("pause");
     return 0;
