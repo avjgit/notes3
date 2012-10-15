@@ -63,6 +63,22 @@ int* int_to_array(int number)
     return digits;
 }
 
+// concatenates array to number
+int array_to_int(int* array)
+{
+    int number;
+    int base = 10;
+    double order;
+    for(int i = 0; array[i] != '\0'; i++)
+    {
+        // casted in advance because of issues with casting "on the flight"
+        order = pow(base, i);
+        number += array[i] * (int)order;
+    }
+    return number;
+}
+
+// calculates length of an array
 int length(int* array)
 {
     int i = 0;
@@ -70,6 +86,7 @@ int length(int* array)
     return i--;
 }
 
+// removes a number from an array
 int* clean_array(int* array, int removable)
 {
     int* array_cleaned = new int[length(array)];
@@ -93,8 +110,8 @@ int main()
     // number = request("Enter positive integer to process: ");
     int removable;
     // removable = request("Enter digit you want to remove: ");
-    number = 987654;
-    removable = 7;
+    number = 10765;
+    removable = 2;
 
     int* digits = int_to_array(number);
 
@@ -103,10 +120,14 @@ int main()
     i = -1;
     while (digits[++i] != '\0') cout << endl << "digit " << i << " is " << digits[i];
 
-    int *digits_cleaned = clean_array(digits, removable);
-    // output for debugging purposes
-    i = -1;
-    while (digits_cleaned[++i] != '\0') cout << endl << "digit " << i << " is " << digits_cleaned[i];
+    // int *digits_cleaned = clean_array(digits, removable);
+    // // output for debugging purposes
+    // i = -1;
+    // while (digits_cleaned[++i] != '\0') cout << endl << "digit " << i << " is " << digits_cleaned[i];
+
+    // int number_cleaned = array_to_int(digits_cleaned);
+
+    // cout << endl << "result: " << number_cleaned;
 
 
 
