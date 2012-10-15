@@ -10,11 +10,17 @@ int number_order(const int number)
     return --order;
 }
 
+int test()
+{
+    int x = 1;
+    return x--;
+}
+
 int main()
 {
     // int arr[5] = {};
-    cout << number_order(12345);
-
+    // cout << number_order(12345);
+    cout << test();
     system("pause");
     return 0;
 }

@@ -14,28 +14,37 @@ using namespace std;
 // (Piemēram, ja n=12025 un k=2, jāiegūst 105).
 // Skaitļa dalīšana ciparos jāveic skaitliski.
 
-// print an array
-void print(int* array, int size)
-{
-    cout << endl << "--------------";
-    for (int i = 0; i <= size; i++) cout << endl << "element " << i << " is " << array[i];
-}
+// prints the sctring
 void print(string text)
 {
     cout << endl << text;
 }
+// print an array
+void print(int* array, int size)
+{
+    print("--------------");
+    for (int i = 0; i <= size; i++)
+        cout << endl << "element " << i << " is " << array[i];
+}
 
-// print out a question and get an input
-int request(string question)
+// print out a question and get an input as integer
+int request_int(string question)
 {
     int answer = -1;
     while (answer < 0)
     {
-        cout << endl << question;
+        print(question);
         cin >> answer;
-        if (answer <0)
-            cout << "Your input was incorrect.";
+        if (answer <0) print("Your input was incorrect.");
     }
+    return answer;
+}
+// print out a question and get an input as character
+char request_chr(string question)
+{
+    char answer;
+    print(question);
+    cin >> answer;
     return answer;
 }
 
@@ -97,49 +106,67 @@ int array_to_int(int* array, int size)
 // removes a digit from a number
 int a12(int number, int removable)
 {
-    int  order  = number_order(number);     // order of a number
-    cout << "order is " << order;
-    int* digits = int_to_array(number);     // splits a number to an array
-    // print(digits, order);
+    int  order  = number_order(number); // order of a number
+    int* digits = int_to_array(number); // splits a number to an array
 
-    // int* digits_cleaned = new int[order+1]; // starts removing a digit from a number
-    // int  new_order = 0;
+    int* digits_cleaned = new int[order+1];     // starts removing a digit from a number
+    int  new_order = 0;
 
-    // for(int i = 0; i <= order; i++)
-    // {
-    //     if (digits[i] != removable)
-    //     {
-    //         digits_cleaned[new_order++] = digits[i];
-    //     }
-    // }
-    // new_order--;
-    // return array_to_int(digits_cleaned, new_order);
-    return 1;
+    for(int i = 0; i <= order; i++)
+    {
+        if (digits[i] != removable)
+        {
+            digits_cleaned[new_order++] = digits[i];
+        }
+    }
+    new_order--;
+    return array_to_int(digits_cleaned, new_order);
 }
 
 void a12_manual()
 {
     int number;
     int removable;
-    int number_cleaned;
-
     char repeat = 'y';
     while (repeat == 'y')
     {
-        number    = request("Enter positive integer to process: ");
-        removable = request("Enter digit you want to remove: ");
-        number_cleaned = a12(number, removable);
-        // cout << endl << "Result: " << number_cleaned;
-        cout << endl << "Would you like to repeat? y/n ";
-        cin >> repeat;
+        number    = request_int("Enter positive integer to process: ");
+        removable = request_int("Enter digit you want to remove: ");
+        cout << endl << "Result: " << a12(number, removable);
+        repeat    = request_chr("Would you like to repeat? y/n ");
     }
-    cout << endl << "Program is over." << endl;
+    print("Program is over. ");
 }
+
+void test(string description, int expected, int actual)
+{
+    string result = (expected == actual) ? "passed" : "FAILED";
+
+    cout << "testing ";
+    cout.width(12);
+    cout << description + ": ";
+    cout << result;
+    cout << "| expected: ";
+    cout.setf (ios::right);
+    cout.width(10);
+    cout << expected;
+    cout << " received: ";
+    cout.setf (ios::right);
+    cout.width(10);
+
+    cout << actual << endl;
+}
+
+
 
 int main()
 {
-    a12_manual();
-    // a12(9876, 5);
+    test("9876/7",   986, a12(9876, 7));
+    test("12025/2",  105, a12(12025, 2));
+    test("12025/0", 1225, a12(12025, 0));
+
+
+    // a12_manual();
 
     system("pause");
     return 0;
