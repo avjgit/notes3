@@ -94,35 +94,42 @@ int array_to_int(int* array, int size)
     return number;
 }
 
-
-
-int a12()
+// removes a digit from a number
+int a12(int number, int removable)
 {
+    int  order  = number_order(number);     // order of a number
+    cout << "order is " << order;
+    int* digits = int_to_array(number);     // splits a number to an array
+    print(digits, order);
+
+    // int* digits_cleaned = new int[order+1]; // starts removing a digit from a number
+    // int  new_order = 0;
+
+    // for(int i = 0; i <= order; i++)
+    // {
+    //     if (digits[i] != removable)
+    //     {
+    //         digits_cleaned[new_order++] = digits[i];
+    //     }
+    // }
+    // new_order--;
+    // return array_to_int(digits_cleaned, new_order);
+    return 1;
+}
+
+void a12_manual()
+{
+    int number;
+    int removable;
+    int number_cleaned;
+
     char repeat = 'y';
     while (repeat == 'y')
     {
-        int number    = request("Enter positive integer to process: ");
-        int removable = request("Enter digit you want to remove: ");
-        int order     = number_order(number);
-        int* digits   = int_to_array(number);
-
-        // clean a digit from a number
-        int* digits_cleaned = new int[order+1];
-        int new_order = 0;
-
-        for(int i = 0; i <= order; i++)
-        {
-            if (digits[i] != removable)
-            {
-                digits_cleaned[new_order++] = digits[i];
-            }
-        }
-        new_order--;
-
-        int number_cleaned = array_to_int(digits_cleaned, new_order);
-
-        cout << endl << "Result: " << number_cleaned << endl << endl;
-
+        number    = request("Enter positive integer to process: ");
+        removable = request("Enter digit you want to remove: ");
+        number_cleaned = a12(number, removable);
+        // cout << endl << "Result: " << number_cleaned;
         cout << endl << "Would you like to repeat? y/n ";
         cin >> repeat;
     }
@@ -131,7 +138,7 @@ int a12()
 
 int main()
 {
-    a12();
+    a12_manual();
 
     system("pause");
     return 0;
