@@ -137,7 +137,7 @@ void a12_manual()
     }
     print("Program is over. ");
 }
-
+// function to find and print test result
 void test(string description, int expected, int actual)
 {
     string result = (expected == actual) ? "passed" : "FAILED";
@@ -153,20 +153,21 @@ void test(string description, int expected, int actual)
     cout << " received: ";
     cout.setf (ios::right);
     cout.width(10);
-
     cout << actual << endl;
 }
 
-
-
 int main()
 {
-    test("9876/7",   986, a12(9876, 7));
-    test("12025/2",  105, a12(12025, 2));
+    // running automatic tests
+    test("9876/7", 986, a12(9876, 7));
+    test("12025/2", 105, a12(12025, 2));
     test("12025/0", 1225, a12(12025, 0));
+    test("101/0", 11, a12(101, 0));
+    test("0/0", 0, a12(0, 0));
+    test("1/1", 0, a12(1, 1));
 
-
-    // a12_manual();
+    // running with user input
+    a12_manual();
 
     system("pause");
     return 0;
