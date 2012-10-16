@@ -8,3 +8,13 @@ Standarti:
     tīkla:
         - adrescija, maršrutizcija
     transport
+        - dati tiek piegadati bez kludam
+    sesija
+        - login
+        - faili etc
+        - sql
+    datu reprezentacija
+        - bytes to data
+        - saspiešna
+    aplikciju
+        - all online applikations
