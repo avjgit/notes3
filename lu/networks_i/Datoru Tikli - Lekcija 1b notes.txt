@@ -1,0 +1,10 @@
+Standarti:
+    fiziskais: konektoru izmēri, līniju caurspīdība
+    kanali:
+        - kļudu korekcija
+        - noturība pret trokšņiem
+        - adrescija broadcast vidē
+        - datu sadalīšana paketēs jeb freimos
+    tīkla:
+        - adrescija, maršrutizcija
+    transport

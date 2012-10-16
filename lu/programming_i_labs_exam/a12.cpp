@@ -1,6 +1,4 @@
-#include <iostream>
-#include <math.h>
-using namespace std;
+#include "utils.h"
 // Prasības:
 // 01) Ievadot loģiski nepareizus datus, programmai jāizdod atbilstošs paziņojums.
 // 02) Jābūt iespējai programmu izpildīt atkārtoti.
@@ -13,40 +11,6 @@ using namespace std;
 // Izdrukāt skaitli, kurš iegūts no dotā skaitļa, izmetot ciparu k.
 // (Piemēram, ja n=12025 un k=2, jāiegūst 105).
 // Skaitļa dalīšana ciparos jāveic skaitliski.
-
-// prints the sctring
-void print(string text)
-{
-    cout << endl << text;
-}
-// print an array
-void print(int* array, int size)
-{
-    print("--------------");
-    for (int i = 0; i <= size; i++)
-        cout << endl << "element " << i << " is " << array[i];
-}
-
-// print out a question and get an input as integer
-int request_int(string question)
-{
-    int answer = -1;
-    while (answer < 0)
-    {
-        print(question);
-        cin >> answer;
-        if (answer <0) print("Your input was incorrect.");
-    }
-    return answer;
-}
-// print out a question and get an input as character
-char request_chr(string question)
-{
-    char answer;
-    print(question);
-    cin >> answer;
-    return answer;
-}
 
 // gets order of a number (eg, for 98765 it'll return 4)
 int number_order(const int number)
@@ -159,12 +123,12 @@ void test(string description, int expected, int actual)
 int main()
 {
     // running automatic tests
-    test("9876/7", 986, a12(9876, 7));
-    test("12025/2", 105, a12(12025, 2));
+    test( "9876/7",  986, a12( 9876, 7));
+    test("12025/2",  105, a12(12025, 2));
     test("12025/0", 1225, a12(12025, 0));
-    test("101/0", 11, a12(101, 0));
-    test("0/0", 0, a12(0, 0));
-    test("1/1", 0, a12(1, 1));
+    test(  "101/0",   11, a12(  101, 0));
+    test(    "0/0",    0, a12(    0, 0));
+    test(    "1/1",    0, a12(    1, 1));
 
     // running with user input
     a12_manual();
