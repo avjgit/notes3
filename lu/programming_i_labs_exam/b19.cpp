@@ -4,6 +4,41 @@
 // atzīmējot ar X tos lauciņus, kurus apdraud zirdziņš, bet pārējos ar 0.
 #include "utils.h"
 
+bool is_valid_move(int move)
+{
+    return move >= 0 && move < 8;
+}
+
+int* request_position()
+{
+    const int  upper_a = 'A'; // ASCII code for char 'A'
+    const int  lower_a = 'a'; // ASCII code for char 'a'
+    const int  size    =   8; // chessboardsize
+
+    int* position = new int [2];
+
+    int vertical = request_chr("Enter vertical: ");
+    // int vertical = 'a';
+
+    // check vertical input correctness
+    if (vertical >= upper_a && vertical < upper_a + size)
+    {
+        vertical -= upper_a;
+    }
+    else if (vertical >= lower_a && vertical < lower_a + size)
+    {
+        vertical -= lower_a;
+    }
+
+    int horizontal = request_int("Enter horizontal: ") - 1;
+    // int horizontal = 2-1;
+
+    position[0] = vertical;
+    position[1] = horizontal;
+
+    return position;
+}
+
 int main()
 {
     const char knight  = 'K';
@@ -11,8 +46,6 @@ int main()
     const char empty   = '.';
 
     const int  size    =   8; // chessboardsize
-    const int  upper_a = 'A'; // ASCII code for char 'A'
-    const int  lower_a = 'a'; // ASCII code for char 'a'
     const int  move1   =   1; // knights' move consists of one- and two-cell moves
     const int  move2   =   2;
 
@@ -26,46 +59,42 @@ int main()
         for(int vertical = 0; vertical < size ; vertical++)
             board[horizontal][vertical] = empty;
 
-    // int vertical = request_chr("Enter vertical: ");
-    int vertical = 'a';
+    int* position = request_position();
+    int vertical = position[0];
+    int horizontal = position[1];
 
-    // check vertical input correctness
-    if (vertical >= upper_a && vertical < upper_a + size)
-    {
-        vertical -= upper_a;
-    }
-    else if (vertical >= lower_a && vertical < lower_a + size)
-    {
-        vertical -= lower_a;
-    }
-
-    // int horizontal = request_int("Enter horizontal: ") - 1;
-    int horizontal = 2-1;
+    // int horizontal = 2-1;
 
     board[horizontal][vertical] = knight;
 
-    if( (vertical + move2) >= 0 && (vertical + move2) < 8 )
+    int v_move;
+
+    v_move = vertical + move2;
+    if( is_valid_move(v_move) )
     {
-        board[horizontal + move1][vertical + move2] = capture;
-        board[horizontal - move1][vertical + move2] = capture;
+        board[horizontal + move1][v_move] = capture;
+        board[horizontal - move1][v_move] = capture;
     }
 
-    if( (vertical - move2) >= 0 && (vertical - move2) < 8 )
+    v_move = vertical - move2;
+    if( is_valid_move(v_move) )
     {
-        board[horizontal + move1][vertical - move2] = capture;
-        board[horizontal - move1][vertical - move2] = capture;
+        board[horizontal + move1][v_move] = capture;
+        board[horizontal - move1][v_move] = capture;
     }
 
-    if( (vertical + move1) >= 0 && (vertical + move1) < 8 )
+    v_move = vertical + move1;
+    if( is_valid_move(v_move) )
     {
-        board[horizontal + move2][vertical + move1] = capture;
-        board[horizontal - move2][vertical + move1] = capture;
+        board[horizontal + move2][v_move] = capture;
+        board[horizontal - move2][v_move] = capture;
     }
 
-    if( (vertical - move1) >= 0 && (vertical - move1) < 8 )
+    v_move = vertical - move1;
+    if( is_valid_move(v_move) )
     {
-        board[horizontal + move2][vertical - move1] = capture;
-        board[horizontal - move2][vertical - move1] = capture;
+        board[horizontal + move2][v_move] = capture;
+        board[horizontal - move2][v_move] = capture;
     }
 
     // print board
