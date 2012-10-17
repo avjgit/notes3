@@ -16,6 +16,9 @@ int main()
     const int  move1   =   1; // knights' move consists of one- and two-cell moves
     const int  move2   =   2;
 
+    int moves[2] = {1, 2};
+    int directions[2] = {-1, 1};
+
     char board[size][size];
 
     // print and initialize board
@@ -37,27 +40,33 @@ int main()
     }
 
     // int horizontal = request_int("Enter horizontal: ") - 1;
-    int horizontal = 3-1;
+    int horizontal = 2-1;
 
     board[horizontal][vertical] = knight;
 
-    int tmp  = horizontal + move1;
-    cout << tmp << endl;
+    if( (vertical + move2) >= 0 && (vertical + move2) < 8 )
+    {
+        board[horizontal + move1][vertical + move2] = capture;
+        board[horizontal - move1][vertical + move2] = capture;
+    }
 
+    if( (vertical - move2) >= 0 && (vertical - move2) < 8 )
+    {
+        board[horizontal + move1][vertical - move2] = capture;
+        board[horizontal - move1][vertical - move2] = capture;
+    }
 
-    board[horizontal + move1][vertical + move2] = capture;
-    board[horizontal - move1][vertical + move2] = capture;
+    if( (vertical + move1) >= 0 && (vertical + move1) < 8 )
+    {
+        board[horizontal + move2][vertical + move1] = capture;
+        board[horizontal - move2][vertical + move1] = capture;
+    }
 
-    board[horizontal + move1][vertical - move2] = capture;
-    board[horizontal - move1][vertical - move2] = capture;
-
-    board[horizontal + move2][vertical + move1] = capture;
-    board[horizontal - move2][vertical + move1] = capture;
-
-    board[horizontal + move2][vertical - move1] = capture;
-    board[horizontal - move2][vertical - move1] = capture;
-
-
+    if( (vertical - move1) >= 0 && (vertical - move1) < 8 )
+    {
+        board[horizontal + move2][vertical - move1] = capture;
+        board[horizontal - move2][vertical - move1] = capture;
+    }
 
     // print board
     for(int horizontal = size-1; horizontal >= 0; horizontal--)
