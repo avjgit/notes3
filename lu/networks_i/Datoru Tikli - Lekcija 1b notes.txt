@@ -18,3 +18,10 @@ Standarti:
         - saspiešna
     aplikciju
         - all online applikations
+
+ISO - OSI
+ITU international telecommunication union - telekomunikatoru savienība (x.25)
+ANSI - American national standards institute
+IEEE - institute of electrical and electronic engineers (LAN/Ethernet)
+IETF - Internet Engineering Task Force - produced RFC (request for comments?) - the real
+
