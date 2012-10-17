@@ -9,33 +9,72 @@ bool is_valid_move(int move)
     return move >= 0 && move < 8;
 }
 
-int* request_position()
+bool is_incorrect(int *position)
+{
+    const int size = 8; // chessboardsize
+    return position[0] < 0 || position[0] >= size
+        || position[1] < 0 || position[1] >= size;
+}
+
+bool is_within_board(int file, int char_code)
+{
+    const int size = 8; // size of chessboard;
+    return file >= char_code && file < char_code + size;
+}
+bool is_uppercase(int file)
+{
+    return is_within_board(file, 'A');
+}
+bool is_lowercase(int file)
+{
+    return is_within_board(file, 'a');
+}
+
+// converts input of 'a' to 0 (first file)
+int to_file(int file)
 {
     const int  upper_a = 'A'; // ASCII code for char 'A'
     const int  lower_a = 'a'; // ASCII code for char 'a'
-    const int  size    =   8; // chessboardsize
+    const int size = 8; // size of chessboard
 
-    int* position = new int [2];
-
-    int vertical = request_chr("Enter vertical: ");
-    // int vertical = 'a';
-
-    // check vertical input correctness
-    if (vertical >= upper_a && vertical < upper_a + size)
+    if (is_uppercase(file))
     {
-        vertical -= upper_a;
+        file -= upper_a;
     }
-    else if (vertical >= lower_a && vertical < lower_a + size)
+    else if (is_lowercase(file))
     {
-        vertical -= lower_a;
+        file -= lower_a;
     }
+    return file;
+}
+// converts input of '1' to 1 (first file)
+int to_rank(int rank)
+{
+    const int one_char = '1';
+    return rank - one_char;
+}
 
-    int horizontal = request_int("Enter horizontal: ") - 1;
-    // int horizontal = 2-1;
+int* request_position2()
+{
+    int* position = new int[2];
 
-    position[0] = vertical;
-    position[1] = horizontal;
+    position[0] = -1; // filling with incorrect data to start loop
+    position[1] = -1;
 
+    string answer;
+
+    while (is_incorrect(position))
+    {
+        print("Enter position: ");
+        cin >> answer;
+        position[0] = to_file(answer[0]);
+        position[1] = to_rank(answer[1]);
+
+        if (is_incorrect(position))
+        {
+            print("You have entered incorrect data.");
+        }
+    }
     return position;
 }
 
@@ -55,55 +94,59 @@ int main()
     char board[size][size];
 
     // print and initialize board
-    for(int horizontal = size-1; horizontal >= 0; horizontal--)
-        for(int vertical = 0; vertical < size ; vertical++)
-            board[horizontal][vertical] = empty;
+    for(int rank = size-1; rank >= 0; rank--)
+        for(int file = 0; file < size ; file++)
+            board[rank][file] = empty;
 
-    int* position = request_position();
-    int vertical = position[0];
-    int horizontal = position[1];
+    int* position = request_position2();
 
-    // int horizontal = 2-1;
+    // file - chessboard column
+    // rank - chessboard row
 
-    board[horizontal][vertical] = knight;
+    int file = position[0];
+    int rank = position[1];
+
+    // int rank = 2-1;
+
+    board[rank][file] = knight;
 
     int v_move;
 
-    v_move = vertical + move2;
+    v_move = file + move2;
     if( is_valid_move(v_move) )
     {
-        board[horizontal + move1][v_move] = capture;
-        board[horizontal - move1][v_move] = capture;
+        board[rank + move1][v_move] = capture;
+        board[rank - move1][v_move] = capture;
     }
 
-    v_move = vertical - move2;
+    v_move = file - move2;
     if( is_valid_move(v_move) )
     {
-        board[horizontal + move1][v_move] = capture;
-        board[horizontal - move1][v_move] = capture;
+        board[rank + move1][v_move] = capture;
+        board[rank - move1][v_move] = capture;
     }
 
-    v_move = vertical + move1;
+    v_move = file + move1;
     if( is_valid_move(v_move) )
     {
-        board[horizontal + move2][v_move] = capture;
-        board[horizontal - move2][v_move] = capture;
+        board[rank + move2][v_move] = capture;
+        board[rank - move2][v_move] = capture;
     }
 
-    v_move = vertical - move1;
+    v_move = file - move1;
     if( is_valid_move(v_move) )
     {
-        board[horizontal + move2][v_move] = capture;
-        board[horizontal - move2][v_move] = capture;
+        board[rank + move2][v_move] = capture;
+        board[rank - move2][v_move] = capture;
     }
 
     // print board
-    for(int horizontal = size-1; horizontal >= 0; horizontal--)
+    for(int rank = size-1; rank >= 0; rank--)
     {
-        cout << horizontal+1 << "| ";
-        for(int vertical = 0; vertical < size ; vertical++)
+        cout << rank+1 << "| ";
+        for(int file = 0; file < size ; file++)
         {
-            cout << board[horizontal][vertical] << " ";
+            cout << board[rank][file] << " ";
         }
         cout << endl;
     }
