@@ -44,33 +44,18 @@ int main()
     cout << tmp << endl;
 
 
-    // board[horizontal + move1][vertical + move2] = capture;
-    // board[horizontal + move1][vertical - move2] = capture;
+    board[horizontal + move1][vertical + move2] = capture;
+    board[horizontal + move1][vertical - move2] = capture;
 
-    // board[horizontal - move1][vertical + move2] = capture;
-    // board[horizontal - move1][vertical - move2] = capture;
+    board[horizontal - move1][vertical + move2] = capture;
+    board[horizontal - move1][vertical - move2] = capture;
 
-    // board[horizontal + move2][vertical + move1] = capture;
-    // board[horizontal + move2][vertical - move1] = capture;
+    board[horizontal + move2][vertical + move1] = capture;
+    board[horizontal + move2][vertical - move1] = capture;
 
-    // board[horizontal - move2][vertical + move1] = capture;
-    // board[horizontal - move2][vertical - move1] = capture;
+    board[horizontal - move2][vertical + move1] = capture;
+    board[horizontal - move2][vertical - move1] = capture;
 
-    for (int h_direction; h_direction < 2; h_direction++)
-    {
-        for (int h_move; h_move < 2; h_move++)
-        {
-            for (int v_direction; v_direction < 2; v_direction++)
-            {
-                for (int v_move; v_move < 2; v_move++)
-                {
-                    board
-                        [horizontal + directions[h_direction]*moves[h_move]]
-                        [vertical   + directions[v_direction]*moves[v_move]] = capture;
-                }
-            }
-        }
-    }
 
     for(int horizontal = size-1; horizontal >= 0; horizontal--)
     {
