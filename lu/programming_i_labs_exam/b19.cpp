@@ -4,46 +4,38 @@
 // atzīmējot ar X tos lauciņus, kurus apdraud zirdziņš, bet pārējos ar 0.
 #include "utils.h"
 
-bool is_valid_move(int move)
-{
-    return move >= 0 && move < 8;
-}
-
-bool is_incorrect(int *position)
+bool is_on_board(int dimension)
 {
     const int size = 8; // chessboardsize
-    return position[0] < 0 || position[0] >= size
-        || position[1] < 0 || position[1] >= size;
+    return dimension >= 0 && dimension < size;
 }
 
-bool is_within_board(int file, int char_code)
+bool is_on_board(int *position)
+{
+    return is_on_board(position[0]) &&
+           is_on_board(position[1]);
+}
+
+bool is_on_board(int file, int char_code)
 {
     const int size = 8; // size of chessboard;
     return file >= char_code && file < char_code + size;
-}
-bool is_uppercase(int file)
-{
-    return is_within_board(file, 'A');
-}
-bool is_lowercase(int file)
-{
-    return is_within_board(file, 'a');
 }
 
 // converts input of 'a' to 0 (first file)
 int to_file(int file)
 {
-    const int  upper_a = 'A'; // ASCII code for char 'A'
-    const int  lower_a = 'a'; // ASCII code for char 'a'
+    const int  uppercase = 'A'; // ASCII code for char 'A'
+    const int  lowercase = 'a'; // ASCII code for char 'a'
     const int size = 8; // size of chessboard
 
-    if (is_uppercase(file))
+    if (is_on_board(file, uppercase))
     {
-        file -= upper_a;
+        file -= uppercase;
     }
-    else if (is_lowercase(file))
+    else if (is_on_board(file, lowercase))
     {
-        file -= lower_a;
+        file -= lowercase;
     }
     return file;
 }
@@ -63,14 +55,14 @@ int* request_position2()
 
     string answer;
 
-    while (is_incorrect(position))
+    while (!is_on_board(position))
     {
-        print("Enter position: ");
+        print("Enter knight's position, from a1 to h8: ");
         cin >> answer;
         position[0] = to_file(answer[0]);
         position[1] = to_rank(answer[1]);
 
-        if (is_incorrect(position))
+        if (!is_on_board(position))
         {
             print("You have entered incorrect data.");
         }
@@ -113,28 +105,28 @@ int main()
     int v_move;
 
     v_move = file + move2;
-    if( is_valid_move(v_move) )
+    if( is_on_board(v_move) )
     {
         board[rank + move1][v_move] = capture;
         board[rank - move1][v_move] = capture;
     }
 
     v_move = file - move2;
-    if( is_valid_move(v_move) )
+    if( is_on_board(v_move) )
     {
         board[rank + move1][v_move] = capture;
         board[rank - move1][v_move] = capture;
     }
 
     v_move = file + move1;
-    if( is_valid_move(v_move) )
+    if( is_on_board(v_move) )
     {
         board[rank + move2][v_move] = capture;
         board[rank - move2][v_move] = capture;
     }
 
     v_move = file - move1;
-    if( is_valid_move(v_move) )
+    if( is_on_board(v_move) )
     {
         board[rank + move2][v_move] = capture;
         board[rank - move2][v_move] = capture;
