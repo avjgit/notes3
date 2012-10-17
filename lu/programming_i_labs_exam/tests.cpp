@@ -91,9 +91,12 @@ int main()
     // cout << number_order(12345);
     // cout << test();
 
-    int* square  = request_position();
+    // int* square  = request_position();
 
-    cout << "ok, square is " << square[0] << square[1];
+    // cout << "ok, square is " << square[0] << square[1];
+    const int  uppercase = 'A'; // ASCII code for char 'A'
+
+    cout << uppercase;
 
     system("pause");
     return 0;
