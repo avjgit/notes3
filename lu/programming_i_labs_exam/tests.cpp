@@ -83,6 +83,10 @@ int* request_position()
     return position;
 }
 
+void mark_board(char* board)
+{
+    board[0] = 'marked';
+}
 
 
 int main()
@@ -96,7 +100,16 @@ int main()
     // cout << "ok, square is " << square[0] << square[1];
     const int  uppercase = 'A'; // ASCII code for char 'A'
 
-    cout << uppercase;
+    // int test = 0;
+    // int res = 15;
+
+    // res = (test ? 1 : 0);
+
+    // cout << res;
+
+    cout << endl << true;
+
+    // cout << uppercase;
 
     system("pause");
     return 0;

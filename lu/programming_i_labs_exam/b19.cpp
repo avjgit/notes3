@@ -74,7 +74,7 @@ int* request_position()
 void print_chessboard(char board[8][8])
 {
     const int  size    =   8; // chessboardsize
-
+    cout << endl;
     for(int rank = size-1; rank >= 0; rank--)
     {
         cout << rank+1 << "| ";
@@ -116,35 +116,57 @@ int main()
 
     board[rank][file] = knight;
 
-    int v_move;
-
-    v_move = file + move2;
-    if( is_on_board(v_move) )
+    for (int rank_direction = 0; rank_direction <= 1; rank_direction++)
     {
-        board[rank + move1][v_move] = capture;
-        board[rank - move1][v_move] = capture;
+        for (int rank_move = 0; rank_move <= 1; rank_move++)
+        {
+            for (int file_direction = 0; file_direction <= 1; file_direction++)
+            {
+                int file_move = rank_move? moves[0] : moves[1];
+                int v_move = file + file_move * directions[file_direction];
+                if ( is_on_board(v_move))
+                    board [rank + moves[rank_move] * directions[rank_direction]] [v_move] = capture;
+
+                cout << endl << "------";
+                cout << endl << "rank_move: " << moves[rank_move];
+                cout << endl << "file_move: " << file_move;
+                cout << endl << "directions[file_direction]: " << directions[file_direction];
+                cout << endl << "directions[rank_direction]: " << directions[rank_direction];
+                cout << endl << "is_on_board(v_move): " << is_on_board(v_move);
+                cout << endl << "file: " << v_move + 1;
+                cout << endl << "rank: " << rank + moves[rank_move] * directions[rank_direction] + 1;
+            }
+        }
     }
 
-    v_move = file - move2;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move1][v_move] = capture;
-        board[rank - move1][v_move] = capture;
-    }
+    // int v_move;
+    // v_move = file + move2;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move1][v_move] = capture;
+    //     board[rank - move1][v_move] = capture;
+    // }
 
-    v_move = file + move1;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move2][v_move] = capture;
-        board[rank - move2][v_move] = capture;
-    }
+    // v_move = file - move2;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move1][v_move] = capture;
+    //     board[rank - move1][v_move] = capture;
+    // }
 
-    v_move = file - move1;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move2][v_move] = capture;
-        board[rank - move2][v_move] = capture;
-    }
+    // v_move = file + move1;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move2][v_move] = capture;
+    //     board[rank - move2][v_move] = capture;
+    // }
+
+    // v_move = file - move1;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move2][v_move] = capture;
+    //     board[rank - move2][v_move] = capture;
+    // }
 
     print_chessboard(board);
 
