@@ -116,39 +116,39 @@ int main()
 
     board[rank][file] = knight;
 
-    for (int rank_direction = 0; rank_direction <= 1; rank_direction++)
-    {
-        for (int rank_move = 0; rank_move <= 1; rank_move++)
-        {
-            for (int file_direction = 0; file_direction <= 1; file_direction++)
-            {
-                int file_move = rank_move? moves[0] : moves[1];
-                int file_captured = file + directions[file_direction] * file_move;
-                int rank_captured = rank + directions[rank_direction] * moves[rank_move];
+    // for (int rank_direction = 0; rank_direction <= 1; rank_direction++)
+    // {
+    //     for (int rank_move = 0; rank_move <= 1; rank_move++)
+    //     {
+    //         for (int file_direction = 0; file_direction <= 1; file_direction++)
+    //         {
+    //             int file_move = rank_move? moves[0] : moves[1];
+    //             int file_captured = file + directions[file_direction] * file_move;
+    //             int rank_captured = rank + directions[rank_direction] * moves[rank_move];
 
-                if ( is_on_board(file_captured))
-                {
-                     board[rank_captured][file_captured] = capture;
-                }
+    //             if ( is_on_board(file_captured))
+    //             {
+    //                  board[rank_captured][file_captured] = capture;
+    //             }
 
-                cout << endl << "------";
-                cout << endl << "rank_direction: " << rank_direction;
-                cout << endl << "rank_move: " << moves[rank_move];
-                cout << endl << "file_direction: " << file_direction;
-                cout << endl << "file_move: " << file_move;
+    //             cout << endl << "------";
+    //             cout << endl << "rank_direction: " << rank_direction;
+    //             cout << endl << "rank_move: " << moves[rank_move];
+    //             cout << endl << "file_direction: " << file_direction;
+    //             cout << endl << "file_move: " << file_move;
 
-                cout << endl << "file_captured: " << file_captured + 1;
-                cout << endl << "rank_captured: " << rank_captured + 1;
+    //             cout << endl << "file_captured: " << file_captured + 1;
+    //             cout << endl << "rank_captured: " << rank_captured + 1;
 
-                // cout << endl << "directions[file_direction]: " << directions[file_direction];
-                // cout << endl << "is_on_board(file_captured): " << is_on_board(file_captured);
-                cout << endl;
-                system("pause");
-            }
-        }
-    }
+    //             // cout << endl << "directions[file_direction]: " << directions[file_direction];
+    //             // cout << endl << "is_on_board(file_captured): " << is_on_board(file_captured);
+    //             cout << endl;
+    //             system("pause");
+    //         }
+    //     }
+    // }
 
-    // int v_move;
+    int v_move;
     // v_move = file + move2;
     // if( is_on_board(v_move) )
     // {
@@ -176,6 +176,33 @@ int main()
     //     board[rank + move2][v_move] = capture;
     //     board[rank - move2][v_move] = capture;
     // }
+    v_move = file + move2;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move1][v_move] = capture;
+        board[rank - move1][v_move] = capture;
+    }
+
+    v_move = file - move2;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move1][v_move] = capture;
+        board[rank - move1][v_move] = capture;
+    }
+
+    v_move = file + move1;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move2][v_move] = capture;
+        board[rank - move2][v_move] = capture;
+    }
+
+    v_move = file - move1;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move2][v_move] = capture;
+        board[rank - move2][v_move] = capture;
+    }
 
     print_chessboard(board);
 
