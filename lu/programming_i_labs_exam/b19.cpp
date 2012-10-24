@@ -176,32 +176,22 @@ int main()
     //     board[rank + move2][v_move] = capture;
     //     board[rank - move2][v_move] = capture;
     // }
-    v_move = file + move2;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move1][v_move] = capture;
-        board[rank - move1][v_move] = capture;
-    }
 
-    v_move = file - move2;
-    if( is_on_board(v_move) )
+    for (int file_direction = 0; file_direction <= 1; file_direction++)
     {
-        board[rank + move1][v_move] = capture;
-        board[rank - move1][v_move] = capture;
-    }
+        v_move = file + directions[file_direction]*move2;
+        if( is_on_board(v_move) )
+        {
+            board[rank + move1][v_move] = capture;
+            board[rank - move1][v_move] = capture;
+        }
 
-    v_move = file + move1;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move2][v_move] = capture;
-        board[rank - move2][v_move] = capture;
-    }
-
-    v_move = file - move1;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move2][v_move] = capture;
-        board[rank - move2][v_move] = capture;
+        v_move = file + directions[file_direction]*move1;
+        if( is_on_board(v_move) )
+        {
+            board[rank + move2][v_move] = capture;
+            board[rank - move2][v_move] = capture;
+        }
     }
 
     print_chessboard(board);
