@@ -128,18 +128,20 @@ int main()
 
                 if ( is_on_board(file_captured))
                 {
-                     // board [rank_captured][file_captured] = capture;
+                     board[rank_captured][file_captured] = capture;
                 }
 
                 cout << endl << "------";
                 cout << endl << "rank_direction: " << rank_direction;
-                cout << endl << "directions[rank_direction]: " << directions[rank_direction];
                 cout << endl << "rank_move: " << moves[rank_move];
-                cout << endl << "file_move: " << file_captured;
-                cout << endl << "directions[file_direction]: " << directions[file_direction];
-                cout << endl << "is_on_board(file_captured): " << is_on_board(file_captured);
-                cout << endl << "file: " << file_captured + 1;
-                cout << endl << "rank: " << rank + moves[rank_move] * directions[rank_direction] + 1;
+                cout << endl << "file_direction: " << file_direction;
+                cout << endl << "file_move: " << file_move;
+
+                cout << endl << "file_captured: " << file_captured + 1;
+                cout << endl << "rank_captured: " << rank_captured + 1;
+
+                // cout << endl << "directions[file_direction]: " << directions[file_direction];
+                // cout << endl << "is_on_board(file_captured): " << is_on_board(file_captured);
                 cout << endl;
                 system("pause");
             }
