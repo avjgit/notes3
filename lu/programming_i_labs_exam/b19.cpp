@@ -148,7 +148,7 @@ int main()
     //     }
     // }
 
-    int v_move;
+    int v_move, h_move;
     // v_move = file + move2;
     // if( is_on_board(v_move) )
     // {
@@ -179,18 +179,22 @@ int main()
 
     for (int file_direction = 0; file_direction <= 1; file_direction++)
     {
-        v_move = file + directions[file_direction]*move2;
-        if( is_on_board(v_move) )
+        for (int file_move = 0; file_move <= 1; file_move++)
         {
-            board[rank + move1][v_move] = capture;
-            board[rank - move1][v_move] = capture;
-        }
+            v_move = file + directions[file_direction]*moves[file_move];
+            h_move = file_move ? moves[0] : moves [1];
+            if( is_on_board(v_move) )
+            {
+                board[rank + h_move][v_move] = capture;
+                board[rank - h_move][v_move] = capture;
+            }
 
-        v_move = file + directions[file_direction]*move1;
-        if( is_on_board(v_move) )
-        {
-            board[rank + move2][v_move] = capture;
-            board[rank - move2][v_move] = capture;
+            // v_move = file + directions[file_direction]*move1;
+            // if( is_on_board(v_move) )
+            // {
+            //     board[rank + move2][v_move] = capture;
+            //     board[rank - move2][v_move] = capture;
+            // }
         }
     }
 
