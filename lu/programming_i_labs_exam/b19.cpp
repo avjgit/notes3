@@ -108,7 +108,7 @@ void b19()
         for(int file = 0; file < size ; file++)
             board[rank][file] = empty;
 
-    // file - chessboard column
+    // file is chessboard column
     // rank - chessboard row
     int* position = request_position();
     int file = position[0];
@@ -116,20 +116,24 @@ void b19()
 
     board[rank][file] = knight;
 
-    // for (int rank_direction = 0; rank_direction <= 1; rank_direction++)
-    // {
-    //     for (int rank_move = 0; rank_move <= 1; rank_move++)
-    //     {
-    //         for (int file_direction = 0; file_direction <= 1; file_direction++)
-    //         {
-    //             int file_move = rank_move? moves[0] : moves[1];
-    //             int file_captured = file + directions[file_direction] * file_move;
-    //             int rank_captured = rank + directions[rank_direction] * moves[rank_move];
+    for (int rank_direction = 0; rank_direction <= 1; rank_direction++)
+    {
+        for (int rank_move = 0; rank_move <= 1; rank_move++)
+        {
+            for (int file_direction = 0; file_direction <= 1; file_direction++)
+            {
+                int file_move = rank_move? moves[0] : moves[1];
+                int file_captured = file + directions[file_direction] * file_move;
+                int rank_captured = rank + directions[rank_direction] * moves[rank_move];
 
-    //             if ( is_on_board(file_captured))
-    //             {
-    //                  board[rank_captured][file_captured] = capture;
-    //             }
+                if
+                (
+                    is_on_board(file_captured) &&
+                    is_on_board(rank_captured)
+                )
+                {
+                     board[rank_captured][file_captured] = capture;
+                }
 
     //             cout << endl << "------";
     //             cout << endl << "rank_direction: " << rank_direction;
@@ -144,9 +148,9 @@ void b19()
     //             // cout << endl << "is_on_board(file_captured): " << is_on_board(file_captured);
     //             cout << endl;
     //             system("pause");
-    //         }
-    //     }
-    // }
+            }
+        }
+    }
 
     // int v_move;
     // v_move = file + move2;
@@ -190,34 +194,52 @@ void b19()
     //     board[rank - move2][v_move] = capture;
     // }
 
-    int v_move;
-    v_move = file + move2;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move1][v_move] = capture;
-        board[rank - move1][v_move] = capture;
-    }
+    // int v_move;
+    // v_move = file + move2;
+    // // cout << endl << "v_move is " << v_move;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move1][v_move] = capture;
+    //     board[rank - move1][v_move] = capture;
+    // }
 
-    v_move = file - move2;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move1][v_move] = capture;
-        board[rank - move1][v_move] = capture;
-    }
+    // v_move = file - move2;
+    // cout << endl << "file 0 is " << file;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move1][v_move] = capture;
+    //     cout << endl << "file 2 is " << file;
+    //     cout << endl << " rank is " << rank;
+    //     cout << endl << " move1 is " << move1;
+    //     cout << endl << " v_move is " << v_move;
 
-    v_move = file + move1;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move2][v_move] = capture;
-        board[rank - move2][v_move] = capture;
-    }
+    //     int rank_new = rank - move1;
+    // cout << endl << "file 21 is " << file;
 
-    v_move = file - move1;
-    if( is_on_board(v_move) )
-    {
-        board[rank + move2][v_move] = capture;
-        board[rank - move2][v_move] = capture;
-    }
+
+
+    //     board[1][v_move] = capture;
+    //     cout << endl << "file 3 is " << file;
+    //     cout << endl << " rank is " << rank;
+    //     cout << endl << " move1 is " << move1;
+    //     cout << endl << " v_move is " << v_move;
+
+    // }
+
+    // v_move = file + move1;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move2][v_move] = capture;
+    //     board[rank - move2][v_move] = capture;
+    // }
+
+    // v_move = file - move1;
+    // // cout << endl << "v_move is " << v_move;
+    // if( is_on_board(v_move) )
+    // {
+    //     board[rank + move2][v_move] = capture;
+    //     board[rank - move2][v_move] = capture;
+    // }
 
 
 
