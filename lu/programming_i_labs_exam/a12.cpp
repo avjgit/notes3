@@ -1,5 +1,3 @@
-#include "utils.h"
-
 // REQUIREMENTS:
 // 01) Ievadot loģiski nepareizus datus, programmai jāizdod atbilstošs paziņojums.
 // 02) Jābūt iespējai programmu izpildīt atkārtoti.
@@ -13,7 +11,8 @@
 // (Piemēram, ja n=12025 un k=2, jāiegūst 105).
 // Skaitļa dalīšana ciparos jāveic skaitliski.
 // -------------------------------------------
-// IMPLEMENTATION:
+
+#include "utils.h"
 
 // usage of global constant in production systems should be avoided
 // used in this homework for clarity purposes

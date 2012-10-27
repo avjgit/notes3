@@ -1,14 +1,18 @@
+// REQUIREMENTS:
 // B19. Dots burts robežās no a līdz h un naturāls skaitlis n =< 8 . Piemēram, a2.
 // Dotais pāris tiek uzskatīts par šaha galdiņa lauciņu, uz kura atrodas zirdziņš.
 // Izdrukāt uz displeja šaha galdiņu,
 // atzīmējot ar X tos lauciņus, kurus apdraud zirdziņš, bet pārējos ar 0.
+// -------------------------------------------------------------------------------
+
 #include "utils.h"
 
-// checks if any dimension is on board
+const int size = 8; // size of a chessboard
+
+// checks if this dimension is on board
 // ranks 1..8 and files a..h are represented as 0..7
 bool is_on_board(int dimension)
 {
-    const int size = 8; // chessboardsize
     return dimension >= 0 && dimension < size;
 }
 
@@ -73,7 +77,6 @@ int* request_position()
 
 void print_chessboard(char board[8][8])
 {
-    const int  size    =   8; // chessboardsize
     cout << endl;
     for(int rank = size-1; rank >= 0; rank--)
     {
@@ -93,11 +96,9 @@ void b19()
     const char knight  = 'K';       // symbol of Knight
     const char capture = 'X';       // symbol of captured field
     const char empty   = '.';       // symbol of empty field
-    const int  size    =   8;       // chessboardsize
     int moves[2]       = {1, 2};    // length of knight's moves: one or two cells
     int directions[2]  = {-1, 1};   // direction of knight's moves: up/down in either dimension
-
-    char board[size][size];
+    char board[size][size];         // our chessboard
 
     // initialize board; mark all squares as empty
     for(int rank = size-1; rank >= 0; rank--)
@@ -146,13 +147,11 @@ void b19()
 
 void b19_manual()
 {
-    int number;
-    int removable;
     char repeat = 'y';
     while (repeat == 'y')
     {
         b19();
-        // repeat = request_chr("Would you like to repeat? y/n ");
+        repeat = request_chr("Would you like to repeat? y/n ");
     }
     print("Program is over. ");
 }
