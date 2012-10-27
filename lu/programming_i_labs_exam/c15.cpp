@@ -8,15 +8,23 @@
 #include "utils.h"
 
 const int parameters = 3;
-const int max_number_of_lines = 6;
+const int max_number_of_lines = 2;
+
+bool is_line_correct(int line[parameters])
+{
+    return false;
+}
 
 int* get_line()
 {
     int line[parameters];
-    cout << "Enter line's ax + by = c parameters, as space-separated integers a b c: ";
-    cin >> line[0];
-    cin >> line[1];
-    cin >> line[2];
+    while (!is_line_correct(line))
+    {
+        cout << "Enter line's ax + by = c parameters, as space-separated integers a b c: ";
+        cin >> line[0];
+        cin >> line[1];
+        cin >> line[2];
+    }
     return line;
 }
 
