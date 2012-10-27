@@ -107,7 +107,10 @@ int main()
 
     // cout << res;
 
-    cout << endl << true;
+    // cout << endl << true;
+
+    int* temp_line = new int [1]; // fix to avoid compicated memory handling
+    delete[] temp_line;
 
     // cout << uppercase;
 

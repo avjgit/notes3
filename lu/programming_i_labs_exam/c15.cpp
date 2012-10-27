@@ -48,14 +48,15 @@ int main()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
     int** lines = new int*[max_number_of_lines];
+    // int lines[max_number_of_lines][parameters];
     int real_number_of_lines = 0;
 
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
-        cout << "lines is " << line;
-        lines[line] = new int[parameters];
+        // int* temp_line = get_line();
+        // for (int i = parameter_a; i <= parameter_c; i++)
+            // lines[line][i] = temp_line[i];
         lines[line] = get_line();
-
 
     cout << "Your input is being interpreted as "
         << lines[line][parameter_a] << ", "
