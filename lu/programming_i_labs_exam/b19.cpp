@@ -13,7 +13,7 @@ bool is_on_board(int dimension)
 }
 
 // checks if position is on board (a1 till h8 - [0][0] till [7][7])
-bool is_on_board(int *position)
+bool is_on_board_pointer(int *position)
 {
     return is_on_board(position[0]) &&
            is_on_board(position[1]);
@@ -56,14 +56,14 @@ int* request_position()
 
     string answer;
 
-    while (!is_on_board(position))
+    while (!is_on_board_pointer(position))
     {
         print("Enter knight's position, from a1 to h8: ");
         cin >> answer;
         position[0] = to_file(answer[0]);
         position[1] = to_rank(answer[1]);
 
-        if (!is_on_board(position))
+        if (!is_on_board_pointer(position))
         {
             print("You have entered incorrect data.");
         }
@@ -159,12 +159,15 @@ int main()
 
     v_move = file - move2;
     cout << endl << "file 1 is " << file;
+    cout << endl << "v_move is " << v_move;
     if( is_on_board(v_move) )
     {
+        board[rank - move1][v_move] = capture;
         cout << endl << "file 1.1 is " << file;
         board[rank + move1][v_move] = capture;
         cout << endl << "file 1.2 is " << file;
-        board[rank - move1][v_move] = capture;
+        // board[rank - move1][v_move] = capture;
+        // cout << "wtf";
         cout << endl << "file 1.3 is " << file;
     }
 
