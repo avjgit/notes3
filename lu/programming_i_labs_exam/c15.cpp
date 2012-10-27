@@ -13,15 +13,15 @@ const int parameter_a = 0;
 const int parameter_b = 1;
 const int parameter_c = 2;
 
-bool is_line_correct(int line[parameters])
+bool is_line_wrong(int line[parameters])
 {
-    return !(line[parameter_b] == 0);
+    return line[parameter_b] == 0;
 }
 
 int* get_line()
 {
     int line[parameters] = {0, 0, 0};
-    while (!is_line_correct(line))
+    while (is_line_wrong(line))
     {
         cout << "Enter line's ax + by = c parameters, as space-separated integers a b c: ";
         cin >> line[0];
