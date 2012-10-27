@@ -95,7 +95,7 @@ void b19()
 {
     const char knight  = 'K';       // symbol of Knight
     const char capture = 'X';       // symbol of captured field
-    const char empty   = '0';       // symbol of empty field
+    const char empty   = '.';       // symbol of empty field
     int moves[2]       = {1, 2};    // length of knight's moves: one or two cells
     int directions[2]  = {-1, 1};   // direction of knight's moves: up/down in either dimension
     char board[size][size];         // our chessboard
