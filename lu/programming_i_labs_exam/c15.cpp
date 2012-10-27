@@ -9,14 +9,19 @@
 
 const int parameters = 3;
 
-int main()
+int* get_line()
 {
-    int a, b, c;
     int line[parameters];
-    cout << "Enter ax + by = c line's parameters, as integers a b c: ";
+    cout << "Enter line's ax + by = c parameters, as space-separated integers a b c: ";
     cin >> line[0];
     cin >> line[1];
     cin >> line[2];
+    return line;
+}
+
+int main()
+{
+    int* line = get_line();
     cout << "Your input is being interpreted as " << line[0] << ", " << line[1] << " and " << line[2] << endl;
     system("pause");
     return 0;
