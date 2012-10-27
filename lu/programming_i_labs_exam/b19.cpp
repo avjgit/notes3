@@ -88,7 +88,7 @@ void print_chessboard(char board[8][8])
     cout << "   a b c d e f g h" << endl;
 }
 
-int main()
+void b19()
 {
     const char knight  = 'K';
     const char capture = 'X';
@@ -249,7 +249,24 @@ int main()
     // }
 
     print_chessboard(board);
+}
 
+void b19_manual()
+{
+    int number;
+    int removable;
+    char repeat = 'y';
+    while (repeat == 'y')
+    {
+        b19();
+        // repeat = request_chr("Would you like to repeat? y/n ");
+    }
+    print("Program is over. ");
+}
+
+int main()
+{
+    b19_manual();
     system("pause");
     return 0;
 }
