@@ -13,14 +13,14 @@ const int parameter_a = 0;
 const int parameter_b = 1;
 const int parameter_c = 2;
 
-bool is_line_wrong(int line[parameters])
+bool is_line_wrong(double line[parameters])
 {
     return line[parameter_b] == 0;
 }
 
-int* get_line()
+double* get_line()
 {
-    int line[parameters] = {0, 0, 0};
+    double line[parameters] = {0, 0, 0};
     while (is_line_wrong(line))
     {
         cout << "Enter line's ax + by = c parameters, as space-separated integers a b c: ";
@@ -47,22 +47,14 @@ int* get_line()
 int main()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
-    int** lines = new int*[max_number_of_lines];
-    // int lines[max_number_of_lines][parameters];
+    double lines[max_number_of_lines][parameters];
     int real_number_of_lines = 0;
 
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
-        // int* temp_line = get_line();
-        // for (int i = parameter_a; i <= parameter_c; i++)
-            // lines[line][i] = temp_line[i];
-        lines[line] = get_line();
-
-    cout << "Your input is being interpreted as "
-        << lines[line][parameter_a] << ", "
-        << lines[line][parameter_b] << " and "
-        << lines[line][parameter_c] << endl;
-
+        double* temp_line = get_line();
+        for (int i = parameter_a; i <= parameter_c; i++)
+            lines[line][i] = temp_line[i];
     }
 
     cout << "Your input is being interpreted as "
