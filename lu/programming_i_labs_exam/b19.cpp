@@ -13,7 +13,7 @@ bool is_on_board(int dimension)
 }
 
 // checks if position is on board (a1 till h8 - [0][0] till [7][7])
-bool is_on_board_pointer(int *position)
+bool is_on_board(int *position)
 {
     return is_on_board(position[0]) &&
            is_on_board(position[1]);
@@ -24,7 +24,7 @@ bool is_on_board(int file, int char_code)
     return is_on_board(file - char_code);
 }
 
-// converts input of 'a' to 0 (first file)
+// converts input of 'a' or 'A' to 0 (first file)
 int to_file(int file)
 {
     const int  uppercase = 'A'; // ASCII code for char 'A'
@@ -40,7 +40,7 @@ int to_file(int file)
     }
     return file;
 }
-// converts input of '1' to 1 (first file)
+// converts input of '1' to 0 (first rank)
 int to_rank(int rank)
 {
     const int one_char = '1';
@@ -56,14 +56,14 @@ int* request_position()
 
     string answer;
 
-    while (!is_on_board_pointer(position))
+    while (!is_on_board(position))
     {
         print("Enter knight's position, from a1 to h8: ");
         cin >> answer;
         position[0] = to_file(answer[0]);
         position[1] = to_rank(answer[1]);
 
-        if (!is_on_board_pointer(position))
+        if (!is_on_board(position))
         {
             print("You have entered incorrect data.");
         }
