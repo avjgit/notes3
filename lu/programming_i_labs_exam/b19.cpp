@@ -90,31 +90,24 @@ void print_chessboard(char board[8][8])
 
 void b19()
 {
-    const char knight  = 'K'; // symbol of Knight
-    const char capture = 'X'; // symbol of captured field
-    const char empty   = '.'; // symbol of empty field
-
-    const int  size    =   8; // chessboardsize
-    const int  move1   =   1;
-    const int  move2   =   2;
-
-    int moves[2] = {1, 2};          // length of knight's moves: one or two cells
-    int directions[2] = {-1, 1};    // direction of knight's moves: up/down in either dimension
+    const char knight  = 'K';       // symbol of Knight
+    const char capture = 'X';       // symbol of captured field
+    const char empty   = '.';       // symbol of empty field
+    const int  size    =   8;       // chessboardsize
+    int moves[2]       = {1, 2};    // length of knight's moves: one or two cells
+    int directions[2]  = {-1, 1};   // direction of knight's moves: up/down in either dimension
 
     char board[size][size];
 
-    // initialize board
+    // initialize board; mark all squares as empty
     for(int rank = size-1; rank >= 0; rank--)
         for(int file = 0; file < size ; file++)
             board[rank][file] = empty;
 
-    // file is chessboard column
-    // rank - chessboard row
-    int* position = request_position();
-    int file = position[0];
-    int rank = position[1];
-
-    board[rank][file] = knight;
+    int* position = request_position(); // ask user where knight will be placed
+    int file = position[0];             // file is a chessboard term for a column
+    int rank = position[1];             // rank is a chessboard term for a row
+    board[rank][file] = knight;         // mark knight's position on board
 
     for (int rank_direction = 0; rank_direction <= 1; rank_direction++)
     {
