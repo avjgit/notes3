@@ -109,23 +109,33 @@ void b19()
     int rank = position[1];             // rank is a chessboard term for a row
     board[rank][file] = knight;         // mark knight's position on board
 
+    //
+    // the BIG loop for calculating knight's captured squares
+    //
+    // for each direction - up or down - for rank ..
     for (int rank_direction = 0; rank_direction <= 1; rank_direction++)
     {
+        // .., and for each possible move - 1 or 2 cells, on rank..
         for (int rank_move = 0; rank_move <= 1; rank_move++)
         {
+            // .., and for each possible direction for file:
             for (int file_direction = 0; file_direction <= 1; file_direction++)
             {
+                // calculate move per file
+                // (trick is, if you move knight ONE cell right, you can move just TWO cells up or down)
                 int file_move = rank_move? moves[0] : moves[1];
                 int file_captured = file + directions[file_direction] * file_move;
                 int rank_captured = rank + directions[rank_direction] * moves[rank_move];
 
                 if
                 (
+                    // if file and rank are on board (1..8)
                     is_on_board(file_captured) &&
                     is_on_board(rank_captured)
                 )
                 {
-                     board[rank_captured][file_captured] = capture;
+                    // then mark this square as captured
+                    board[rank_captured][file_captured] = capture;
                 }
             }
         }
