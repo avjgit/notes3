@@ -1,5 +1,6 @@
 #include "utils.h"
-// Prasības:
+
+// REQUIREMENTS:
 // 01) Ievadot loģiski nepareizus datus, programmai jāizdod atbilstošs paziņojums.
 // 02) Jābūt iespējai programmu izpildīt atkārtoti.
 // Atrādot programmu, jāatrāda
@@ -11,11 +12,17 @@
 // Izdrukāt skaitli, kurš iegūts no dotā skaitļa, izmetot ciparu k.
 // (Piemēram, ja n=12025 un k=2, jāiegūst 105).
 // Skaitļa dalīšana ciparos jāveic skaitliski.
+// -------------------------------------------
+// IMPLEMENTATION:
+
+// usage of global constant in production systems should be avoided
+// used in this homework for clarity purposes
+const int base = 10; // counting base (decimal)
+
 
 // gets order of a number (eg, for 98765 it'll return 4)
 int number_order(const int number)
 {
-    const int base = 10;
     int order = 0;
     while (pow(base, order) <= number) order++;
     return --order;
@@ -28,16 +35,10 @@ int number_order(const int number)
 // or from 987 substract 980
 int get_nth_order_digit(const int number, int n )
 {
-    const int base = 10;                                    // counting base (decimal)
     double order = pow(base, n);                            // on which order (eg, 100 or 10000) to search
     int upper_bound =  number/ (int)order;                  // with 98765 and n=2, gets 987
     int lower_bound = (number/ (int)(order * base)) * base; // with 98765 and n=2, gets 980
                                                             // complicated casting is because of issues with types
-    // cout << endl << "for n " << n << ": ";
-    // cout << endl << "foundation is " << order;           // output for debugging purposes
-    // cout << endl << "upper bound is " << upper_bound;
-    // cout << endl << "lower bound is " << lower_bound;
-    // cout << endl << (upper_bound - lower_bound);
     return upper_bound - lower_bound;                       // with 98765 and n=2, returns 987-980
 }
 
@@ -55,7 +56,6 @@ int* int_to_array(int number)
 int array_to_int(int* array, int size)
 {
     int number = 0;
-    int base = 10;
     double order;
     for(int i = 0; i <= size; i++)
     {
@@ -67,19 +67,22 @@ int array_to_int(int* array, int size)
     return number;
 }
 
+// the function to solve a problem
 // removes a digit from a number
 int a12(int number, int removable)
 {
-    int  order  = number_order(number); // order of a number
-    int* digits = int_to_array(number); // splits a number to an array
+    int  order  = number_order(number);     // order of a number (as power of 10; eg, for 12025 is 4)
+    int* digits = int_to_array(number);     // splits a number to an array
 
-    int* digits_cleaned = new int[order+1];     // starts removing a digit from a number
+    int* digits_cleaned = new int[order+1]; // result array to store number after removing certain digit
     int  new_order = 0;
 
     for(int i = 0; i <= order; i++)
     {
+        // looping through numbers' digits;
         if (digits[i] != removable)
         {
+            // if digit is not the one to be removed, then copying it to result array
             digits_cleaned[new_order++] = digits[i];
         }
     }
@@ -87,6 +90,7 @@ int a12(int number, int removable)
     return array_to_int(digits_cleaned, new_order);
 }
 
+// function for manually input of data to function, which solves a problem
 void a12_manual()
 {
     int number;
@@ -101,6 +105,7 @@ void a12_manual()
     }
     print("Program is over. ");
 }
+
 // function to find and print test result
 void test(string description, int expected, int actual)
 {
