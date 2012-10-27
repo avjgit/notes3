@@ -27,6 +27,9 @@ int* get_line()
         cin >> line[0];
         cin >> line[1];
         cin >> line[2];
+
+        if (is_line_wrong(line))
+            cout << "You have entered incorrect parameter B. It can not be 0." << endl;
     }
     return line;
 }
