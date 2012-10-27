@@ -34,6 +34,16 @@ int* get_line()
     return line;
 }
 
+// transforming line equation
+// from ax + by = c
+// to slope-intercept form y = slope * x + y_intercept:
+// ax + by =  c
+//      by =  c - ax
+//      by =  -ax + c
+//       y = (-ax + c)/b
+//       y = (-a/b)x + c/b
+// so, slope is -a/b and y_intercept is c/b
+
 int main()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
@@ -42,6 +52,7 @@ int main()
 
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
+        lines[line] = new int[parameters];
         lines[line] = get_line();
     }
 
