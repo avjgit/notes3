@@ -190,6 +190,34 @@ int main()
     //     board[rank - move2][v_move] = capture;
     // }
 
+    int v_move;
+    v_move = file + move2;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move1][v_move] = capture;
+        board[rank - move1][v_move] = capture;
+    }
+
+    v_move = file - move2;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move1][v_move] = capture;
+        board[rank - move1][v_move] = capture;
+    }
+
+    v_move = file + move1;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move2][v_move] = capture;
+        board[rank - move2][v_move] = capture;
+    }
+
+    v_move = file - move1;
+    if( is_on_board(v_move) )
+    {
+        board[rank + move2][v_move] = capture;
+        board[rank - move2][v_move] = capture;
+    }
 
 
 
