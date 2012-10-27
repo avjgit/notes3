@@ -40,12 +40,14 @@ int main()
 
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
     int** lines = new int*[max_number_of_lines];
+    int real_number_of_lines = 0;
 
-    for (int line = 0; line < max_number_of_lines; line++)
+    for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
         lines[line] = get_line();
 
     // line[0] = get_line();
-    cout << "Your input is being interpreted as " << lines[0][0] << ", " << lines[0][1] << " and " << lines[0][2] << endl;
+    cout << endl << "Your input is being interpreted as " << lines[0][0] << ", " << lines[0][1] << " and " << lines[0][2] << endl;
+    cout << endl << "You have entered " << real_number_of_lines << " lines.";
     system("pause");
     return 0;
 }
