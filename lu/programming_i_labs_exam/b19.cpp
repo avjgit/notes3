@@ -75,8 +75,15 @@ int* request_position()
     return position;
 }
 
-void print_chessboard(char board[8][8])
+void print_chessboard(char board[8][8], int* position)
 {
+    int lowercase_a = 'a';
+    char file = lowercase_a + position[0];
+    int rank = position[1] + 1;
+
+    cout << endl << "Fields captured by knight on "
+        << file << rank << ":" <<endl;
+
     cout << endl;
     for(int rank = size-1; rank >= 0; rank--)
     {
@@ -91,7 +98,7 @@ void print_chessboard(char board[8][8])
     cout << "   a b c d e f g h" << endl;
 }
 
-void b19()
+void b19(int* position)
 {
     const char knight  = 'K';       // symbol of Knight
     const char capture = 'X';       // symbol of captured field
@@ -105,7 +112,6 @@ void b19()
         for(int file = 0; file < size ; file++)
             board[rank][file] = empty;
 
-    int* position = request_position(); // ask user where knight will be placed
     int file = position[0];             // file is a chessboard term for a column
     int rank = position[1];             // rank is a chessboard term for a row
     board[rank][file] = knight;         // mark knight's position on board
@@ -141,8 +147,7 @@ void b19()
             }
         }
     }
-
-    print_chessboard(board);
+    print_chessboard(board, position);
 }
 
 void b19_manual()
@@ -150,7 +155,8 @@ void b19_manual()
     char repeat = 'y';
     while (repeat == 'y')
     {
-        b19();
+        int* position = request_position(); // ask user where knight will be placed
+        b19(position);
         repeat = request_chr("Would you like to repeat? y/n ");
     }
     print("Program is over. ");
@@ -158,6 +164,12 @@ void b19_manual()
 
 int main()
 {
+    // b19(position);
+    // b19(position);
+    // b19(position);
+    // b19(position);
+    // b19(position);
+
     b19_manual();
     system("pause");
     return 0;

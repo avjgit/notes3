@@ -13,9 +13,16 @@ const int parameter_a = 0;
 const int parameter_b = 1;
 const int parameter_c = 2;
 
+const int not_checked = 0;
+// const int checked =
+
 bool is_line_wrong(double line[parameters])
 {
-    return line[parameter_b] == 0;
+    return
+    (
+        line[parameter_b] == 0 &&
+        line[parameter_a] == 0
+    );
 }
 
 double* get_line()
@@ -50,6 +57,7 @@ int main()
     double lines[max_number_of_lines][parameters];
     int real_number_of_lines = 0;
 
+    // getting lines from user
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
         double* temp_line = get_line();
@@ -68,6 +76,7 @@ int main()
         << lines[1][parameter_b] << " and "
         << lines[1][parameter_c] << endl;
 
+    // checking parallelness
 
     cout << "Your enetered " << real_number_of_lines << " lines. ";
     system("pause");
