@@ -90,16 +90,16 @@ void print_chessboard(char board[8][8])
 
 void b19()
 {
-    const char knight  = 'K';
-    const char capture = 'X';
-    const char empty   = '.';
+    const char knight  = 'K'; // symbol of Knight
+    const char capture = 'X'; // symbol of captured field
+    const char empty   = '.'; // symbol of empty field
 
     const int  size    =   8; // chessboardsize
-    const int  move1   =   1; // knights' move consists of one- and two-cell moves
+    const int  move1   =   1;
     const int  move2   =   2;
 
-    int moves[2] = {1, 2};
-    int directions[2] = {-1, 1};
+    int moves[2] = {1, 2};          // length of knight's moves: one or two cells
+    int directions[2] = {-1, 1};    // direction of knight's moves: up/down in either dimension
 
     char board[size][size];
 
