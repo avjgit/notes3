@@ -9,15 +9,18 @@
 
 const int parameters = 3;
 const int max_number_of_lines = 2;
+const int parameter_a = 0;
+const int parameter_b = 1;
+const int parameter_c = 2;
 
 bool is_line_correct(int line[parameters])
 {
-    return false;
+    return !(line[parameter_b] == 0);
 }
 
 int* get_line()
 {
-    int line[parameters];
+    int line[parameters] = {0, 0, 0};
     while (!is_line_correct(line))
     {
         cout << "Enter line's ax + by = c parameters, as space-separated integers a b c: ";
