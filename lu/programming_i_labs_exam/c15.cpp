@@ -52,14 +52,30 @@ int main()
 
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
+        cout << "lines is " << line;
         lines[line] = new int[parameters];
         lines[line] = get_line();
+
+
+    cout << "Your input is being interpreted as "
+        << lines[line][parameter_a] << ", "
+        << lines[line][parameter_b] << " and "
+        << lines[line][parameter_c] << endl;
+
     }
 
     cout << "Your input is being interpreted as "
         << lines[0][parameter_a] << ", "
         << lines[0][parameter_b] << " and "
         << lines[0][parameter_c] << endl;
+
+
+    cout << "Your input is being interpreted as "
+        << lines[1][parameter_a] << ", "
+        << lines[1][parameter_b] << " and "
+        << lines[1][parameter_c] << endl;
+
+
     cout << "Your enetered " << real_number_of_lines << " lines. ";
     system("pause");
     return 0;
