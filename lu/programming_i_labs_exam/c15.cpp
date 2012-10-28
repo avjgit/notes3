@@ -93,6 +93,34 @@ bool is_parallel(double line1[3], double line2[3])
         || have_same_slope(line1, line2);
 }
 
+// http://www.ltn.lv/~podnieks/slides/algebra/det.pdf
+// http://en.wikipedia.org/wiki/Determinant
+// http://mathworld.wolfram.com/Determinant.html
+double determinant(double i11, double i12, double i21, double i22)
+{
+    return i11*i22 - i12*i21;
+}
+
+// http://www.ltn.lv/~podnieks/slides/algebra/det.pdf
+// http://en.wikipedia.org/wiki/Cramer%27s_rule
+double intersection(double line1[3], double line2[3])
+{
+    a1 b1 c1
+    a2 b2 c2
+
+    a11 a12 b1
+    a21 a22 b2
+
+    d = a11 a12 a21 a22
+    d1 = b1 a12 b2 a22
+    d2 = a11 b1 a21 b2
+
+    x1 = d1/d
+    x2 = d2/d
+
+    determinant0 =
+}
+
 void c15()
 {
     double lines[max_number_of_lines][parameters + 2]; // array to store lines, entered by user
