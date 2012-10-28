@@ -51,10 +51,17 @@ double* get_line()
     return line;
 }
 
-bool is_parallel(int line1[3], int line2[3])
+bool is_parallel(double line1[3], double line2[3])
 {
-    return true;
-}
+    return
+    (
+        line1[parameter_a] == 0 &&
+        line2[parameter_a] == 0
+    ) ||
+    (
+        line1[parameter_b] == 0 &&
+        line2[parameter_b] == 0
+    ) ||
 
 // transforming line equation
 // from ax + by = c
@@ -65,6 +72,14 @@ bool is_parallel(int line1[3], int line2[3])
 //       y = (-ax + c)/b
 //       y = (-a/b)x + c/b
 // so, slope is -a/b and y_intercept is c/b
+    (
+        (-1 * line1[parameter_a] / line1[parameter_b]) ==
+        (-1 * line2[parameter_a] / line2[parameter_b])
+    )
+    ;
+
+}
+
 void c15()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
@@ -103,8 +118,7 @@ void c15()
             // loop through lines, starting from next one till end
             for (int next_line = line + 1; next_line < lines_entered; next_line++)
             {
-                // if (is_parallel(lines[line], lines[next_line]))
-                if (true)
+                if (is_parallel(lines[line], lines[next_line]))
                 {
                     // mark current line as parallel to line from outer loop
                     lines[next_line][state] = checked;
