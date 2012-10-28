@@ -51,34 +51,39 @@ double* get_line()
     return line;
 }
 
+bool are_parallel_to_abscissa(double line1[3], double line2[3])
+{
+    return line1[parameter_a] == 0 &&
+           line2[parameter_a] == 0;
+}
+
+bool are_parallel_to_ordinate(double line1[3], double line2[3])
+{
+    return line1[parameter_b] == 0 &&
+           line2[parameter_b] == 0;
+}
+
+bool has_same_slope(double line1[3], double line2[3])
+{
+    // transforming line equation
+    // from ax + by = c
+    // to slope-intercept form y = slope * x + y_intercept:
+    // ax + by =  c
+    //      by =  c - ax
+    //      by =  -ax + c
+    //       y = (-ax + c)/b
+    //       y = (-a/b)x + c/b
+    // so, slope is -a/b and y_intercept is c/b
+    // lines are parallel, when their slopes are equal
+    return (-1 * line1[parameter_a] / line1[parameter_b]) ==
+           (-1 * line2[parameter_a] / line2[parameter_b]);
+}
+
 bool is_parallel(double line1[3], double line2[3])
 {
-    return
-    (
-        line1[parameter_a] == 0 &&
-        line2[parameter_a] == 0
-    ) ||
-    (
-        line1[parameter_b] == 0 &&
-        line2[parameter_b] == 0
-    )
-
-// transforming line equation
-// from ax + by = c
-// to slope-intercept form y = slope * x + y_intercept:
-// ax + by =  c
-//      by =  c - ax
-//      by =  -ax + c
-//       y = (-ax + c)/b
-//       y = (-a/b)x + c/b
-// so, slope is -a/b and y_intercept is c/b
-    // ||
-    // (
-    //     (-1 * line1[parameter_a] / line1[parameter_b]) ==
-    //     (-1 * line2[parameter_a] / line2[parameter_b])
-    // )
-    ;
-
+    return are_parallel_to_abscissa(line1, line2)
+        || are_parallel_to_ordinate(line1, line2)
+        || has_same_slope(line1, line2);
 }
 
 void c15()
@@ -135,12 +140,13 @@ void c15()
     for (int line = 0; line < lines_entered; line++)
         lines[line][state] = not_checked;
 
-    for (int line = 0; line < lines_entered; line++)
-    {
-        cout << endl << "line " << line << ": ";
-        for (int i = 0; i <= parallelness; i++)
-            cout << lines[line][i] << " ";
-    }
+    // for (int line = 0; line < lines_entered; line++)
+    // {
+    //     cout << endl << "line " << line << ": ";
+    //     for (int i = 0; i <= parallelness; i++)
+    //         cout << lines[line][i] << " ";
+    // }
+
     // print out result of parallelness check
     if (exists_parallels)
     {
@@ -148,7 +154,7 @@ void c15()
         print("Parallel lines are:");
         for (int line = 0; line < lines_entered; line++)
         {
-            cout << "entering with line " << line + 1 << endl;
+            // cout << "entering with line " << line + 1 << endl;
 
             string output_lines = "    Line " + to_char(line+1);
             has_parallels = false;
