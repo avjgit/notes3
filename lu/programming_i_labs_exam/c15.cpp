@@ -68,11 +68,17 @@ void c15()
         lines[line][state]       = not_checked;
     }
 
+    // loop through each line
     for (int line = 0; line < real_number_of_lines; line++)
     {
         if (lines[line][state] == not_checked)
         {
             cout << "let's check line " << line << " for parallelness";
+            // loop through lines, starting from next one till end
+            for (int next_line = line + 1; next_line < real_number_of_lines; next_line++)
+            {
+
+            }
         }
     }
 
