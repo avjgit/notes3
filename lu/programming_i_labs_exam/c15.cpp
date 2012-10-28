@@ -8,7 +8,7 @@
 #include "utils.h"
 
 const int parameters = 3;           // number of line describing parameters (a, b and c)
-const int max_number_of_lines = 2;  // maximal number of lines allowed to enter
+const int max_number_of_lines = 3;  // maximal number of lines allowed to enter
 
 // order of parameters in line-describing array
 const int a            = 0;
@@ -131,6 +131,20 @@ double* intersection(double line1[3], double line2[3])
     double intersection_point[2] = {x, y};
     return intersection_point;
 }
+
+bool are_equal(double point1[2], double point2[2])
+{
+    return point1[0] == point2[0] &&
+           point1[1] == point2[1];
+}
+
+bool are_intersecting(double line1[3], double line2[3], double line3[3])
+{
+    double* intersection_of_1_and_2 = intersection(line1, line2);
+    double* intersection_of_1_and_3 = intersection(line1, line2);
+    return are_equal(intersection_of_1_and_2, intersection_of_1_and_3);
+}
+
 void c15()
 {
     double lines[max_number_of_lines][parameters + 2]; // array to store lines, entered by user
@@ -224,10 +238,12 @@ void c15()
         print("There are no parallel lines.");
     }
 
-    double* intersection_of_1_and_2 = intersection(lines[0], lines[1]);
+    if (are_intersecting(lines[0], lines[1], lines[2]))
+    {
+        double* intersection_of_1_and_2 = intersection(lines[0], lines[1]);
 
-    cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
-
+        cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
+    }
 
     cout << endl;
     cout << "Your input is being interpreted as "
