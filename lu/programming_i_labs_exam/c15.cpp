@@ -10,25 +10,26 @@
 const int parameters = 3;
 const int max_number_of_lines = 4;
 
-const int parameter_a  = 0;
-const int parameter_b  = 1;
-const int parameter_c  = 2;
+// order of parameters in line-describing array
+const int a            = 0;
+const int b            = 1;
+const int c            = 2;
 const int state        = 3;
 const int parallelness = 4;
 
 bool is_line_wrong(double line[parameters])
 {
     return
-        line[parameter_a] == 0 &&
-        line[parameter_b] == 0;
+        line[a] == 0 &&
+        line[b] == 0;
 }
 
 bool is_stop(double line[parameters])
 {
     return
-        line[parameter_a] == 0 &&
-        line[parameter_b] == 0 &&
-        line[parameter_c] == 0;
+        line[a] == 0 &&
+        line[b] == 0 &&
+        line[c] == 0;
 }
 
 double* get_line()
@@ -38,9 +39,9 @@ double* get_line()
     {
         print("If you want to stop, enter 0 0 0.");
         print("Enter line's ax + by = c parameters, as space-separated integers a b c: ");
-        cin >> line[parameter_a];
-        cin >> line[parameter_b];
-        cin >> line[parameter_c];
+        cin >> line[a];
+        cin >> line[b];
+        cin >> line[c];
 
         if (is_stop(line))
             break;
@@ -53,14 +54,14 @@ double* get_line()
 
 bool are_parallel_to_abscissa(double line1[3], double line2[3])
 {
-    return line1[parameter_a] == 0 &&
-           line2[parameter_a] == 0;
+    return line1[a] == 0 &&
+           line2[a] == 0;
 }
 
 bool are_parallel_to_ordinate(double line1[3], double line2[3])
 {
-    return line1[parameter_b] == 0 &&
-           line2[parameter_b] == 0;
+    return line1[b] == 0 &&
+           line2[b] == 0;
 }
 
 bool has_same_slope(double line1[3], double line2[3])
@@ -75,8 +76,8 @@ bool has_same_slope(double line1[3], double line2[3])
     //       y = (-a/b)x + c/b
     // so, slope is -a/b and y_intercept is c/b
     // lines are parallel, when their slopes are equal
-    double slope1 = -1 * line1[parameter_a] / line1[parameter_b];
-    double slope2 = -1 * line2[parameter_a] / line2[parameter_b];
+    double slope1 = -1 * line1[a] / line1[b];
+    double slope2 = -1 * line2[a] / line2[b];
     return slope1 == slope2;
 }
 
@@ -107,9 +108,9 @@ void c15()
         }
         else
         {
-            lines[line][parameter_a]  = input_line[parameter_a];
-            lines[line][parameter_b]  = input_line[parameter_b];
-            lines[line][parameter_c]  = input_line[parameter_c];
+            lines[line][a]  = input_line[a];
+            lines[line][b]  = input_line[b];
+            lines[line][c]  = input_line[c];
             lines[line][state]        = not_checked;
             lines[line][parallelness] = not_checked;
         }
@@ -184,15 +185,15 @@ void c15()
 
     cout << endl;
     cout << "Your input is being interpreted as "
-        << lines[0][parameter_a] << ", "
-        << lines[0][parameter_b] << " and "
-        << lines[0][parameter_c] << endl;
+        << lines[0][a] << ", "
+        << lines[0][b] << " and "
+        << lines[0][c] << endl;
 
 
     cout << "Your input is being interpreted as "
-        << lines[1][parameter_a] << ", "
-        << lines[1][parameter_b] << " and "
-        << lines[1][parameter_c] << endl;
+        << lines[1][a] << ", "
+        << lines[1][b] << " and "
+        << lines[1][c] << endl;
 
     cout << "Your enetered " << lines_entered << " lines. ";
 
