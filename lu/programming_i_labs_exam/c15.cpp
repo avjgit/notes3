@@ -8,7 +8,7 @@
 #include "utils.h"
 
 const int parameters = 3;           // number of line describing parameters (a, b and c)
-const int max_number_of_lines = 4;  // maximal number of lines allowed to enter
+const int max_number_of_lines = 2;  // maximal number of lines allowed to enter
 
 // order of parameters in line-describing array
 const int a            = 0;
@@ -206,6 +206,10 @@ void c15()
     {
         print("There are no parallel lines.");
     }
+
+    double* intersection_of_1_and_2 = intersection(lines[0], lines[1]);
+
+    cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
 
 
     cout << endl;
