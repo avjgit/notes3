@@ -164,6 +164,19 @@ void print(double line[parameters])
 
 int main()
 {
+    double line1[parameters] = {1, 2, 3};
+    double line2[parameters] = {2, 3, 4};
+    double line3[parameters] = {3, 4, 5};
+
+    if (are_intersecting(line1, line2, line3))
+    {
+        cout << endl << "Following lines are intersecting at same point: ";
+        print(line1);
+        print(line2);
+        print(line3);
+    }
+
+
     double lines[max_number_of_lines][parameters + 2]; // array to store lines, entered by user
     int lines_entered     = 0;                         // counter, how many lines are entered
     const int checked     = 1;                         // flag line is already processed (used in parallelness check and printing)
