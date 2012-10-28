@@ -132,12 +132,15 @@ double* intersection(double line1[3], double line2[3])
     return intersection_point;
 }
 
+// checks if two points are equal
 bool are_equal(double point1[2], double point2[2])
 {
     return point1[0] == point2[0] &&
            point1[1] == point2[1];
 }
 
+// checks if three lines are intersecting at one point
+// algorithm: if intersection of 1st and 2nd is same as intersection of 1st and 3rd
 bool are_intersecting(double line1[3], double line2[3], double line3[3])
 {
     double* intersection_of_1_and_2 = intersection(line1, line2);
@@ -238,12 +241,28 @@ void c15()
         print("There are no parallel lines.");
     }
 
-    if (are_intersecting(lines[0], lines[1], lines[2]))
-    {
-        double* intersection_of_1_and_2 = intersection(lines[0], lines[1]);
+    // subsets by 3 of lines
+    bool exists_triple_intersection = false;
 
-        cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
+    for (int line1 = 0; line1 < lines_entered; line1++)
+    {
+        for (int line2 = line1+1; line2 < lines_entered; line2++)
+        {
+            for (int line3 = line2+1; line3 < lines_entered; line3++)
+            {
+                if (are_intersecting(lines[line1], lines[line2], lines[line3]))
+                {
+                    exists_triple_intersection = true;
+                    // double* intersection_of_1_and_2 = intersection(lines[line1], lines[line2]);
+                    // cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
+                    cout << endl << "Lines " << "are intersecting at same point.";
+                }
+            }
+        }
     }
+
+    if (!exists_triple_intersection)
+        print("Not tripe intersection exists.");
 
     cout << endl;
     cout << "Your input is being interpreted as "
