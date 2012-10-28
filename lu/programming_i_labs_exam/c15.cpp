@@ -145,12 +145,15 @@ bool are_equal(double point1[2], double point2[2])
 // algorithm: if intersection of 1st and 2nd is same as intersection of 1st and 3rd
 bool are_intersecting(double line1[3], double line2[3], double line3[3])
 {
-    if (is_parallel(line1, line2) || is_parallel(line2, line3))
-        return false;
-
-    double* intersection_of_1_and_2 = intersection(line1, line2);
-    double* intersection_of_1_and_3 = intersection(line1, line3);
-    return are_equal(intersection_of_1_and_2, intersection_of_1_and_3);
+    return
+        !is_parallel(line1, line2) &&
+        !is_parallel(line1, line3) &&
+        !is_parallel(line2, line3) &&
+        are_equal
+        (
+            intersection(line1, line2),
+            intersection(line1, line3)
+        );
 }
 
 // for printing out a line
