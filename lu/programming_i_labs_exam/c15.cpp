@@ -145,6 +145,9 @@ bool are_equal(double point1[2], double point2[2])
 // algorithm: if intersection of 1st and 2nd is same as intersection of 1st and 3rd
 bool are_intersecting(double line1[3], double line2[3], double line3[3])
 {
+    if (is_parallel(line1, line2) || is_parallel(line2, line3))
+        return false;
+
     double* intersection_of_1_and_2 = intersection(line1, line2);
     double* intersection_of_1_and_3 = intersection(line1, line2);
     return are_equal(intersection_of_1_and_2, intersection_of_1_and_3);
@@ -249,23 +252,17 @@ int main()
     {
         for (int line2 = line1+1; line2 < lines_entered; line2++)
         {
-            if (lines[line2][parallelness] != line1)
+            for (int line3 = line2+1; line3 < lines_entered; line3++)
             {
-                for (int line3 = line2+1; line3 < lines_entered; line3++)
+                if (are_intersecting(lines[line1], lines[line2], lines[line3]))
                 {
-                    if (lines[line3][parallelness] != line2)
-                    {
-                        if (are_intersecting(lines[line1], lines[line2], lines[line3]))
-                        {
-                            exists_triple_intersection = true;
-                            // double* intersection_of_1_and_2 = intersection(lines[line1], lines[line2]);
-                            // cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
-                            cout << endl << "Following lines are intersecting at same point: ";
-                            print(lines[line1]);
-                            print(lines[line2]);
-                            print(lines[line3]);
-                        }
-                    }
+                    exists_triple_intersection = true;
+                    // double* intersection_of_1_and_2 = intersection(lines[line1], lines[line2]);
+                    // cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
+                    cout << endl << "Following lines are intersecting at same point: ";
+                    print(lines[line1]);
+                    print(lines[line2]);
+                    print(lines[line3]);
                 }
             }
         }
