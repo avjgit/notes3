@@ -7,8 +7,8 @@
 // ----------------------------------------------
 #include "utils.h"
 
-const int parameters = 3;
-const int max_number_of_lines = 4;
+const int parameters = 3;           // number of line describing parameters (a, b and c)
+const int max_number_of_lines = 4;  // maximal number of lines allowed to enter
 
 // order of parameters in line-describing array
 const int a            = 0;
@@ -17,21 +17,22 @@ const int c            = 2;
 const int state        = 3;
 const int parallelness = 4;
 
+// checks if line equation is wrong (a and b parameters are 0)
 bool is_line_wrong(double line[parameters])
 {
-    return
-        line[a] == 0 &&
-        line[b] == 0;
+    return line[a] == 0 &&
+           line[b] == 0;
 }
 
+// checks if user stopped entering lines
 bool is_stop(double line[parameters])
 {
-    return
-        line[a] == 0 &&
-        line[b] == 0 &&
-        line[c] == 0;
+    return line[a] == 0 &&
+           line[b] == 0 &&
+           line[c] == 0;
 }
 
+// gets line parameters from user
 double* get_line()
 {
     double line[parameters] = {0, 0, 0};
@@ -52,19 +53,22 @@ double* get_line()
     return line;
 }
 
+// checks if lines are horizontal (thus, parallel to x axis)
 bool are_parallel_to_abscissa(double line1[3], double line2[3])
 {
     return line1[a] == 0 &&
            line2[a] == 0;
 }
 
+// checks if lines are vertical (thus, parallel to y axis)
 bool are_parallel_to_ordinate(double line1[3], double line2[3])
 {
     return line1[b] == 0 &&
            line2[b] == 0;
 }
 
-bool has_same_slope(double line1[3], double line2[3])
+// checks if lines have same angle
+bool have_same_slope(double line1[3], double line2[3])
 {
     // transforming line equation
     // from ax + by = c
@@ -81,20 +85,20 @@ bool has_same_slope(double line1[3], double line2[3])
     return slope1 == slope2;
 }
 
+// checks if two lines are parallel
 bool is_parallel(double line1[3], double line2[3])
 {
     return are_parallel_to_abscissa(line1, line2)
         || are_parallel_to_ordinate(line1, line2)
-        || has_same_slope(line1, line2);
+        || have_same_slope(line1, line2);
 }
 
 void c15()
 {
-    // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
-    double lines[max_number_of_lines][parameters + 2];
-    int lines_entered = 0;
-    const int checked = 1;
-    const int not_checked = -1;
+    double lines[max_number_of_lines][parameters + 2]; // array to store lines, entered by user
+    int lines_entered     = 0;                         // counter, how many lines are entered
+    const int checked     = 1;                         // flag line is already processed (used in parallelness check and printing)
+    const int not_checked = -1;                        // flag line is not yet processed
 
     // getting lines from user
     for (int line = 0; line < max_number_of_lines; line++, lines_entered++)
