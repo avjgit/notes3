@@ -13,6 +13,7 @@ const int max_number_of_lines = 2;
 const int parameter_a = 0;
 const int parameter_b = 1;
 const int parameter_c = 2;
+const int state = 3;
 
 bool is_line_wrong(double line[parameters])
 {
@@ -48,8 +49,7 @@ double* get_line()
 //       y = (-ax + c)/b
 //       y = (-a/b)x + c/b
 // so, slope is -a/b and y_intercept is c/b
-
-int main()
+void c15()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
     double lines[max_number_of_lines][parameters + 1];
@@ -62,13 +62,19 @@ int main()
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
         double* temp_line = get_line();
-        lines[line][parameter_a]     = temp_line[parameter_a];
-        lines[line][parameter_b]     = temp_line[parameter_b];
-        lines[line][parameter_c]     = temp_line[parameter_c];
-        lines[line][parameter_c + 1] = not_checked;
+        lines[line][parameter_a] = temp_line[parameter_a];
+        lines[line][parameter_b] = temp_line[parameter_b];
+        lines[line][parameter_c] = temp_line[parameter_c];
+        lines[line][state]       = not_checked;
     }
 
-
+    for (int line = 0; line < real_number_of_lines; line++)
+    {
+        if (lines[line][state] == not_checked)
+        {
+            cout << "let's check line " << line << " for parallelness";
+        }
+    }
 
     cout << "Your input is being interpreted as "
         << lines[0][parameter_a] << ", "
@@ -84,6 +90,12 @@ int main()
     // checking parallelness
 
     cout << "Your enetered " << real_number_of_lines << " lines. ";
+
+}
+int main()
+{
+    c15();
+
     system("pause");
     return 0;
 }
