@@ -87,7 +87,7 @@ void c15()
     double lines[max_number_of_lines][parameters + 2];
     int lines_entered = 0;
     const int checked = 1;
-    const int not_checked = 0;
+    const int not_checked = -1;
 
     // getting lines from user
     for (int line = 0; line < max_number_of_lines; line++, lines_entered++)
@@ -101,10 +101,11 @@ void c15()
         }
         else
         {
-            lines[line][parameter_a] = input_line[parameter_a];
-            lines[line][parameter_b] = input_line[parameter_b];
-            lines[line][parameter_c] = input_line[parameter_c];
-            lines[line][state]       = not_checked;
+            lines[line][parameter_a]  = input_line[parameter_a];
+            lines[line][parameter_b]  = input_line[parameter_b];
+            lines[line][parameter_c]  = input_line[parameter_c];
+            lines[line][state]        = not_checked;
+            lines[line][parallelness] = not_checked;
         }
     }
 
