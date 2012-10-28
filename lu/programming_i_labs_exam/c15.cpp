@@ -8,7 +8,7 @@
 #include "utils.h"
 
 const int parameters = 3;           // number of line describing parameters (a, b and c)
-const int max_number_of_lines = 3;  // maximal number of lines allowed to enter
+const int max_number_of_lines = 6;  // maximal number of lines allowed to enter
 
 // order of parameters in line-describing array
 const int a            = 0;
@@ -130,10 +130,6 @@ double* intersection(double line1[3], double line2[3])
 
     double y = (c1 - a1 * x)/b1;
 
-    cout << "x is " << x;
-    cout << "y is " << y;
-
-
     double* intersection_point = new double[2];
     intersection_point[0] = x;
     intersection_point[1] = y;
@@ -143,9 +139,6 @@ double* intersection(double line1[3], double line2[3])
 // checks if two points are equal
 bool are_equal(double point1[2], double point2[2])
 {
-    cout << "intersection point 1 is " << point1[0] << ";" << point1[1];
-    cout << "intersection point 2 is " << point2[0] << ";" << point2[1];
-
     return point1[0] == point2[0] &&
            point1[1] == point2[1];
 }
@@ -171,21 +164,8 @@ void print(double line[parameters])
     cout << "[" << line[a] << " " << line[b] << " " << line[c] << "]";
 }
 
-int main()
+void c15()
 {
-    double line1[parameters] = {1, 2, 3};
-    double line2[parameters] = {2, 1, 3};
-    double line3[parameters] = {3, 4, 5};
-
-    if (are_intersecting(line1, line2, line3))
-    {
-        cout << endl << "Following lines are intersecting at same point: ";
-        print(line1);
-        print(line2);
-        print(line3);
-    }
-
-
     double lines[max_number_of_lines][parameters + 2]; // array to store lines, entered by user
     int lines_entered     = 0;                         // counter, how many lines are entered
     const int checked     = 1;                         // flag line is already processed (used in parallelness check and printing)
@@ -295,6 +275,11 @@ int main()
 
     if (!exists_triple_intersection)
         print("Not triple intersection exists.");
+}
+
+int main()
+{
+    c15();
 
     system("pause");
     return 0;
