@@ -9,12 +9,10 @@
 
 const int parameters = 3;
 const int max_number_of_lines = 2;
+
 const int parameter_a = 0;
 const int parameter_b = 1;
 const int parameter_c = 2;
-
-const int not_checked = 0;
-// const int checked =
 
 bool is_line_wrong(double line[parameters])
 {
@@ -54,16 +52,24 @@ double* get_line()
 int main()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
-    double lines[max_number_of_lines][parameters];
+    double lines[max_number_of_lines][parameters + 1];
     int real_number_of_lines = 0;
+
+    const int not_checked = -2;
+    const int not_parallel = -1;
 
     // getting lines from user
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
         double* temp_line = get_line();
         for (int i = parameter_a; i <= parameter_c; i++)
+        {
             lines[line][i] = temp_line[i];
+        }
+        lines[line][parameter_c + 1] = not_checked;
     }
+
+
 
     cout << "Your input is being interpreted as "
         << lines[0][parameter_a] << ", "

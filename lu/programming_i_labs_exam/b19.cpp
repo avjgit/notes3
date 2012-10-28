@@ -51,6 +51,14 @@ int to_rank(int rank)
     return rank - one_char;
 }
 
+int* position_string_to_array(string answer)
+{
+    int* position = new int[2];
+    position[0] = to_file(answer[0]);
+    position[1] = to_rank(answer[1]);
+    return position;
+}
+
 int* request_position()
 {
     int* position = new int[2];
