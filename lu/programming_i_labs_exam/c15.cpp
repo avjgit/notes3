@@ -279,7 +279,13 @@ void c15()
 
 int main()
 {
-    c15();
+    char repeat = 'y';
+    while (repeat == 'y')
+    {
+        c15();
+        repeat = request_chr("Would you like to repeat? y/n ");
+    }
+    print("Program is over. ");
 
     system("pause");
     return 0;
