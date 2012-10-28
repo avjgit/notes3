@@ -68,7 +68,10 @@ void c15()
         lines[line][state]       = not_checked;
     }
 
-    // loop through each line
+    bool exists_parallels = false;
+
+
+    // mark lines parallel
     for (int line = 0; line < lines_entered; line++)
     {
         // if line not yet marke as being parallel
@@ -82,10 +85,39 @@ void c15()
                 {
                     // mark current line as parallel to line from outer loop
                     lines[next_line][state] = line;
+                    exists_parallels = true;
                 }
             }
         }
     }
+
+    // print out result of parallelness check
+    if (exists_parallels)
+    {
+        print("Parallel lines are:");
+        for (int line = 0; line < lines_entered; line++)
+        {
+            string output_lines = "Line " << line+1;
+
+            // loop through lines, starting from next one till end
+            for (int next_line = line + 1; next_line < lines_entered; next_line++)
+            {
+                // if (is_parallel(lines[line], lines[next_line]))
+                if (true)
+                {
+                    // mark current line as parallel to line from outer loop
+                    lines[next_line][state] = line;
+                    exists_parallels = true;
+                }
+            }
+        }
+    }
+    else
+    {
+        print("There are no parallel lines.");
+    }
+
+
 
     cout << "Your input is being interpreted as "
         << lines[0][parameter_a] << ", "
