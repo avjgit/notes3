@@ -8,7 +8,7 @@
 #include "utils.h"
 
 const int parameters = 3;           // number of line describing parameters (a, b and c)
-const int max_number_of_lines = 6;  // maximal number of lines allowed to enter
+const int max_number_of_lines = 3;  // maximal number of lines allowed to enter
 
 // order of parameters in line-describing array
 const int a            = 0;
@@ -149,7 +149,7 @@ bool are_intersecting(double line1[3], double line2[3], double line3[3])
         return false;
 
     double* intersection_of_1_and_2 = intersection(line1, line2);
-    double* intersection_of_1_and_3 = intersection(line1, line2);
+    double* intersection_of_1_and_3 = intersection(line1, line3);
     return are_equal(intersection_of_1_and_2, intersection_of_1_and_3);
 }
 
