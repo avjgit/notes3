@@ -290,3 +290,18 @@ int main()
     system("pause");
     return 0;
 }
+
+// TEST EXAMPLES:
+
+// INPUT:
+// Enter line ax + by = c as space-separated parameters a b c: 1 2 3
+// Enter line ax + by = c as space-separated parameters a b c: 2 3 4
+// Enter line ax + by = c as space-separated parameters a b c: 3 4 5
+// Enter line ax + by = c as space-separated parameters a b c: 0 6 7
+// Enter line ax + by = c as space-separated parameters a b c: 0 7 8
+// Enter line ax + by = c as space-separated parameters a b c: 1 5 10
+
+// OUTPUT:
+// Parallel lines are:
+//     Line 4, line 5
+// Following lines are intersecting at same point: [1 2 3][2 3 4][3 4 5]
