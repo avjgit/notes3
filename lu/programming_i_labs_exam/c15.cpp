@@ -62,10 +62,9 @@ int main()
     for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
     {
         double* temp_line = get_line();
-        for (int i = parameter_a; i <= parameter_c; i++)
-        {
-            lines[line][i] = temp_line[i];
-        }
+        lines[line][parameter_a]     = temp_line[parameter_a];
+        lines[line][parameter_b]     = temp_line[parameter_b];
+        lines[line][parameter_c]     = temp_line[parameter_c];
         lines[line][parameter_c + 1] = not_checked;
     }
 
