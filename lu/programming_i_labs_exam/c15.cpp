@@ -130,13 +130,22 @@ double* intersection(double line1[3], double line2[3])
 
     double y = (c1 - a1 * x)/b1;
 
-    double intersection_point[2] = {x, y};
+    cout << "x is " << x;
+    cout << "y is " << y;
+
+
+    double* intersection_point = new double[2];
+    intersection_point[0] = x;
+    intersection_point[1] = y;
     return intersection_point;
 }
 
 // checks if two points are equal
 bool are_equal(double point1[2], double point2[2])
 {
+    cout << "intersection point 1 is " << point1[0] << ";" << point1[1];
+    cout << "intersection point 2 is " << point2[0] << ";" << point2[1];
+
     return point1[0] == point2[0] &&
            point1[1] == point2[1];
 }
@@ -165,7 +174,7 @@ void print(double line[parameters])
 int main()
 {
     double line1[parameters] = {1, 2, 3};
-    double line2[parameters] = {2, 3, 4};
+    double line2[parameters] = {2, 1, 3};
     double line3[parameters] = {3, 4, 5};
 
     if (are_intersecting(line1, line2, line3))
