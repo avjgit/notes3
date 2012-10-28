@@ -71,12 +71,18 @@ void c15()
     // loop through each line
     for (int line = 0; line < lines_entered; line++)
     {
+        // if line not yet marke as being parallel
         if (lines[line][state] == not_checked)
         {
             // loop through lines, starting from next one till end
             for (int next_line = line + 1; next_line < lines_entered; next_line++)
             {
-
+                // if (is_parallel(lines[line], lines[next_line]))
+                if (true)
+                {
+                    // mark current line as parallel to line from outer loop
+                    lines[next_line][state] = line;
+                }
             }
         }
     }
@@ -91,8 +97,6 @@ void c15()
         << lines[1][parameter_a] << ", "
         << lines[1][parameter_b] << " and "
         << lines[1][parameter_c] << endl;
-
-    // checking parallelness
 
     cout << "Your enetered " << lines_entered << " lines. ";
 
