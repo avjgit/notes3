@@ -8,7 +8,7 @@
 #include "utils.h"
 
 const int parameters = 3;
-const int max_number_of_lines = 2;
+const int max_number_of_lines = 4;
 
 const int parameter_a  = 0;
 const int parameter_b  = 1;
@@ -61,7 +61,7 @@ bool is_parallel(double line1[3], double line2[3])
     (
         line1[parameter_b] == 0 &&
         line2[parameter_b] == 0
-    ) ||
+    )
 
 // transforming line equation
 // from ax + by = c
@@ -72,10 +72,11 @@ bool is_parallel(double line1[3], double line2[3])
 //       y = (-ax + c)/b
 //       y = (-a/b)x + c/b
 // so, slope is -a/b and y_intercept is c/b
-    (
-        (-1 * line1[parameter_a] / line1[parameter_b]) ==
-        (-1 * line2[parameter_a] / line2[parameter_b])
-    )
+    // ||
+    // (
+    //     (-1 * line1[parameter_a] / line1[parameter_b]) ==
+    //     (-1 * line2[parameter_a] / line2[parameter_b])
+    // )
     ;
 
 }
@@ -133,6 +134,12 @@ void c15()
     for (int line = 0; line < lines_entered; line++)
         lines[line][state] = not_checked;
 
+    for (int line = 0; line < lines_entered; line++)
+    {
+        cout << endl << "line " << line << ": ";
+        for (int i = 0; i <= parallelness; i++)
+            cout << lines[line][i] << " ";
+    }
     // print out result of parallelness check
     if (exists_parallels)
     {
@@ -140,6 +147,8 @@ void c15()
         print("Parallel lines are:");
         for (int line = 0; line < lines_entered; line++)
         {
+            cout << "entering with line " << line + 1 << endl;
+
             string output_lines = "    Line " + to_char(line+1);
             has_parallels = false;
 
@@ -165,7 +174,7 @@ void c15()
     }
 
 
-
+    cout << endl;
     cout << "Your input is being interpreted as "
         << lines[0][parameter_a] << ", "
         << lines[0][parameter_b] << " and "
