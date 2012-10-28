@@ -261,10 +261,10 @@ void c15()
                     exists_triple_intersection = true;
                     // double* intersection_of_1_and_2 = intersection(lines[line1], lines[line2]);
                     // cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
-                    cout << endl << "Lines ";
-                    print(lines[line1]); << ", "
-                    print(lines[line2]); << ", "
-                    print(lines[line3]); << "are intersecting at same point.";
+                    cout << endl << "Following lines are intersecting at same point: ";
+                    print(lines[line1]);
+                    print(lines[line2]);
+                    print(lines[line3]);
                 }
             }
         }
@@ -272,21 +272,6 @@ void c15()
 
     if (!exists_triple_intersection)
         print("Not triple intersection exists.");
-
-    cout << endl;
-    cout << "Your input is being interpreted as "
-        << lines[0][a] << ", "
-        << lines[0][b] << " and "
-        << lines[0][c] << endl;
-
-
-    cout << "Your input is being interpreted as "
-        << lines[1][a] << ", "
-        << lines[1][b] << " and "
-        << lines[1][c] << endl;
-
-    cout << "Your enetered " << lines_entered << " lines. ";
-
 }
 int main()
 {
