@@ -75,8 +75,9 @@ bool has_same_slope(double line1[3], double line2[3])
     //       y = (-a/b)x + c/b
     // so, slope is -a/b and y_intercept is c/b
     // lines are parallel, when their slopes are equal
-    return (-1 * line1[parameter_a] / line1[parameter_b]) ==
-           (-1 * line2[parameter_a] / line2[parameter_b]);
+    double slope1 = -1 * line1[parameter_a] / line1[parameter_b];
+    double slope2 = -1 * line2[parameter_a] / line2[parameter_b];
+    return slope1 == slope2;
 }
 
 bool is_parallel(double line1[3], double line2[3])
