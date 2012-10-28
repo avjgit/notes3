@@ -103,22 +103,15 @@ double determinant(double i11, double i12, double i21, double i22)
 
 // http://www.ltn.lv/~podnieks/slides/algebra/det.pdf
 // http://en.wikipedia.org/wiki/Cramer%27s_rule
-double intersection(double line1[3], double line2[3])
+double* intersection(double line1[3], double line2[3])
 {
-    a1 b1 c1
-    a2 b2 c2
-
-    a11 a12 b1
-    a21 a22 b2
-
-    d = a11 a12 a21 a22
-    d1 = b1 a12 b2 a22
-    d2 = a11 b1 a21 b2
-
-    x1 = d1/d
-    x2 = d2/d
-
-    determinant0 =
+    double d  = determinant(line1[a], line1[b], line2[a], line2[b]);
+    double d1 = determinant(line1[c], line1[b], line2[c], line2[b]);
+    double d2 = determinant(line1[a], line1[c], line2[a], line2[c]);
+    double x = d1/ d;
+    double y = d2/ d;
+    double intersection_point[2] = {x, y};
+    return intersection_point;
 }
 
 void c15()
