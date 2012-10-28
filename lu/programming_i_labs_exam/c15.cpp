@@ -77,10 +77,19 @@ void c15()
     for (int line = 0; line < max_number_of_lines; line++, lines_entered++)
     {
         double* input_line = get_line();
-        lines[line][parameter_a] = input_line[parameter_a];
-        lines[line][parameter_b] = input_line[parameter_b];
-        lines[line][parameter_c] = input_line[parameter_c];
-        lines[line][state]       = not_checked;
+
+        if (is_stop(input_line))
+        {
+            lines_entered--;
+            break;
+        }
+        else
+        {
+            lines[line][parameter_a] = input_line[parameter_a];
+            lines[line][parameter_b] = input_line[parameter_b];
+            lines[line][parameter_c] = input_line[parameter_c];
+            lines[line][state]       = not_checked;
+        }
     }
 
     bool exists_parallels = false;
