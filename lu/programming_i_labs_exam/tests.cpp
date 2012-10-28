@@ -112,15 +112,17 @@ int main()
     // int* temp_line = new int [1]; // fix to avoid compicated memory handling
     // delete[] temp_line;
 
-    string txt = "asdf";
-    txt += "qwe";
-    int d = 1;
-    char line_number[99];
-    itoa(d, line_number, 10);
-    // cout << d;
-    txt += line_number;
-    print(txt);
+    // string txt = "asdf";
+    // txt += "qwe";
+    // int d = 1;
+    // char line_number[99];
+    // itoa(d, line_number, 10);
+    // // cout << d;
+    // txt += line_number;
+    // print(txt);
 
+    double d[1] = {1};
+    cout << d[0];
     // cout << uppercase;
 
     system("pause");
