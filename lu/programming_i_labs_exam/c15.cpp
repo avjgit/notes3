@@ -156,7 +156,7 @@ void print(double line[parameters])
     cout << "[" << line[a] << " " << line[b] << " " << line[c] << "]";
 }
 
-void c15()
+int main()
 {
     double lines[max_number_of_lines][parameters + 2]; // array to store lines, entered by user
     int lines_entered     = 0;                         // counter, how many lines are entered
@@ -208,13 +208,6 @@ void c15()
     // reseting state for printing
     for (int line = 0; line < lines_entered; line++)
         lines[line][state] = not_checked;
-
-    // for (int line = 0; line < lines_entered; line++)
-    // {
-    //     cout << endl << "line " << line << ": ";
-    //     for (int i = 0; i <= parallelness; i++)
-    //         cout << lines[line][i] << " ";
-    // }
 
     // print out result of parallelness check
     if (exists_parallels)
@@ -274,10 +267,6 @@ void c15()
 
     if (!exists_triple_intersection)
         print("Not triple intersection exists.");
-}
-int main()
-{
-    c15();
 
     system("pause");
     return 0;
