@@ -20,8 +20,8 @@ bool is_line_wrong(double line[parameters])
 {
     return
     (
-        line[parameter_b] == 0 &&
-        line[parameter_a] == 0
+        line[parameter_a] == 0 &&
+        line[parameter_b] == 0
     );
 }
 
@@ -36,9 +36,14 @@ double* get_line()
         cin >> line[parameter_c];
 
         if (is_line_wrong(line))
-            cout << "You have entered incorrect parameter B. It can not be 0." << endl;
+            cout << "You have entered incorrect parameter A and B. They can not be 0 simultaneously." << endl;
     }
     return line;
+}
+
+bool is_parallel(int line1[3], int line2[3])
+{
+    return true;
 }
 
 // transforming line equation
