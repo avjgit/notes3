@@ -93,27 +93,56 @@ bool is_parallel(double line1[3], double line2[3])
         || have_same_slope(line1, line2);
 }
 
+
+
 // http://www.ltn.lv/~podnieks/slides/algebra/det.pdf
 // http://en.wikipedia.org/wiki/Determinant
 // http://mathworld.wolfram.com/Determinant.html
-double determinant(double i11, double i12, double i21, double i22)
+double determinant(double i11, double i12,
+                   double i21, double i22)
 {
     return i11*i22 - i12*i21;
 }
 
 // http://www.ltn.lv/~podnieks/slides/algebra/det.pdf
 // http://en.wikipedia.org/wiki/Cramer%27s_rule
-double* intersection(double line1[3], double line2[3])
+int* intersection(double line1[3], double line2[3])
 {
     double d  = determinant(line1[a], line1[b], line2[a], line2[b]);
     double d1 = determinant(line1[c], line1[b], line2[c], line2[b]);
     double d2 = determinant(line1[a], line1[c], line2[a], line2[c]);
-    double x = d1/ d;
-    double y = d2/ d;
-    double intersection_point[2] = {x, y};
+    int x = (int)(d1/ d);
+    int y = (int)(d2/ d);
+    int intersection_point[2] = {x, y};
     return intersection_point;
 }
 
+double* intersection2(double line1[3], double line2[3])
+{
+    // step 0: initial
+    // a1x + b1y = c1
+    // a2x + b2y = c2
+
+    // step 1: multiply 1st by b2, 2nd by b1
+    // a1b2x + b1b2y = c1b2
+    // a2b1x + b2b1y = c2b1
+
+    // step 2: substract 2nd from 1st
+    // a1b2x + b1b2y - a2b1x - b2b1y = c1b2 - c2b1
+    // a1b2x         - a2b1x         = c1b2 - c2b1
+    //(a1b2          - a2b1)x        = c1b2 - c2b1
+    //                      x        = (c1b2 - c2b1)/(a1b2 - a2b1)
+
+    // step 3: entering x in first initial equation
+    // a1x + b1y = c1
+    //       b1y = c1 - a1x
+    //         y =(c1 - a1x)/b1
+
+    double x = (c1b2 - c2b1)/(a1b2 - a2b1);
+    double y = (c1 - a1x)/b1;
+    double intersection_point[2] = {x, y};
+    return intersection_point;
+}
 void c15()
 {
     double lines[max_number_of_lines][parameters + 2]; // array to store lines, entered by user
@@ -207,7 +236,7 @@ void c15()
         print("There are no parallel lines.");
     }
 
-    double* intersection_of_1_and_2 = intersection(lines[0], lines[1]);
+    int* intersection_of_1_and_2 = intersection(lines[0], lines[1]);
 
     cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
 
