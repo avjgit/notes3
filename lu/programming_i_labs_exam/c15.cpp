@@ -19,10 +19,16 @@ const int parallelness = 4;
 bool is_line_wrong(double line[parameters])
 {
     return
-    (
         line[parameter_a] == 0 &&
-        line[parameter_b] == 0
-    );
+        line[parameter_b] == 0;
+}
+
+bool is_stop(double line[parameters])
+{
+    return
+        line[parameter_a] == 0 &&
+        line[parameter_b] == 0 &&
+        line[parameter_c] == 0;
 }
 
 double* get_line()
@@ -30,13 +36,17 @@ double* get_line()
     double line[parameters] = {0, 0, 0};
     while (is_line_wrong(line))
     {
-        cout << "Enter line's ax + by = c parameters, as space-separated integers a b c: ";
+        print("If you want to stop, enter 0 0 0.");
+        print("Enter line's ax + by = c parameters, as space-separated integers a b c: ");
         cin >> line[parameter_a];
         cin >> line[parameter_b];
         cin >> line[parameter_c];
 
+        if (is_stop(line))
+            break;
+
         if (is_line_wrong(line))
-            cout << "You have entered incorrect parameter A and B. They can not be 0 simultaneously." << endl;
+            print("You have entered incorrect parameter A and B. They can not be 0 simultaneously.");
     }
     return line;
 }
@@ -66,10 +76,10 @@ void c15()
     // getting lines from user
     for (int line = 0; line < max_number_of_lines; line++, lines_entered++)
     {
-        double* temp_line = get_line();
-        lines[line][parameter_a] = temp_line[parameter_a];
-        lines[line][parameter_b] = temp_line[parameter_b];
-        lines[line][parameter_c] = temp_line[parameter_c];
+        double* input_line = get_line();
+        lines[line][parameter_a] = input_line[parameter_a];
+        lines[line][parameter_b] = input_line[parameter_b];
+        lines[line][parameter_c] = input_line[parameter_c];
         lines[line][state]       = not_checked;
     }
 
