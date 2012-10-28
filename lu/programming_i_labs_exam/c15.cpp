@@ -10,10 +10,11 @@
 const int parameters = 3;
 const int max_number_of_lines = 2;
 
-const int parameter_a = 0;
-const int parameter_b = 1;
-const int parameter_c = 2;
-const int state = 3;
+const int parameter_a  = 0;
+const int parameter_b  = 1;
+const int parameter_c  = 2;
+const int state        = 3;
+const int parallelness = 4;
 
 bool is_line_wrong(double line[parameters])
 {
@@ -52,11 +53,10 @@ double* get_line()
 void c15()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
-    double lines[max_number_of_lines][parameters + 1];
+    double lines[max_number_of_lines][parameters + 2];
     int lines_entered = 0;
-
-    const int not_checked = -2;
-    const int not_parallel = -1;
+    const int checked = 1;
+    const int not_checked = 0;
 
     // getting lines from user
     for (int line = 0; line < max_number_of_lines; line++, lines_entered++)
@@ -70,11 +70,10 @@ void c15()
 
     bool exists_parallels = false;
 
-
     // mark lines parallel
     for (int line = 0; line < lines_entered; line++)
     {
-        // if line not yet marke as being parallel
+        // if line not yet marked as being parallel
         if (lines[line][state] == not_checked)
         {
             // loop through lines, starting from next one till end
@@ -84,32 +83,42 @@ void c15()
                 if (true)
                 {
                     // mark current line as parallel to line from outer loop
-                    lines[next_line][state] = line;
+                    lines[next_line][state] = checked;
+                    lines[next_line][parallelness] = line;
                     exists_parallels = true;
                 }
             }
         }
     }
 
+    // reseting state for printing
+    for (int line = 0; line < lines_entered; line++)
+        lines[line][state] = not_checked;
+
     // print out result of parallelness check
     if (exists_parallels)
     {
+        bool has_parallels;
         print("Parallel lines are:");
         for (int line = 0; line < lines_entered; line++)
         {
-            string output_lines = "Line " << line+1;
+            string output_lines = "    Line " + to_char(line+1);
+            has_parallels = false;
 
-            // loop through lines, starting from next one till end
-            for (int next_line = line + 1; next_line < lines_entered; next_line++)
+            // if line is not yet printed
+            if (lines[line][state] == not_checked)
             {
-                // if (is_parallel(lines[line], lines[next_line]))
-                if (true)
+                for (int next_line = line + 1; next_line < lines_entered; next_line++)
                 {
-                    // mark current line as parallel to line from outer loop
-                    lines[next_line][state] = line;
-                    exists_parallels = true;
+                    if (lines[next_line][parallelness] == line)
+                    {
+                        lines[next_line][state] = checked;
+                        output_lines += ", line " + to_char(next_line+1);
+                        has_parallels = true;
+                    }
                 }
             }
+            if (has_parallels) print(output_lines);
         }
     }
     else

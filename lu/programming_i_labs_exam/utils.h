@@ -38,3 +38,13 @@ char request_chr(string question)
     cin >> answer;
     return answer;
 }
+
+string to_char(int integer)
+{
+    const int size = 9;
+    const int base = 10;
+
+    char character[size];
+    itoa(integer, character, base);
+    return character;
+}
