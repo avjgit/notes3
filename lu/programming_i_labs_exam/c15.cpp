@@ -8,7 +8,7 @@
 #include "utils.h"
 
 const int parameters = 3;           // number of line describing parameters (a, b and c)
-const int max_number_of_lines = 3;  // maximal number of lines allowed to enter
+const int max_number_of_lines = 6;  // maximal number of lines allowed to enter
 
 // order of parameters in line-describing array
 const int a            = 0;
@@ -249,17 +249,23 @@ int main()
     {
         for (int line2 = line1+1; line2 < lines_entered; line2++)
         {
-            for (int line3 = line2+1; line3 < lines_entered; line3++)
+            if (lines[line2][parallelness] != line1)
             {
-                if (are_intersecting(lines[line1], lines[line2], lines[line3]))
+                for (int line3 = line2+1; line3 < lines_entered; line3++)
                 {
-                    exists_triple_intersection = true;
-                    // double* intersection_of_1_and_2 = intersection(lines[line1], lines[line2]);
-                    // cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
-                    cout << endl << "Following lines are intersecting at same point: ";
-                    print(lines[line1]);
-                    print(lines[line2]);
-                    print(lines[line3]);
+                    if (lines[line3][parallelness] != line2)
+                    {
+                        if (are_intersecting(lines[line1], lines[line2], lines[line3]))
+                        {
+                            exists_triple_intersection = true;
+                            // double* intersection_of_1_and_2 = intersection(lines[line1], lines[line2]);
+                            // cout << "Intersection is " << intersection_of_1_and_2[0] << ";" << intersection_of_1_and_2[1];
+                            cout << endl << "Following lines are intersecting at same point: ";
+                            print(lines[line1]);
+                            print(lines[line2]);
+                            print(lines[line3]);
+                        }
+                    }
                 }
             }
         }
