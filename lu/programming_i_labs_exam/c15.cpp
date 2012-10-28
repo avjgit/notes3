@@ -53,13 +53,13 @@ void c15()
 {
     // http://stackoverflow.com/questions/936687/how-do-i-declare-a-2d-array-using-new
     double lines[max_number_of_lines][parameters + 1];
-    int real_number_of_lines = 0;
+    int lines_entered = 0;
 
     const int not_checked = -2;
     const int not_parallel = -1;
 
     // getting lines from user
-    for (int line = 0; line < max_number_of_lines; line++, real_number_of_lines++)
+    for (int line = 0; line < max_number_of_lines; line++, lines_entered++)
     {
         double* temp_line = get_line();
         lines[line][parameter_a] = temp_line[parameter_a];
@@ -69,13 +69,12 @@ void c15()
     }
 
     // loop through each line
-    for (int line = 0; line < real_number_of_lines; line++)
+    for (int line = 0; line < lines_entered; line++)
     {
         if (lines[line][state] == not_checked)
         {
-            cout << "let's check line " << line << " for parallelness";
             // loop through lines, starting from next one till end
-            for (int next_line = line + 1; next_line < real_number_of_lines; next_line++)
+            for (int next_line = line + 1; next_line < lines_entered; next_line++)
             {
 
             }
@@ -95,7 +94,7 @@ void c15()
 
     // checking parallelness
 
-    cout << "Your enetered " << real_number_of_lines << " lines. ";
+    cout << "Your enetered " << lines_entered << " lines. ";
 
 }
 int main()
