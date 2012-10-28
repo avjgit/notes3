@@ -39,14 +39,16 @@ double* get_line()
     while (is_line_wrong(line))
     {
         print("If you want to stop, enter 0 0 0.");
-        print("Enter line's ax + by = c parameters, as space-separated integers a b c: ");
+        print("Enter line ax + by = c as space-separated parameters a b c: ");
         cin >> line[a];
         cin >> line[b];
         cin >> line[c];
 
+        // stops on user command
         if (is_stop(line))
             break;
 
+        // repeats request if input was incorrect
         if (is_line_wrong(line))
             print("You have entered incorrect parameter A and B. They can not be 0 simultaneously.");
     }
@@ -247,7 +249,7 @@ void c15()
         print("There are no parallel lines.");
     }
 
-    // subsets by 3 of lines
+    // combinations by 3 lines out of all lines
     bool exists_triple_intersection = false;
 
     for (int line1 = 0; line1 < lines_entered; line1++)
