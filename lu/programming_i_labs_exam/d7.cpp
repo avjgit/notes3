@@ -31,6 +31,13 @@ class number_queue
 public:
     int list[5];
     int amount;
+
+    void print()
+    {
+        cout << endl << "Queue: ";
+        for (int i = 0; i < 5; i++)
+            cout << list[i];
+    }
 };
 
 int main()
@@ -52,7 +59,7 @@ int main()
             cin >> input;
             queue.list[0] = input;
             cout << "do entering";
-            cout << "Queue: " << queue.list[0];
+            queue.print();
         }
         else if (command == pull)
         {
