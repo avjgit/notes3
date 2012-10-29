@@ -48,9 +48,10 @@ public:
 
     void print()
     {
-        cout << endl << "Queue:";
+        cout << "Queue:";
         for (int i = 0; i < amount; i++)
             cout << " " << list[i];
+        cout << endl;
     }
 
     void enqueue(int element)
@@ -70,6 +71,7 @@ public:
         int dequeable = list[0];
         for (int i = 0; i < amount; i++)
             list[i] = list[i+1];
+        amount--;
         return dequeable;
     }
 };
@@ -87,7 +89,7 @@ void d7()
     int out;
     while (command != stop)
     {
-        print("Enter desired action.");
+        print("Enter desired action: ");
         cin >> command;
         if (command == push)
         {
@@ -98,7 +100,7 @@ void d7()
         else if (command == pull)
         {
             out = queue.dequeue();
-            cout << out << " dequeued.";
+            cout << out << " dequeued." << endl;
             queue.print();
         }
         else if (command != stop)
