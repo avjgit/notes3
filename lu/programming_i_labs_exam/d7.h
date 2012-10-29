@@ -11,9 +11,10 @@ private:
     static const string msg_destructed_size;
     static const string msg_empty;
     static const string msg_full;
+    static const string msg_queue;
 
-    static const int queue_size = 5;
-    int queue[queue_size];
+    static const int queue_max_size = 5;
+    int queue[queue_max_size];
     int size;
 
 public:
@@ -33,5 +34,6 @@ public:
     int count();
 
     bool is_empty();
+    bool is_full();
 };
 #endif

@@ -27,10 +27,12 @@
 // ----------------------------------------------
 #include "d7.h"
 
+// messages to display to user
 const string Queue::msg_destructed      = "Queue was destructed.";
 const string Queue::msg_destructed_size = "Queue's size was ";
 const string Queue::msg_empty           = "Queue is empty.";
 const string Queue::msg_full            = "Queue is full, enqueuing not possible.";
+const string Queue::msg_queue           = "Queue: ";
 
 Queue::Queue()
 {
@@ -50,6 +52,7 @@ Queue::~Queue()
         print(msg_destructed_size + to_char(size));
 }
 
+// prints out contents of a queue
 void Queue::print()
 {
     if (is_empty())
@@ -58,13 +61,14 @@ void Queue::print()
     }
     else
     {
-        cout << endl << "Queue:";
+        string describe = msg_queue;
         for (int i = 0; i < size; i++)
-            cout << " " << queue[i];
-        cout << endl;
+            describe = describe + " " + to_char(queue[i]);
+        print(describe);
     }
 }
 
+// prints out a message to use
 void Queue::print(string message)
 {
     cout << endl << message << endl;
@@ -79,7 +83,7 @@ void Queue::enqueue()
 
 void Queue::enqueue(int element)
 {
-    if (size < queue_size)
+    if (!is_full())
     {
         queue[size++] = element;
         print();
@@ -108,4 +112,10 @@ int Queue::count()
 bool Queue::is_empty()
 {
     return size == 0;
+}
+
+
+bool Queue::is_full()
+{
+    return size == queue_max_size;
 }
