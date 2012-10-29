@@ -142,7 +142,11 @@ void d7()
         {
             print( q.is_empty() ? msg_empty : to_char(q.dequeue()) + msg_dequeued);
         }
-        else if (command != stop)
+        else if (command == stop)
+        {
+            break;
+        }
+        else
         {
             print(msg_bad_input);
         }
