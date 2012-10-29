@@ -107,9 +107,15 @@ public:
 
 void d7()
 {
-    const char stop = 'x';
+    const char stop    = 'x';
     const char enqueue = '+';
     const char dequeue = '-';
+
+    string msg_prompt = "Enter +a to enqueue a, - to dequeue, x to stop: ";
+    string msg_empty = "Queue is empty, dequeuing not possible.";
+    string msg_bad_input = "Your input is incorrect";
+    string msg_end = "Program is over.";
+    string msg_dequeued = " dequeued.";
 
     number_queue q;
     int input;
@@ -118,7 +124,7 @@ void d7()
     int out;
     while (command != stop)
     {
-        print("Enter +a to enqueue a, - to dequeue, x to stop: ");
+        print(msg_prompt);
         cin >> command;
         if (command == enqueue)
         {
@@ -131,20 +137,20 @@ void d7()
             if (!q.is_empty())
             {
                 out = q.dequeue();
-                cout << out << " dequeued." << endl;
+                print(to_char(out) + msg_dequeued);
                 q.print();
             }
             else
             {
-                print("Queue is empty, dequeuing not possible.");
+                print(msg_empty);
             }
         }
         else if (command != stop)
         {
-            print("Your input is incorrect");
+            print(msg_bad_input);
         }
     }
-    print("Program is over. ");
+    print(msg_end);
 }
 
 int main()
