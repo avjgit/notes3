@@ -27,80 +27,80 @@
 // ----------------------------------------------
 #include "d7.h"
 
-    number_queue::number_queue()
-    {
-        size = 0;
-    }
+number_queue::number_queue()
+{
+    size = 0;
+}
 
-    number_queue::number_queue(int _size, int* elements)
-    {
-        for(int i = 0; i < _size; i++)
-            enqueue(elements[i]);
-    }
+number_queue::number_queue(int _size, int* elements)
+{
+    for(int i = 0; i < _size; i++)
+        enqueue(elements[i]);
+}
 
-    number_queue::~number_queue()
-    {
-        print("Queue was destructed.");
-        if (size > 0)
-            cout << endl << "There were " << size << " elements." << endl;
-    }
+number_queue::~number_queue()
+{
+    print("Queue was destructed.");
+    if (size > 0)
+        cout << endl << "There were " << size << " elements." << endl;
+}
 
-    void number_queue::print()
+void number_queue::print()
+{
+    if (is_empty())
     {
-        if (is_empty())
-        {
-            print("Queue is empty.");
-        }
-        else
-        {
-            cout << endl << "Queue:";
-            for (int i = 0; i < size; i++)
-                cout << " " << queue[i];
-            cout << endl;
-        }
+        print("Queue is empty.");
     }
-
-    void number_queue::print(string message)
+    else
     {
-        cout << endl << message << endl;
-    }
-
-    void number_queue::enqueue()
-    {
-        int input;
-        cin >> input;
-        enqueue(input);
-    }
-
-    void number_queue::enqueue(int element)
-    {
-        if (size < queue_size)
-        {
-            queue[size++] = element;
-            print();
-        }
-        else
-        {
-            print("Queue is full, enqueuing not possible.");
-        }
-    }
-
-    int number_queue::dequeue()
-    {
-        int dequeueable = queue[0];
+        cout << endl << "Queue:";
         for (int i = 0; i < size; i++)
-            queue[i] = queue[i+1];
-        size--;
+            cout << " " << queue[i];
+        cout << endl;
+    }
+}
+
+void number_queue::print(string message)
+{
+    cout << endl << message << endl;
+}
+
+void number_queue::enqueue()
+{
+    int input;
+    cin >> input;
+    enqueue(input);
+}
+
+void number_queue::enqueue(int element)
+{
+    if (size < queue_size)
+    {
+        queue[size++] = element;
         print();
-        return dequeueable;
     }
-
-    int number_queue::count()
+    else
     {
-        return size;
+        print("Queue is full, enqueuing not possible.");
     }
+}
 
-    bool number_queue::is_empty()
-    {
-        return size == 0;
-    }
+int number_queue::dequeue()
+{
+    int dequeueable = queue[0];
+    for (int i = 0; i < size; i++)
+        queue[i] = queue[i+1];
+    size--;
+    print();
+    return dequeueable;
+}
+
+int number_queue::count()
+{
+    return size;
+}
+
+bool number_queue::is_empty()
+{
+    return size == 0;
+}
