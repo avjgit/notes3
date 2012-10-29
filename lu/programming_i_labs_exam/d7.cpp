@@ -14,9 +14,9 @@
 // un rindas elementu skaits.                                                           //todo
 // Klasei izveidot šādas metodes:
 // (1) konstruktors,                                                                    //ok
-// (2) destruktors,
-// kurš paziņo par objekta likvidēšanu
-// un likvidēto elementu skaitu
+// (2) destruktors,                                                                     //ok
+// kurš paziņo par objekta likvidēšanu                                                  //ok
+// un likvidēto elementu skaitu                                                         //ok
 // (ja likvidēšanas brīdī rinda nav tukša),
 // (3) metode "enqueue", kas pievieno rindai elementu,
 // ja tā nav pilna,
@@ -39,7 +39,8 @@ public:
 
     ~number_queue()
     {
-
+        amount = 999;
+        cout << endl << "Queue with " << amount << " elements is being destructed.";
     }
 
     void print()
@@ -50,7 +51,7 @@ public:
     }
 };
 
-int main()
+void d7()
 {
     const char stop = 'x';
     const char push = '+';
@@ -81,7 +82,11 @@ int main()
         }
     }
     print("Program is over. ");
+}
 
+int main()
+{
+    d7();
     system("pause");
     return 0;
 }
