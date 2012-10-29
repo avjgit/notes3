@@ -37,6 +37,13 @@ void d7()
 
 int main()
 {
+    Queue q;
+
+    int input [] = {1, 2, 3};
+    q.enqueue(3, input);
+
+    test("3 in queue", 3, q.count());
+
     d7();
     system("pause");
     return 0;

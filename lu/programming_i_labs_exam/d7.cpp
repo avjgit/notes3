@@ -68,17 +68,10 @@ void Queue::print()
     }
 }
 
-// prints out a message to use
+// prints out a message to user
 void Queue::print(string message)
 {
     cout << endl << message << endl;
-}
-
-void Queue::enqueue()
-{
-    int input;
-    cin >> input;
-    enqueue(input);
 }
 
 void Queue::enqueue(int element)
@@ -94,10 +87,23 @@ void Queue::enqueue(int element)
     }
 }
 
+void Queue::enqueue()
+{
+    int input;
+    cin >> input;
+    enqueue(input);
+}
+
+void Queue::enqueue(int _size, int* elements)
+{
+    for(int i = 0; i < _size; i++)
+        enqueue(elements[i]);
+}
+
 int Queue::dequeue()
 {
-    int dequeueable = queue[0];
-    for (int i = 0; i < size; i++)
+    int dequeueable = queue[0];     // take first element
+    for (int i = 0; i < size; i++)  // shift next elements forward
         queue[i] = queue[i+1];
     size--;
     print();
@@ -113,7 +119,6 @@ bool Queue::is_empty()
 {
     return size == 0;
 }
-
 
 bool Queue::is_full()
 {

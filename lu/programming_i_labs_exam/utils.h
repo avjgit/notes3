@@ -48,3 +48,23 @@ string to_char(int integer)
     itoa(integer, character, base);
     return character;
 }
+
+
+// function to find and print test result
+void test(string description, int expected, int actual)
+{
+    string result = (expected == actual) ? "passed" : "FAILED";
+
+    cout << "testing ";
+    cout.width(12);
+    cout << description + ": ";
+    cout << result;
+    cout << "| expected: ";
+    cout.setf (ios::right);
+    cout.width(10);
+    cout << expected;
+    cout << " received: ";
+    cout.setf (ios::right);
+    cout.width(10);
+    cout << actual << endl;
+}

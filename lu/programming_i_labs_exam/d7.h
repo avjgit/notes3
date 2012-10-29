@@ -28,6 +28,7 @@ public:
 
     void enqueue();
     void enqueue(int element);
+    void enqueue(int _size, int* elements);
 
     int dequeue();
 
