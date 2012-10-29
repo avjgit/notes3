@@ -10,15 +10,15 @@
 // kāda tika prasīta iepriekšējos trīs uzdevumos (main funkciju drīkst “cieti” iekodēt).
 // Citas prasības sk. Laboratorijas darbu noteikumos.
 // D7. Izveidot klasi "Skaitļu rinda" (queue, pa vienu pusi ieliek, pa otru izņem!),
-// kurā glabājas masīvs ar skaitliskām vērtībām (int) garumā pieci                      //todo
-// un rindas elementu skaits.                                                           //todo
+// kurā glabājas masīvs ar skaitliskām vērtībām (int) garumā pieci
+// un rindas elementu skaits.
 // Klasei izveidot šādas metodes:
-// (1) konstruktors,                                                                    //ok
-// (2) destruktors,                                                                     //ok
-// kurš paziņo par objekta likvidēšanu                                                  //ok
-// un likvidēto elementu skaitu                                                         //ok
-// (ja likvidēšanas brīdī rinda nav tukša),                                             //ok
-// (3) metode "enqueue", kas pievieno rindai elementu,                                  //ok
+// (1) konstruktors,
+// (2) destruktors,
+// kurš paziņo par objekta likvidēšanu
+// un likvidēto elementu skaitu
+// (ja likvidēšanas brīdī rinda nav tukša),
+// (3) metode "enqueue", kas pievieno rindai elementu,
 // ja tā nav pilna,
 // (4) metode "dequeue", kas izņem no rindas elementu un atgriež tā vērtību,
 // (5) metode "Count", kas atgriež elementu skaitu rindā,
@@ -29,6 +29,7 @@
 class number_queue
 {
     static const int queue_size = 5;
+
 public:
     int list[queue_size];
     int amount;
@@ -40,16 +41,15 @@ public:
 
     ~number_queue()
     {
-        amount = 999;
         cout << endl << "Queue is being destructed. ";
         if (amount > 0)
-            cout << "There were " << amount << " elements.";
+            cout << endl << "There were " << amount << " elements." << endl;
     }
 
     void print()
     {
         cout << endl << "Queue:";
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < amount; i++)
             cout << " " << list[i];
     }
 
@@ -64,6 +64,14 @@ public:
             cout << endl << "Queue is full, enqueuing not possible.";
         }
     }
+
+    int dequeue()
+    {
+        int dequeable = list[0];
+        for (int i = 0; i < amount; i++)
+            list[i] = list[i+1];
+        return dequeable;
+    }
 };
 
 void d7()
@@ -76,6 +84,7 @@ void d7()
     int input;
 
     char command = ' ';
+    int out;
     while (command != stop)
     {
         print("Enter desired action.");
@@ -83,13 +92,14 @@ void d7()
         if (command == push)
         {
             cin >> input;
-            queue.list[0] = input;
-            cout << "do entering";
+            queue.enqueue(input);
             queue.print();
         }
         else if (command == pull)
         {
-            cout << "do removal";
+            out = queue.dequeue();
+            cout << out << " dequeued.";
+            queue.print();
         }
         else if (command != stop)
         {
