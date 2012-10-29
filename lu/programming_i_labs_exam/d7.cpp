@@ -73,6 +73,13 @@ public:
         cout << endl << message << endl;
     }
 
+    void enqueue()
+    {
+        int input;
+        cin >> input;
+        enqueue(input);
+    }
+
     void enqueue(int element)
     {
         if (size < queue_size)
@@ -129,8 +136,7 @@ void d7()
         cin >> command;
         if (command == enqueue)
         {
-            cin >> input;
-            q.enqueue(input);
+            q.enqueue();
         }
         else if (command == dequeue)
         {
