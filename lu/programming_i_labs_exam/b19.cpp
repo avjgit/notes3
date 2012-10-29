@@ -175,12 +175,6 @@ void b19_manual()
 
 int main()
 {
-    // b19(position);
-    // b19(position);
-    // b19(position);
-    // b19(position);
-    // b19(position);
-
     b19_manual();
     system("pause");
     return 0;
@@ -213,7 +207,6 @@ int main()
 //     _______________
 //     a b c d e f g h
 
-
 // input: h8
 // displayed:
 // 8 | . . . . . . . K
@@ -227,7 +220,6 @@ int main()
 //     _______________
 //     a b c d e f g h
 
-
 // input: h1
 // displayed:
 // 8 | . . . . . . . .
@@ -240,7 +232,6 @@ int main()
 // 1 | . . . . . . . K
 //     _______________
 //     a b c d e f g h
-
 
 // input: d4
 // displayed:

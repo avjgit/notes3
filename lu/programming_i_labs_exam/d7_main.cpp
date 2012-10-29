@@ -37,14 +37,21 @@ void d7()
 
 int main()
 {
+    // auto tests
+    int init_size = 3;
     Queue q;
-
     int input [] = {1, 2, 3};
-    q.enqueue(3, input);
 
-    test("3 in queue", 3, q.count());
+    q.enqueue(init_size, input);
+    test(to_char(init_size) + " in queue", init_size, q.count());
 
+    q.dequeue();
+    test(to_char(init_size-1) + " in queue", init_size-1, q.count());
+
+
+    // manual input
     d7();
+
     system("pause");
     return 0;
 }
