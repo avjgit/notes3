@@ -61,7 +61,7 @@ public:
         }
         else
         {
-            cout << "Queue:";
+            cout << endl << "Queue:";
             for (int i = 0; i < size; i++)
                 cout << " " << queue[i];
             cout << endl;
@@ -78,6 +78,7 @@ public:
         if (size < queue_size)
         {
             queue[size++] = element;
+            print();
         }
         else
         {
@@ -91,6 +92,7 @@ public:
         for (int i = 0; i < size; i++)
             queue[i] = queue[i+1];
         size--;
+        print();
         return dequeueable;
     }
 
@@ -115,7 +117,7 @@ void d7()
     string msg_empty = "Queue is empty, dequeuing not possible.";
     string msg_bad_input = "Your input is incorrect";
     string msg_end = "Program is over.";
-    string msg_dequeued = " dequeued.";
+    string msg_dequeued = " was just dequeued.";
 
     number_queue q;
     int input;
@@ -130,7 +132,6 @@ void d7()
         {
             cin >> input;
             q.enqueue(input);
-            q.print();
         }
         else if (command == dequeue)
         {
@@ -138,7 +139,6 @@ void d7()
             {
                 out = q.dequeue();
                 print(to_char(out) + msg_dequeued);
-                q.print();
             }
             else
             {
