@@ -123,7 +123,6 @@ void d7()
     int input;
 
     char command = ' ';
-    int out;
     while (command != stop)
     {
         print(msg_prompt);
@@ -137,8 +136,7 @@ void d7()
         {
             if (!q.is_empty())
             {
-                out = q.dequeue();
-                print(to_char(out) + msg_dequeued);
+                print(to_char(q.dequeue()) + msg_dequeued);
             }
             else
             {
