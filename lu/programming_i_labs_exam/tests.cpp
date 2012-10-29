@@ -121,8 +121,14 @@ int main()
     // txt += line_number;
     // print(txt);
 
-    double d[1] = {1};
-    cout << d[0];
+    // double d[1] = {1};
+    // cout << d[0];
+
+    int list[5];
+    int amount = 0;
+    list[amount++] = 999;
+    cout << endl << list[0];
+    cout << endl << amount;
     // cout << uppercase;
 
     system("pause");

@@ -17,8 +17,8 @@
 // (2) destruktors,                                                                     //ok
 // kurš paziņo par objekta likvidēšanu                                                  //ok
 // un likvidēto elementu skaitu                                                         //ok
-// (ja likvidēšanas brīdī rinda nav tukša),
-// (3) metode "enqueue", kas pievieno rindai elementu,
+// (ja likvidēšanas brīdī rinda nav tukša),                                             //ok
+// (3) metode "enqueue", kas pievieno rindai elementu,                                  //ok
 // ja tā nav pilna,
 // (4) metode "dequeue", kas izņem no rindas elementu un atgriež tā vērtību,
 // (5) metode "Count", kas atgriež elementu skaitu rindā,
@@ -28,26 +28,41 @@
 
 class number_queue
 {
+    static const int queue_size = 5;
 public:
-    int list[5];
+    int list[queue_size];
     int amount;
 
     number_queue()
     {
-
+        amount = 0;
     }
 
     ~number_queue()
     {
         amount = 999;
-        cout << endl << "Queue with " << amount << " elements is being destructed.";
+        cout << endl << "Queue is being destructed. ";
+        if (amount > 0)
+            cout << "There were " << amount << " elements.";
     }
 
     void print()
     {
-        cout << endl << "Queue: ";
+        cout << endl << "Queue:";
         for (int i = 0; i < 5; i++)
-            cout << list[i];
+            cout << " " << list[i];
+    }
+
+    void enqueue(int element)
+    {
+        if (amount < queue_size)
+        {
+            list[amount++] = element;
+        }
+        else
+        {
+            cout << endl << "Queue is full, enqueuing not possible.";
+        }
     }
 };
 
