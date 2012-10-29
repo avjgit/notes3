@@ -134,21 +134,18 @@ void d7()
     {
         print(msg_prompt);
         cin >> command;
-        if (command == enqueue)
+        switch (command)
         {
-            q.enqueue();
-        }
-        else if (command == dequeue)
-        {
-            print( q.is_empty() ? msg_empty : to_char(q.dequeue()) + msg_dequeued);
-        }
-        else if (command == stop)
-        {
-            break;
-        }
-        else
-        {
-            print(msg_bad_input);
+            case enqueue:
+                q.enqueue();
+                break;
+            case dequeue:
+                print( q.is_empty() ? msg_empty : to_char(q.dequeue()) + msg_dequeued);
+                break;
+            case stop:
+                break;
+            default:
+                print(msg_bad_input);
         }
     }
     print(msg_end);
