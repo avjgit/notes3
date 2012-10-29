@@ -1,3 +1,6 @@
+// Student: Andrejs Jurcenoks aj05044
+// Creation date: 2012/10/30
+
 // REQUIREMENTS:
 // 01) Ievadot loģiski nepareizus datus, programmai jāizdod atbilstošs paziņojums.
 // 02) Jābūt iespējai programmu izpildīt atkārtoti.

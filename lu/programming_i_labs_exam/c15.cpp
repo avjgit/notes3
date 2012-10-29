@@ -1,3 +1,6 @@
+// Student: Andrejs Jurcenoks aj05044
+// Creation date: 2012/10/30
+
 // REQUIREMENTS:
 // C15. Skaitļu trijnieks nosaka taisni, kas uzdota sekojošā veidā: ax+by=c.
 // Dotas n (n<=6) taisnes.

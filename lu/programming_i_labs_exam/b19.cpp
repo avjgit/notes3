@@ -1,3 +1,6 @@
+// Student: Andrejs Jurcenoks aj05044
+// Creation date: 2012/10/30
+
 // REQUIREMENTS:
 // B19. Dots burts robežās no a līdz h un naturāls skaitlis n =< 8 . Piemēram, a2.
 // Dotais pāris tiek uzskatīts par šaha galdiņa lauciņu, uz kura atrodas zirdziņš.

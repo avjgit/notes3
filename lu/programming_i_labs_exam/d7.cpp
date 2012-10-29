@@ -1,3 +1,6 @@
+// Student: Andrejs Jurcenoks aj05044
+// Creation date: 2012/10/30
+
 // REQUIREMENTS:
 // Klases hederi obligāti novietot atsevišķā hedera failā (program.h).
 // Visas metodes realizēt ārpus hedera faila – speciālā C++ failā (program.cpp).
