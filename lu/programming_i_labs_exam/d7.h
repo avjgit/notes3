@@ -4,7 +4,7 @@
 
 #include "utils.h"
 
-class number_queue
+class Queue
 {
 private:
     static const int queue_size = 5;
@@ -13,10 +13,10 @@ private:
 
 public:
 
-    number_queue();
-    number_queue(int _size, int* elements);
+    Queue();
+    Queue(int _size, int* elements);
 
-    ~number_queue();
+    ~Queue();
 
     void print();
     void print(string a);

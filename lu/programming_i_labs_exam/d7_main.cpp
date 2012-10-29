@@ -12,7 +12,7 @@ void d7()
     string msg_dequeue_no = "Queue is empty, dequeuing not possible.";
     string msg_end        = "Program is over.";
 
-    number_queue q;
+    Queue q;
     char command = ' ';
     while (command != stop)
     {

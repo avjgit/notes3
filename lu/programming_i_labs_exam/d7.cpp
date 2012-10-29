@@ -27,25 +27,25 @@
 // ----------------------------------------------
 #include "d7.h"
 
-number_queue::number_queue()
+Queue::Queue()
 {
     size = 0;
 }
 
-number_queue::number_queue(int _size, int* elements)
+Queue::Queue(int _size, int* elements)
 {
     for(int i = 0; i < _size; i++)
         enqueue(elements[i]);
 }
 
-number_queue::~number_queue()
+Queue::~Queue()
 {
     print("Queue was destructed.");
     if (size > 0)
         cout << endl << "There were " << size << " elements." << endl;
 }
 
-void number_queue::print()
+void Queue::print()
 {
     if (is_empty())
     {
@@ -60,19 +60,19 @@ void number_queue::print()
     }
 }
 
-void number_queue::print(string message)
+void Queue::print(string message)
 {
     cout << endl << message << endl;
 }
 
-void number_queue::enqueue()
+void Queue::enqueue()
 {
     int input;
     cin >> input;
     enqueue(input);
 }
 
-void number_queue::enqueue(int element)
+void Queue::enqueue(int element)
 {
     if (size < queue_size)
     {
@@ -85,7 +85,7 @@ void number_queue::enqueue(int element)
     }
 }
 
-int number_queue::dequeue()
+int Queue::dequeue()
 {
     int dequeueable = queue[0];
     for (int i = 0; i < size; i++)
@@ -95,12 +95,12 @@ int number_queue::dequeue()
     return dequeueable;
 }
 
-int number_queue::count()
+int Queue::count()
 {
     return size;
 }
 
-bool number_queue::is_empty()
+bool Queue::is_empty()
 {
     return size == 0;
 }
