@@ -26,34 +26,29 @@
 // (6) metode "IsEmpty", kas noskaidro, vai rinda ir tukša.
 // ----------------------------------------------
 #include "utils.h"
+#include "d7.h"
 
-class number_queue
-{
-    static const int queue_size = 5;
-    int queue[queue_size];
-    int size;
+    const int number_queue::queue_size = 5;
 
-public:
-
-    number_queue()
+    number_queue::number_queue()
     {
         size = 0;
     }
 
-    number_queue(int _size, int* elements)
+    number_queue::number_queue(int _size, int* elements)
     {
         for(int i = 0; i < _size; i++)
             enqueue(elements[i]);
     }
 
-    ~number_queue()
+    number_queue::~number_queue()
     {
         print("Queue was destructed.");
         if (size > 0)
             cout << endl << "There were " << size << " elements." << endl;
     }
 
-    void print()
+    void number_queue::print()
     {
         if (is_empty())
         {
@@ -68,19 +63,19 @@ public:
         }
     }
 
-    void print(string message)
+    void number_queue::print(string message)
     {
         cout << endl << message << endl;
     }
 
-    void enqueue()
+    void number_queue::enqueue()
     {
         int input;
         cin >> input;
         enqueue(input);
     }
 
-    void enqueue(int element)
+    void number_queue::enqueue(int element)
     {
         if (size < queue_size)
         {
@@ -93,7 +88,7 @@ public:
         }
     }
 
-    int dequeue()
+    int number_queue::dequeue()
     {
         int dequeueable = queue[0];
         for (int i = 0; i < size; i++)
@@ -103,36 +98,34 @@ public:
         return dequeueable;
     }
 
-    int count()
+    int number_queue::count()
     {
         return size;
     }
 
-    bool is_empty()
+    bool number_queue::is_empty()
     {
         return size == 0;
     }
-};
+
 
 void d7()
 {
-    const char stop    = 'x';
-    const char enqueue = '+';
-    const char dequeue = '-';
+    const char enqueue    = '+';
+    const char dequeue    = '-';
+    const char stop       = 'x';
 
-    string msg_prompt = "Enter +a to enqueue a, - to dequeue, x to stop: ";
-    string msg_empty = "Queue is empty, dequeuing not possible.";
-    string msg_bad_input = "Your input is incorrect";
-    string msg_end = "Program is over.";
-    string msg_dequeued = " was just dequeued.";
+    string msg_get_input  = "Enter +a to enqueue a, - to dequeue, x to stop: ";
+    string msg_bad_input  = "Your input is incorrect";
+    string msg_dequeue_ok = " was just dequeued.";
+    string msg_dequeue_no = "Queue is empty, dequeuing not possible.";
+    string msg_end        = "Program is over.";
 
     number_queue q;
-    int input;
-
     char command = ' ';
     while (command != stop)
     {
-        print(msg_prompt);
+        print(msg_get_input);
         cin >> command;
         switch (command)
         {
@@ -140,7 +133,7 @@ void d7()
                 q.enqueue();
                 break;
             case dequeue:
-                print( q.is_empty() ? msg_empty : to_char(q.dequeue()) + msg_dequeued);
+                print( q.is_empty() ? msg_dequeue_no : to_char(q.dequeue()) + msg_dequeue_ok);
                 break;
             case stop:
                 break;
