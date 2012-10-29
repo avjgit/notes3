@@ -140,14 +140,7 @@ void d7()
         }
         else if (command == dequeue)
         {
-            if (!q.is_empty())
-            {
-                print(to_char(q.dequeue()) + msg_dequeued);
-            }
-            else
-            {
-                print(msg_empty);
-            }
+            print( q.is_empty() ? msg_empty : to_char(q.dequeue()) + msg_dequeued);
         }
         else if (command != stop)
         {
