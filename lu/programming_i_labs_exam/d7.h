@@ -7,6 +7,11 @@
 class Queue
 {
 private:
+    static const string msg_destructed;
+    static const string msg_destructed_size;
+    static const string msg_empty;
+    static const string msg_full;
+
     static const int queue_size = 5;
     int queue[queue_size];
     int size;
@@ -15,7 +20,6 @@ public:
 
     Queue();
     Queue(int _size, int* elements);
-
     ~Queue();
 
     void print();
