@@ -25,10 +25,7 @@
 // (5) metode "Count", kas atgriež elementu skaitu rindā,
 // (6) metode "IsEmpty", kas noskaidro, vai rinda ir tukša.
 // ----------------------------------------------
-#include "utils.h"
 #include "d7.h"
-
-    const int number_queue::queue_size = 5;
 
     number_queue::number_queue()
     {
