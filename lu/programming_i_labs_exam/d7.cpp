@@ -13,7 +13,7 @@
 // kurā glabājas masīvs ar skaitliskām vērtībām (int) garumā pieci                      //todo
 // un rindas elementu skaits.                                                           //todo
 // Klasei izveidot šādas metodes:
-// (1) konstruktors,
+// (1) konstruktors,                                                                    //ok
 // (2) destruktors,
 // kurš paziņo par objekta likvidēšanu
 // un likvidēto elementu skaitu
@@ -31,6 +31,16 @@ class number_queue
 public:
     int list[5];
     int amount;
+
+    number_queue()
+    {
+
+    }
+
+    ~number_queue()
+    {
+
+    }
 
     void print()
     {
